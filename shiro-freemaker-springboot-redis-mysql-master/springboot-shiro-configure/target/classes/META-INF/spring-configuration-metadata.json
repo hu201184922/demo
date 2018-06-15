@@ -1,0 +1,231 @@
+{
+	"groups": [
+		{
+			"name": "shiro",
+			"type": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		},
+		{
+			"name": "shiro.cookie",
+			"type": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroCookieProperties",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroCookieProperties"
+		},
+		{
+			"name": "shiro.ehcache",
+			"type": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties$Ehcache",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties",
+			"sourceMethod": "public com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties.Ehcache getEhcache() "
+		},
+		{
+			"name": "shiro.realm.jdbc",
+			"type": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroJdbcRealmProperties",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroJdbcRealmProperties"
+		},
+		{
+			"name": "shiro.session",
+			"type": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSessionProperties",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSessionProperties"
+		},
+		{
+			"name": "shiro.sign-in",
+			"type": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSignInProperties",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSignInProperties"
+		}
+	],
+	"properties": [
+		{
+			"name": "shiro.authorization-expire-time-redis",
+			"type": "java.lang.Integer",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		},
+		{
+			"name": "shiro.cookie.cipher-key",
+			"type": "java.lang.String",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroCookieProperties"
+		},
+		{
+			"name": "shiro.cookie.decryption-cipher-key",
+			"type": "java.lang.String",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroCookieProperties"
+		},
+		{
+			"name": "shiro.cookie.encryption-cipher-key",
+			"type": "java.lang.String",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroCookieProperties"
+		},
+		{
+			"name": "shiro.cookie.http-only",
+			"type": "java.lang.Boolean",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroCookieProperties"
+		},
+		{
+			"name": "shiro.cookie.max-age",
+			"type": "java.lang.Integer",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroCookieProperties"
+		},
+		{
+			"name": "shiro.cookie.name",
+			"type": "java.lang.String",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroCookieProperties"
+		},
+		{
+			"name": "shiro.cookie.secure",
+			"type": "java.lang.Boolean",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroCookieProperties"
+		},
+		{
+			"name": "shiro.cookie.value",
+			"type": "java.lang.String",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroCookieProperties"
+		},
+		{
+			"name": "shiro.cookie.version",
+			"type": "java.lang.Integer",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroCookieProperties"
+		},
+		{
+			"name": "shiro.custom-authc-filter-class",
+			"type": "java.lang.Class<? extends org.apache.shiro.web.filter.authz.AuthorizationFilter>",
+			"description": "Custom Realm",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		},
+		{
+			"name": "shiro.ehcache.cache-manager-config-file",
+			"type": "java.lang.String",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties$Ehcache"
+		},
+		{
+			"name": "shiro.filter-chain-definitions",
+			"type": "java.util.Map<java.lang.String,java.lang.String>",
+			"description": "Filter chain",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		},
+		{
+			"name": "shiro.hash-algorithm-name",
+			"type": "java.lang.String",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		},
+		{
+			"name": "shiro.hash-iterations",
+			"type": "java.lang.Integer",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		},
+		{
+			"name": "shiro.login-url",
+			"type": "java.lang.String",
+			"description": "URL of login",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		},
+		{
+			"name": "shiro.realm-class",
+			"type": "java.lang.Class<? extends org.apache.shiro.realm.Realm>",
+			"description": "Custom Realm",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		},
+		{
+			"name": "shiro.realm.jdbc.authentication-query",
+			"type": "java.lang.String",
+			"description": "select password from users where username = ?",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroJdbcRealmProperties"
+		},
+		{
+			"name": "shiro.realm.jdbc.enabled",
+			"type": "java.lang.Boolean",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroJdbcRealmProperties"
+		},
+		{
+			"name": "shiro.realm.jdbc.permissions-query",
+			"type": "java.lang.String",
+			"description": "select permission from roles_permissions where role_name = ?",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroJdbcRealmProperties"
+		},
+		{
+			"name": "shiro.realm.jdbc.salt",
+			"type": "org.apache.shiro.realm.jdbc.JdbcRealm$SaltStyle",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroJdbcRealmProperties"
+		},
+		{
+			"name": "shiro.realm.jdbc.user-roles-query",
+			"type": "java.lang.String",
+			"description": "select role_name from user_roles where username = ?",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroJdbcRealmProperties"
+		},
+		{
+			"name": "shiro.retry-expire-time-redis",
+			"type": "java.lang.Integer",
+			"description": "密码重试次数达到上限后，锁定时间（该参数仅适用于 redis管理cache）",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		},
+		{
+			"name": "shiro.retry-max",
+			"type": "java.lang.Integer",
+			"description": "密码重试次数上限",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		},
+		{
+			"name": "shiro.session.active-sessions-cache-name",
+			"type": "java.lang.String",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSessionProperties"
+		},
+		{
+			"name": "shiro.session.delete-invalid-sessions",
+			"type": "java.lang.Boolean",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSessionProperties"
+		},
+		{
+			"name": "shiro.session.global-session-timeout",
+			"type": "java.lang.Long",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSessionProperties"
+		},
+		{
+			"name": "shiro.session.id-generator",
+			"type": "java.lang.Class<? extends org.apache.shiro.session.mgt.eis.SessionIdGenerator>",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSessionProperties"
+		},
+		{
+			"name": "shiro.session.validation-interval",
+			"type": "java.lang.Long",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSessionProperties"
+		},
+		{
+			"name": "shiro.session.validation-scheduler-enabled",
+			"type": "java.lang.Boolean",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSessionProperties"
+		},
+		{
+			"name": "shiro.sign-in.password-param",
+			"type": "java.lang.String",
+			"description": "Request parameter's name of password",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSignInProperties"
+		},
+		{
+			"name": "shiro.sign-in.remember-me-param",
+			"type": "java.lang.String",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSignInProperties"
+		},
+		{
+			"name": "shiro.sign-in.user-param",
+			"type": "java.lang.String",
+			"description": "Request parameter's name of user",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroSignInProperties"
+		},
+		{
+			"name": "shiro.stored-credentials-hex-encoded",
+			"type": "java.lang.Boolean",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		},
+		{
+			"name": "shiro.success-url",
+			"type": "java.lang.String",
+			"description": "URL of success",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		},
+		{
+			"name": "shiro.unauthorized-url",
+			"type": "java.lang.String",
+			"description": "URL of unauthorized",
+			"sourceType": "com.xinwei.spring.boot.autoconfigure.shiro.ShiroProperties"
+		}
+	],
+	"hints": []
+}

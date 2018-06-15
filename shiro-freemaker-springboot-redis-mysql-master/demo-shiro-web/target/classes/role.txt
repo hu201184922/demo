@@ -1,0 +1,739 @@
+{
+	"code": "0",
+	"msg": "success",
+	"data": {
+		"reTranTime": "13:30:04",
+		"transNo": "0000002018052313345255759",
+		"reTranDate": "20180523",
+		"roleIDResult": [
+			{
+				"roleID": "3_666666_2",
+				"roleName": "中支营销服务部部门负责人",
+				"manageCom": "10403",
+				"department": "1302040305",
+				"job": "2",
+				"sellCom": "",
+				"rank": "",
+				"agentCate": "",
+				"manageComName": "华泰人寿常州中支",
+				"departmentName": "营销服务部",
+				"nodeResult": [
+					{
+						"nodeCode": "ZZJY_URL001",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "首页",
+						"runscript": "/index",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL012",
+						"parentNodeCode": "ZZJY_URL007",
+						"nodeType": "M",
+						"nodeName": "分析管理实时指标",
+						"runscript": "/analysis/realtime",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL003",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "个业部固定指标",
+						"runscript": "/index/fixed/trade",
+						"nodeOrder": "2",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL007",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "分析管理",
+						"runscript": "/analysis",
+						"nodeOrder": "2",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL008",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "板块",
+						"runscript": "/plate",
+						"nodeOrder": "3",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL005",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "机构发展部固定指标",
+						"runscript": "/index/fixed/org",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL009",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "浏览清单",
+						"runscript": "/browse",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL006",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "培训部固定指标",
+						"runscript": "/index/fixed/train",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL010",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "工具",
+						"runscript": "/tool",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					}
+				]
+			},
+			{
+				"roleID": "3_130101_2",
+				"roleName": "中支机构发展部部门负责人",
+				"manageCom": "10401",
+				"department": "130101",
+				"job": "2",
+				"sellCom": "",
+				"rank": "",
+				"agentCate": "",
+				"manageComName": "华泰人寿南京中支",
+				"departmentName": "机构发展部",
+				"nodeResult": [
+					{
+						"nodeCode": "ZZJY_URL001",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "首页",
+						"runscript": "/index",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL007",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "分析管理",
+						"runscript": "/analysis",
+						"nodeOrder": "2",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL008",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "板块",
+						"runscript": "/plate",
+						"nodeOrder": "3",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL005",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "机构发展部固定指标",
+						"runscript": "/index/fixed/org",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL009",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "浏览清单",
+						"runscript": "/browse",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL010",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "工具",
+						"runscript": "/tool",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					}
+				]
+			},
+			{
+				"roleID": "3_100101_2",
+				"roleName": "中支总经理室部门负责人",
+				"manageCom": "10403",
+				"department": "100101",
+				"job": "2",
+				"sellCom": "",
+				"rank": "",
+				"agentCate": "",
+				"manageComName": "华泰人寿常州中支",
+				"departmentName": "总经理室",
+				"nodeResult": [
+					{
+						"nodeCode": "ZZJY_URL001",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "首页",
+						"runscript": "/index",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL002",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "Dashboard",
+						"runscript": "/index/dashbord",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL011",
+						"parentNodeCode": "ZZJY_URL002",
+						"nodeType": "M",
+						"nodeName": "首页实时指标",
+						"runscript": "/index/realtime",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL012",
+						"parentNodeCode": "ZZJY_URL007",
+						"nodeType": "M",
+						"nodeName": "分析管理实时指标",
+						"runscript": "/analysis/realtime",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL003",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "个业部固定指标",
+						"runscript": "/index/fixed/trade",
+						"nodeOrder": "2",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL007",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "分析管理",
+						"runscript": "/analysis",
+						"nodeOrder": "2",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL004",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "收展部固定指标",
+						"runscript": "/index/fixed/premium",
+						"nodeOrder": "3",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL008",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "板块",
+						"runscript": "/plate",
+						"nodeOrder": "3",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL005",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "机构发展部固定指标",
+						"runscript": "/index/fixed/org",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL009",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "浏览清单",
+						"runscript": "/browse",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL006",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "培训部固定指标",
+						"runscript": "/index/fixed/train",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL010",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "工具",
+						"runscript": "/tool",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					}
+				]
+			},
+			{
+				"roleID": "3_100101_1",
+				"roleName": "中支总经理室一般员工",
+				"manageCom": "10403",
+				"department": "100101",
+				"job": "1",
+				"sellCom": "",
+				"rank": "",
+				"agentCate": "",
+				"manageComName": "华泰人寿常州中支",
+				"departmentName": "总经理室",
+				"nodeResult": [
+					{
+						"nodeCode": "ZZJY_URL001",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "首页",
+						"runscript": "/index",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL002",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "Dashboard",
+						"runscript": "/index/dashbord",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL011",
+						"parentNodeCode": "ZZJY_URL002",
+						"nodeType": "M",
+						"nodeName": "首页实时指标",
+						"runscript": "/index/realtime",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL012",
+						"parentNodeCode": "ZZJY_URL007",
+						"nodeType": "M",
+						"nodeName": "分析管理实时指标",
+						"runscript": "/analysis/realtime",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL003",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "个业部固定指标",
+						"runscript": "/index/fixed/trade",
+						"nodeOrder": "2",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL007",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "分析管理",
+						"runscript": "/analysis",
+						"nodeOrder": "2",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL004",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "收展部固定指标",
+						"runscript": "/index/fixed/premium",
+						"nodeOrder": "3",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL008",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "板块",
+						"runscript": "/plate",
+						"nodeOrder": "3",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL005",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "机构发展部固定指标",
+						"runscript": "/index/fixed/org",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL009",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "浏览清单",
+						"runscript": "/browse",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL006",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "培训部固定指标",
+						"runscript": "/index/fixed/train",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL010",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "工具",
+						"runscript": "/tool",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					}
+				]
+			},
+			{
+				"roleID": "2_130101_2",
+				"roleName": "分公司机构发展部部门负责人",
+				"manageCom": "104",
+				"department": "130101",
+				"job": "2",
+				"sellCom": "",
+				"rank": "",
+				"agentCate": "",
+				"manageComName": "华泰人寿江苏分公司",
+				"departmentName": "机构发展部",
+				"nodeResult": [
+					{
+						"nodeCode": "ZZJY_URL001",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "首页",
+						"runscript": "/index",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL007",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "分析管理",
+						"runscript": "/analysis",
+						"nodeOrder": "2",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL008",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "板块",
+						"runscript": "/plate",
+						"nodeOrder": "3",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL005",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "机构发展部固定指标",
+						"runscript": "/index/fixed/org",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL009",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "浏览清单",
+						"runscript": "/browse",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL006",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "培训部固定指标",
+						"runscript": "/index/fixed/train",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL010",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "工具",
+						"runscript": "/tool",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					}
+				]
+			},
+			{
+				"roleID": "2_100101_1",
+				"roleName": "分公司总经理室一般员工",
+				"manageCom": "108",
+				"department": "100101",
+				"job": "1",
+				"sellCom": "",
+				"rank": "",
+				"agentCate": "",
+				"manageComName": "华泰人寿福建分公司",
+				"departmentName": "总经理室",
+				"nodeResult": [
+					{
+						"nodeCode": "ZZJY_URL001",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "首页",
+						"runscript": "/index",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL002",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "Dashboard",
+						"runscript": "/index/dashbord",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL011",
+						"parentNodeCode": "ZZJY_URL002",
+						"nodeType": "M",
+						"nodeName": "首页实时指标",
+						"runscript": "/index/realtime",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL012",
+						"parentNodeCode": "ZZJY_URL007",
+						"nodeType": "M",
+						"nodeName": "分析管理实时指标",
+						"runscript": "/analysis/realtime",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL003",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "个业部固定指标",
+						"runscript": "/index/fixed/trade",
+						"nodeOrder": "2",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL007",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "分析管理",
+						"runscript": "/analysis",
+						"nodeOrder": "2",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL004",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "收展部固定指标",
+						"runscript": "/index/fixed/premium",
+						"nodeOrder": "3",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL008",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "板块",
+						"runscript": "/plate",
+						"nodeOrder": "3",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL005",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "机构发展部固定指标",
+						"runscript": "/index/fixed/org",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL009",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "浏览清单",
+						"runscript": "/browse",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL006",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "培训部固定指标",
+						"runscript": "/index/fixed/train",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL010",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "工具",
+						"runscript": "/tool",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					}
+				]
+			},
+			{
+				"roleID": "1_100101_1",
+				"roleName": "总公司总经理室一般员工",
+				"manageCom": "1",
+				"department": "100101",
+				"job": "1",
+				"sellCom": "",
+				"rank": "",
+				"agentCate": "",
+				"manageComName": "华泰人寿福建分公司",
+				"departmentName": "总经理室",
+				"nodeResult": [
+					{
+						"nodeCode": "ZZJY_URL001",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "首页",
+						"runscript": "/index",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL002",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "Dashboard",
+						"runscript": "/index/dashbord",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL011",
+						"parentNodeCode": "ZZJY_URL002",
+						"nodeType": "M",
+						"nodeName": "首页实时指标",
+						"runscript": "/index/realtime",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL012",
+						"parentNodeCode": "ZZJY_URL007",
+						"nodeType": "M",
+						"nodeName": "分析管理实时指标",
+						"runscript": "/analysis/realtime",
+						"nodeOrder": "1",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL003",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "个业部固定指标",
+						"runscript": "/index/fixed/trade",
+						"nodeOrder": "2",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL007",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "分析管理",
+						"runscript": "/analysis",
+						"nodeOrder": "2",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL004",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "收展部固定指标",
+						"runscript": "/index/fixed/premium",
+						"nodeOrder": "3",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL008",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "板块",
+						"runscript": "/plate",
+						"nodeOrder": "3",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL005",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "机构发展部固定指标",
+						"runscript": "/index/fixed/org",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL009",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "浏览清单",
+						"runscript": "/browse",
+						"nodeOrder": "4",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL006",
+						"parentNodeCode": "ZZJY_URL001",
+						"nodeType": "M",
+						"nodeName": "培训部固定指标",
+						"runscript": "/index/fixed/train",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					},
+					{
+						"nodeCode": "ZZJY_URL010",
+						"parentNodeCode": "0",
+						"nodeType": "M",
+						"nodeName": "工具",
+						"runscript": "/tool",
+						"nodeOrder": "5",
+						"nodeClass": ""
+					}
+				]
+			}
+		]
+	}
+}
