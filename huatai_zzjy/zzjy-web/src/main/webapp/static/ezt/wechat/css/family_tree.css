@@ -1,0 +1,38 @@
+.family-tree-bg{background: url(../images/family-tree-bg.jpg) no-repeat; background-color: #f1f1f1; background-size:100% auto;}
+.family-tree{padding:0 15px; height:auto; width:320px; margin:40px auto;  position:relative;}
+.family-tree img{width:80px;height:80px;border-radius:40px;}
+
+.family-tree1{margin:0 auto;width:240px;}
+.family-tree1 dl{float:left;width:80px;height:auto;}
+.family-tree1 dl dt{width:80px;height:80px;border-radius:40px;background:#fff;}
+.family-tree1 dl dd{width:80px;height:30px;line-height:30px;font-size:15px; text-align:center;}
+.family-tree1-rowspan-line{float:left;width:80px;height:1px;background:#7d7d7d;margin-top:40px;}
+.family-row-colspan-line{width:1px; height:100px; position: absolute;left:50%;top:40px;background:#7d7d7d;}
+
+
+.family-tree2{margin:0 auto;width:290px;height:auto;}
+.family-tree2 dl{float:left;width:80px;height:auto;padding-top:30px;}
+.family-tree2 dl dt{width:80px;height:80px;border-radius:40px;background:#fff;}
+.family-tree2 dl dd{width:80px;height:30px;line-height:30px;font-size:15px; text-align:center;}
+.family-tree2-line{float:left;width:25px;height:1px;background:#7d7d7d;margin-top:70px;}
+
+.family-tree2-left1{width:80px; height:auto;}
+.family-tree2-left1-colspan-line{width:1px; height:50px;background:#7d7d7d;margin-left:40px;}
+.family-tree2-left1 dl{width:80px;height:auto;}
+.family-tree2-left1 dl dt{width:80px;height:80px;border-radius:40px;background:#fff;}
+.family-tree2-left1 dl dd{width:80px;height:30px;line-height:30px;font-size:15px; text-align:center;}
+
+.left-positon1{position: absolute;left:15px;top:250px;}
+.left-positon2{position: absolute;left:15px;top:410px;}
+.left-positon3{position: absolute;left:15px;top:520px;}
+
+.center-positon1{position: absolute;left:50%;margin-left:-40px;top:250px;}
+.center-positon2{position: absolute;left:50%;margin-left:-40px;top:410px;font-size:15px;}
+.center-positon3{position: absolute;left:50%;margin-left:-40px;top:520px;font-size:15px;}
+
+.right-positon1{position: absolute;right:15px;top:250px;}
+.right-positon2{position: absolute;right:15px;top:410px;font-size:15px;}
+.right-positon3{position: absolute;right:15px;top:520px;font-size:15px;}
+
+.left-copy-content{position:absolute;top:250px;}
+.block-height{height:160px;}

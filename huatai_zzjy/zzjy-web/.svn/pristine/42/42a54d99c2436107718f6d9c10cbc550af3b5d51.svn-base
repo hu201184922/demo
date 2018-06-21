@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.TarRegTabHeadMapper" >
+  <resultMap id="BaseResultMap" type="com.huatai.web.model.TarRegTabHead" >
+    <id column="TRTH_ID" property="trthId" jdbcType="INTEGER" />
+    <result column="REG_ID" property="regId" jdbcType="INTEGER" />
+    <result column="TARGET_CODE" property="targetCode" jdbcType="VARCHAR" />
+    <result column="COL_NAME" property="colName" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+    <result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TRTH_ID, REG_ID, TARGET_CODE, COL_NAME, SORT, OP_TYPE, CREATE_TIME, MODIFY_TIME, 
+    CREATOR_ID, MODIFIER_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.huatai.web.model.TarRegTabHeadExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ht_tar_reg_tab_head_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ht_tar_reg_tab_head_tb
+    where TRTH_ID = #{trthId,jdbcType=INTEGER}
+  </select>
+<!--   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ht_tar_reg_tab_head_tb
+    where TRTH_ID = #{trthId,jdbcType=INTEGER}
+  </delete> -->
+  
+  <update id="deleteByPrimaryKey">
+  		UPDATE 
+  			ht_tar_reg_tab_head_tb 
+  		SET 
+  			OP_TYPE = 'D' 
+  		WHERE 
+  			TRTH_ID = #{trthId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- <delete id="deleteByExample" parameterType="com.huatai.web.model.TarRegTabHeadExample" >
+    delete from ht_tar_reg_tab_head_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete> -->
+  
+  <update id="deleteByExample">
+  		UPDATE 
+  			ht_tar_reg_tab_head_tb 
+  		SET 
+  			OP_TYPE = 'D' 
+  		<if test="_parameter != null" >
+	      <include refid="Example_Where_Clause" />
+	    </if>
+  </update>
+  
+  <insert id="insert" parameterType="com.huatai.web.model.TarRegTabHead" >
+    insert into ht_tar_reg_tab_head_tb (TRTH_ID, REG_ID, TARGET_CODE, 
+      COL_NAME, SORT, OP_TYPE, 
+      CREATE_TIME, MODIFY_TIME, CREATOR_ID, 
+      MODIFIER_ID)
+    values (#{trthId,jdbcType=INTEGER}, #{regId,jdbcType=INTEGER}, #{targetCode,jdbcType=VARCHAR}, 
+      #{colName,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{opType,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=VARCHAR}, 
+      #{modifierId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huatai.web.model.TarRegTabHead" >
+    insert into ht_tar_reg_tab_head_tb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="trthId != null" >
+        TRTH_ID,
+      </if>
+      <if test="regId != null" >
+        REG_ID,
+      </if>
+      <if test="targetCode != null" >
+        TARGET_CODE,
+      </if>
+      <if test="colName != null" >
+        COL_NAME,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="opType != null" >
+        OP_TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID,
+      </if>
+      <if test="modifierId != null" >
+        MODIFIER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="trthId != null" >
+        #{trthId,jdbcType=INTEGER},
+      </if>
+      <if test="regId != null" >
+        #{regId,jdbcType=INTEGER},
+      </if>
+      <if test="targetCode != null" >
+        #{targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="colName != null" >
+        #{colName,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="opType != null" >
+        #{opType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.huatai.web.model.TarRegTabHeadExample" resultType="java.lang.Integer" >
+    select count(*) from ht_tar_reg_tab_head_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ht_tar_reg_tab_head_tb
+    <set >
+      <if test="record.trthId != null" >
+        TRTH_ID = #{record.trthId,jdbcType=INTEGER},
+      </if>
+      <if test="record.regId != null" >
+        REG_ID = #{record.regId,jdbcType=INTEGER},
+      </if>
+      <if test="record.targetCode != null" >
+        TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colName != null" >
+        COL_NAME = #{record.colName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        SORT = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.opType != null" >
+        OP_TYPE = #{record.opType,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creatorId != null" >
+        CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifierId != null" >
+        MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ht_tar_reg_tab_head_tb
+    set TRTH_ID = #{record.trthId,jdbcType=INTEGER},
+      REG_ID = #{record.regId,jdbcType=INTEGER},
+      TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+      COL_NAME = #{record.colName,jdbcType=VARCHAR},
+      SORT = #{record.sort,jdbcType=INTEGER},
+      OP_TYPE = #{record.opType,jdbcType=CHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+      MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.TarRegTabHead" >
+    update ht_tar_reg_tab_head_tb
+    <set >
+      <if test="regId != null" >
+        REG_ID = #{regId,jdbcType=INTEGER},
+      </if>
+      <if test="targetCode != null" >
+        TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="colName != null" >
+        COL_NAME = #{colName,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="opType != null" >
+        OP_TYPE = #{opType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null" >
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TRTH_ID = #{trthId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huatai.web.model.TarRegTabHead" >
+    update ht_tar_reg_tab_head_tb
+    set REG_ID = #{regId,jdbcType=INTEGER},
+      TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+      COL_NAME = #{colName,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER},
+      OP_TYPE = #{opType,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR}
+    where TRTH_ID = #{trthId,jdbcType=INTEGER}
+  </update>
+  <select id="findAll" resultMap="BaseResultMap" parameterType="com.huatai.web.model.TarRegTabHead" >
+    select
+    <include refid="Base_Column_List" />
+    from ht_tar_reg_tab_head_tb
+    <where>
+    	OP_TYPE != 'D'
+		<if test="trthId !=null and trthId !=''">
+			AND TRTH_ID=#{trthId}
+		</if>
+		<if test="regId !=null and regId !=''">
+			AND REG_ID=#{regId}
+		</if>
+		<if test="targetCode !=null and targetCode !=''">
+			AND TARGET_CODE like '%${targetCode}%'
+		</if>
+	</where>
+  </select>
+</mapper>

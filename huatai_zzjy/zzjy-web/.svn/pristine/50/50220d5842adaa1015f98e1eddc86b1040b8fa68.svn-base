@@ -1,0 +1,3163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.TargetMapper">
+	<resultMap id="BaseResultMap" type="com.huatai.web.model.Target">
+		<id column="TARGET_CODE" property="targetCode" jdbcType="VARCHAR" />
+		<result column="TARGET_NAME" property="targetName" jdbcType="VARCHAR" />
+		<result column="TARGET_TYPE" property="targetType" jdbcType="CHAR" />
+		<result column="PARENT_CODE" property="parentCode" jdbcType="VARCHAR" />
+		<result column="SORT" property="sort" jdbcType="INTEGER" />
+		<result column="IS_PLATE" property="isPlate" jdbcType="CHAR" />
+		<result column="IS_HOME_CORE_TARGET" property="isHomeCoreTarget"
+			jdbcType="CHAR" />
+		<result column="IS_MANAGE_TARGET" property="isManageTarget"
+			jdbcType="CHAR" />
+		<result column="IS_MATH" property="isMath" jdbcType="CHAR" />
+		<result column="TAR_DEF_SPEC" property="tarDefSpec" jdbcType="VARCHAR" />
+		<result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+		<result column="CHANNEL" property="channel" jdbcType="VARCHAR" />
+		<result column="CAL_FORMULA" property="calFormula" jdbcType="VARCHAR" />
+		<result column="CAL_RATE" property="calRate" jdbcType="VARCHAR" />
+		<result column="FIELD_CODE" property="fieldCode" jdbcType="VARCHAR" />
+		<result column="IS_REALTIME" property="isRealtime" jdbcType="CHAR" />
+		<result column="IS_STATIS" property="isStatis" jdbcType="CHAR" />
+		<result column="IS_WARN_TARGET" property="isWarnTarget"
+			jdbcType="CHAR" />
+		<result column="IS_STATIS_TARGET" property="isStatisTarget"
+			jdbcType="CHAR" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="OP_TYPE" property="opType" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+		<result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		TARGET_CODE, TARGET_NAME, TARGET_TYPE, PARENT_CODE, SORT,
+		IS_PLATE,
+		IS_HOME_CORE_TARGET,
+		IS_MANAGE_TARGET, IS_MATH, TAR_DEF_SPEC,
+		DEPT_CODE, CHANNEL, CAL_FORMULA, CAL_RATE,
+		FIELD_CODE, IS_REALTIME,
+		IS_STATIS, IS_WARN_TARGET, IS_STATIS_TARGET,
+		REMARK, OP_TYPE,
+		CREATE_TIME, MODIFY_TIME, CREATOR_ID, MODIFIER_ID
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.huatai.web.model.TargetExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from
+		ht_target_tb
+		where
+		TARGET_CODE = #{targetCode,jdbcType=VARCHAR}
+		and
+		OP_TYPE != 'D'
+	</select>
+	<!-- <delete id="deleteByPrimaryKey" parameterType="java.lang.String"> delete 
+		from ht_target_tb where TARGET_CODE = #{targetCode,jdbcType=VARCHAR} </delete> -->
+
+	<update id="deleteByPrimaryKey">
+		UPDATE
+		ht_target_tb
+		SET
+		OP_TYPE = 'D'
+		WHERE
+		TARGET_CODE =
+		#{targetCode,jdbcType=VARCHAR}
+	</update>
+
+	<!-- <delete id="deleteByExample" parameterType="com.huatai.web.model.TargetExample"> 
+		delete from ht_target_tb <if test="_parameter != null"> <include refid="Example_Where_Clause" 
+		/> </if> </delete> -->
+
+	<update id="deleteByExample">
+		UPDATE
+		ht_target_tb
+		SET
+		OP_TYPE = 'D'
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</update>
+
+	<insert id="insert" parameterType="com.huatai.web.model.Target">
+		insert into ht_target_tb
+		(TARGET_CODE, TARGET_NAME, TARGET_TYPE,
+		PARENT_CODE, SORT, IS_PLATE,
+		IS_HOME_CORE_TARGET, IS_MANAGE_TARGET, IS_MATH,
+		TAR_DEF_SPEC,
+		DEPT_CODE, CHANNEL,
+		CAL_FORMULA, CAL_RATE, FIELD_CODE,
+		IS_REALTIME,
+		IS_STATIS, IS_WARN_TARGET,
+		IS_STATIS_TARGET, REMARK, OP_TYPE,
+		CREATE_TIME, MODIFY_TIME, CREATOR_ID,
+		MODIFIER_ID)
+		values
+		(#{targetCode,jdbcType=VARCHAR}, #{targetName,jdbcType=VARCHAR},
+		#{targetType,jdbcType=CHAR},
+		#{parentCode,jdbcType=VARCHAR},
+		#{sort,jdbcType=INTEGER}, #{isPlate,jdbcType=CHAR},
+		#{isHomeCoreTarget,jdbcType=CHAR}, #{isManageTarget,jdbcType=CHAR},
+		#{isMath,jdbcType=CHAR},
+		#{tarDefSpec,jdbcType=VARCHAR},
+		#{deptCode,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR},
+		#{calFormula,jdbcType=VARCHAR}, #{calRate,jdbcType=VARCHAR},
+		#{fieldCode,jdbcType=VARCHAR},
+		#{isRealtime,jdbcType=CHAR},
+		#{isStatis,jdbcType=CHAR}, #{isWarnTarget,jdbcType=CHAR},
+		#{isStatisTarget,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR},
+		#{opType,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{modifyTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=VARCHAR},
+		#{modifierId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huatai.web.model.Target">
+		insert into ht_target_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="targetCode != null">
+				TARGET_CODE,
+			</if>
+			<if test="targetName != null">
+				TARGET_NAME,
+			</if>
+			<if test="targetType != null">
+				TARGET_TYPE,
+			</if>
+			<if test="parentCode != null">
+				PARENT_CODE,
+			</if>
+			<if test="sort != null">
+				SORT,
+			</if>
+			<if test="isPlate != null">
+				IS_PLATE,
+			</if>
+			<if test="isHomeCoreTarget != null">
+				IS_HOME_CORE_TARGET,
+			</if>
+			<if test="isManageTarget != null">
+				IS_MANAGE_TARGET,
+			</if>
+			<if test="isMath != null">
+				IS_MATH,
+			</if>
+			<if test="tarDefSpec != null">
+				TAR_DEF_SPEC,
+			</if>
+			<if test="deptCode != null">
+				DEPT_CODE,
+			</if>
+			<if test="channel != null">
+				CHANNEL,
+			</if>
+			<if test="calFormula != null">
+				CAL_FORMULA,
+			</if>
+			<if test="calRate != null">
+				CAL_RATE,
+			</if>
+			<if test="fieldCode != null">
+				FIELD_CODE,
+			</if>
+			<if test="isRealtime != null">
+				IS_REALTIME,
+			</if>
+			<if test="isStatis != null">
+				IS_STATIS,
+			</if>
+			<if test="isWarnTarget != null">
+				IS_WARN_TARGET,
+			</if>
+			<if test="isStatisTarget != null">
+				IS_STATIS_TARGET,
+			</if>
+			<if test="remark != null">
+				REMARK,
+			</if>
+			<if test="opType != null">
+				OP_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME,
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID,
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="targetCode != null">
+				#{targetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="targetName != null">
+				#{targetName,jdbcType=VARCHAR},
+			</if>
+			<if test="targetType != null">
+				#{targetType,jdbcType=CHAR},
+			</if>
+			<if test="parentCode != null">
+				#{parentCode,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			<if test="isPlate != null">
+				#{isPlate,jdbcType=CHAR},
+			</if>
+			<if test="isHomeCoreTarget != null">
+				#{isHomeCoreTarget,jdbcType=CHAR},
+			</if>
+			<if test="isManageTarget != null">
+				#{isManageTarget,jdbcType=CHAR},
+			</if>
+			<if test="isMath != null">
+				#{isMath,jdbcType=CHAR},
+			</if>
+			<if test="tarDefSpec != null">
+				#{tarDefSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="deptCode != null">
+				#{deptCode,jdbcType=VARCHAR},
+			</if>
+			<if test="channel != null">
+				#{channel,jdbcType=VARCHAR},
+			</if>
+			<if test="calFormula != null">
+				#{calFormula,jdbcType=VARCHAR},
+			</if>
+			<if test="calRate != null">
+				#{calRate,jdbcType=VARCHAR},
+			</if>
+			<if test="fieldCode != null">
+				#{fieldCode,jdbcType=VARCHAR},
+			</if>
+			<if test="isRealtime != null">
+				#{isRealtime,jdbcType=CHAR},
+			</if>
+			<if test="isStatis != null">
+				#{isStatis,jdbcType=CHAR},
+			</if>
+			<if test="isWarnTarget != null">
+				#{isWarnTarget,jdbcType=CHAR},
+			</if>
+			<if test="isStatisTarget != null">
+				#{isStatisTarget,jdbcType=CHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				#{opType,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				#{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				#{modifierId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.huatai.web.model.TargetExample"
+		resultType="java.lang.Integer">
+		select count(*) from ht_target_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update ht_target_tb
+		<set>
+			<if test="record.targetCode != null">
+				TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.targetName != null">
+				TARGET_NAME = #{record.targetName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.targetType != null">
+				TARGET_TYPE = #{record.targetType,jdbcType=CHAR},
+			</if>
+			<if test="record.parentCode != null">
+				PARENT_CODE = #{record.parentCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sort != null">
+				SORT = #{record.sort,jdbcType=INTEGER},
+			</if>
+			<if test="record.isPlate != null">
+				IS_PLATE = #{record.isPlate,jdbcType=CHAR},
+			</if>
+			<if test="record.isHomeCoreTarget != null">
+				IS_HOME_CORE_TARGET =
+				#{record.isHomeCoreTarget,jdbcType=CHAR},
+			</if>
+			<if test="record.isManageTarget != null">
+				IS_MANAGE_TARGET =
+				#{record.isManageTarget,jdbcType=CHAR},
+			</if>
+			<if test="record.isMath != null">
+				IS_MATH = #{record.isMath,jdbcType=CHAR},
+			</if>
+			<if test="record.tarDefSpec != null">
+				TAR_DEF_SPEC = #{record.tarDefSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="record.deptCode != null">
+				DEPT_CODE = #{record.deptCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.channel != null">
+				CHANNEL = #{record.channel,jdbcType=VARCHAR},
+			</if>
+			<if test="record.calFormula != null">
+				CAL_FORMULA = #{record.calFormula,jdbcType=VARCHAR},
+			</if>
+			<if test="record.calRate != null">
+				CAL_RATE = #{record.calRate,jdbcType=VARCHAR},
+			</if>
+			<if test="record.fieldCode != null">
+				FIELD_CODE = #{record.fieldCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.isRealtime != null">
+				IS_REALTIME = #{record.isRealtime,jdbcType=CHAR},
+			</if>
+			<if test="record.isStatis != null">
+				IS_STATIS = #{record.isStatis,jdbcType=CHAR},
+			</if>
+			<if test="record.isWarnTarget != null">
+				IS_WARN_TARGET = #{record.isWarnTarget,jdbcType=CHAR},
+			</if>
+			<if test="record.isStatisTarget != null">
+				IS_STATIS_TARGET =
+				#{record.isStatisTarget,jdbcType=CHAR},
+			</if>
+			<if test="record.remark != null">
+				REMARK = #{record.remark,jdbcType=VARCHAR},
+			</if>
+			<if test="record.opType != null">
+				OP_TYPE = #{record.opType,jdbcType=VARCHAR},
+			</if>
+			<if test="record.createTime != null">
+				CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.modifyTime != null">
+				MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.creatorId != null">
+				CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.modifierId != null">
+				MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update ht_target_tb
+		set TARGET_CODE =
+		#{record.targetCode,jdbcType=VARCHAR},
+		TARGET_NAME =
+		#{record.targetName,jdbcType=VARCHAR},
+		TARGET_TYPE =
+		#{record.targetType,jdbcType=CHAR},
+		PARENT_CODE =
+		#{record.parentCode,jdbcType=VARCHAR},
+		SORT =
+		#{record.sort,jdbcType=INTEGER},
+		IS_PLATE =
+		#{record.isPlate,jdbcType=CHAR},
+		IS_HOME_CORE_TARGET =
+		#{record.isHomeCoreTarget,jdbcType=CHAR},
+		IS_MANAGE_TARGET =
+		#{record.isManageTarget,jdbcType=CHAR},
+		IS_MATH =
+		#{record.isMath,jdbcType=CHAR},
+		TAR_DEF_SPEC =
+		#{record.tarDefSpec,jdbcType=VARCHAR},
+		DEPT_CODE =
+		#{record.deptCode,jdbcType=VARCHAR},
+		CHANNEL =
+		#{record.channel,jdbcType=VARCHAR},
+		CAL_FORMULA =
+		#{record.calFormula,jdbcType=VARCHAR},
+		CAL_RATE =
+		#{record.calRate,jdbcType=VARCHAR},
+		FIELD_CODE =
+		#{record.fieldCode,jdbcType=VARCHAR},
+		IS_REALTIME =
+		#{record.isRealtime,jdbcType=CHAR},
+		IS_STATIS =
+		#{record.isStatis,jdbcType=CHAR},
+		IS_WARN_TARGET =
+		#{record.isWarnTarget,jdbcType=CHAR},
+		IS_STATIS_TARGET =
+		#{record.isStatisTarget,jdbcType=CHAR},
+		REMARK =
+		#{record.remark,jdbcType=VARCHAR},
+		OP_TYPE =
+		#{record.opType,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{record.createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME =
+		#{record.modifyTime,jdbcType=TIMESTAMP},
+		CREATOR_ID =
+		#{record.creatorId,jdbcType=VARCHAR},
+		MODIFIER_ID =
+		#{record.modifierId,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.Target">
+		update ht_target_tb
+		<set>
+			<if test="targetName != null">
+				TARGET_NAME = #{targetName,jdbcType=VARCHAR},
+			</if>
+			<if test="targetType != null">
+				TARGET_TYPE = #{targetType,jdbcType=CHAR},
+			</if>
+			<if test="parentCode != null">
+				PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				SORT = #{sort,jdbcType=INTEGER},
+			</if>
+			<if test="isPlate != null">
+				IS_PLATE = #{isPlate,jdbcType=CHAR},
+			</if>
+			<if test="isHomeCoreTarget != null">
+				IS_HOME_CORE_TARGET = #{isHomeCoreTarget,jdbcType=CHAR},
+			</if>
+			<if test="isManageTarget != null">
+				IS_MANAGE_TARGET = #{isManageTarget,jdbcType=CHAR},
+			</if>
+			<if test="isMath != null">
+				IS_MATH = #{isMath,jdbcType=CHAR},
+			</if>
+			<if test="tarDefSpec != null">
+				TAR_DEF_SPEC = #{tarDefSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="deptCode != null">
+				DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+			</if>
+			<if test="channel != null">
+				CHANNEL = #{channel,jdbcType=VARCHAR},
+			</if>
+			<if test="calFormula != null">
+				CAL_FORMULA = #{calFormula,jdbcType=VARCHAR},
+			</if>
+			<if test="calRate != null">
+				CAL_RATE = #{calRate,jdbcType=VARCHAR},
+			</if>
+			<if test="fieldCode != null">
+				FIELD_CODE = #{fieldCode,jdbcType=VARCHAR},
+			</if>
+			<if test="isRealtime != null">
+				IS_REALTIME = #{isRealtime,jdbcType=CHAR},
+			</if>
+			<if test="isStatis != null">
+				IS_STATIS = #{isStatis,jdbcType=CHAR},
+			</if>
+			<if test="isWarnTarget != null">
+				IS_WARN_TARGET = #{isWarnTarget,jdbcType=CHAR},
+			</if>
+			<if test="isStatisTarget != null">
+				IS_STATIS_TARGET = #{isStatisTarget,jdbcType=CHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				OP_TYPE = #{opType,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where TARGET_CODE = #{targetCode,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huatai.web.model.Target">
+		update ht_target_tb
+		<set>
+			<if test="targetCode != null and targetCode != ''">
+				TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="targetName != null and targetName != ''">
+				TARGET_NAME = #{targetName,jdbcType=VARCHAR},
+			</if>
+			<if test="targetType != null and targetType != ''">
+				TARGET_TYPE = #{targetType,jdbcType=CHAR},
+			</if>
+			<if test="parentCode != null and parentCode != ''">
+				PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null and sort != ''">
+				SORT = #{sort,jdbcType=INTEGER},
+			</if>
+			<if test="isPlate != null and isPlate !=''">
+				IS_PLATE = #{isPlate,jdbcType=CHAR},
+			</if>
+			<if test="isHomeCoreTarget != null and isHomeCoreTarget!=''">
+				IS_HOME_CORE_TARGET = #{isHomeCoreTarget,jdbcType=CHAR},
+			</if>
+			<if test="isManageTarget != null and isManageTarget !=''">
+				IS_MANAGE_TARGET = #{isManageTarget,jdbcType=CHAR},
+			</if>
+			<if test="isMath != null and isMath !=''">
+				IS_MATH = #{isMath,jdbcType=CHAR},
+			</if>
+			<if test="tarDefSpec != null and tarDefSpec !=''">
+				TAR_DEF_SPEC = #{tarDefSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="deptCode != null and deptCode !=''">
+				DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+			</if>
+			<if test="channel != null and channel!=''">
+				CHANNEL = #{channel,jdbcType=VARCHAR},
+			</if>
+			<if test="calFormula != null and calFormula!=''">
+				CAL_FORMULA = #{calFormula,jdbcType=VARCHAR},
+			</if>
+			<if test="calRate != null and calRate !=''">
+				CAL_RATE = #{calRate,jdbcType=VARCHAR},
+			</if>
+			<if test="isRealtime != null and isRealtime !=''">
+				IS_REALTIME = #{isRealtime,jdbcType=CHAR},
+			</if>
+			<if test="isStatis != null and isStatis !=''">
+				IS_STATIS = #{isStatis,jdbcType=CHAR},
+			</if>
+			<if test="isWarnTarget != null">
+				IS_WARN_TARGET = #{isWarnTarget,jdbcType=CHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				OP_TYPE = #{opType,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where TARGET_CODE = #{targetCode,jdbcType=VARCHAR}
+	</update>
+	<select id="selectByIsHomeCoreTarget" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from
+		ht_target_tb
+		where
+		IS_HOME_CORE_TARGET =
+		#{isHomeCoreTarget,jdbcType=CHAR}
+		and
+		OP_TYPE != 'D'
+	</select>
+	<select id="selectByTargetName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from
+		ht_target_tb
+		where
+		TARGET_NAME = #{targetName,jdbcType=VARCHAR}
+		and
+		OP_TYPE != 'D'
+	</select>
+
+	<select id="findAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_target_tb
+		where 1=1 AND OP_TYPE!='D'
+	</select>
+
+	<select id="selectByParentCode" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_target_tb
+		where TARGET_CODE !=PARENT_CODE and PARENT_CODE=
+		#{parentCode,jdbcType=VARCHAR}
+		AND op_type != 'D'
+	</select>
+
+	<select id="findTargetByDeptCodeOrQueryCode" resultMap="BaseResultMap">
+		SELECT
+		HTT.*
+		FROM
+		ht_tar_reg_tb ht
+		LEFT JOIN
+		ht_target_tb HTT
+		ON
+		ht.TARGET_CODE =
+		HTT.TARGET_CODE
+		WHERE
+		htt.target_name like
+		CONCAT(CONCAT('%',#{targetName}),'%')
+		and
+		HTT.DEPT_CODE = #{deptCode}
+		and
+		ht.op_type != 'D'
+		and
+		htt.op_type != 'D'
+		AND
+		ht.REG_ID IN (
+		SELECT
+		htrt.REG_ID
+		FROM
+		ht_tem_reg_tb htrt
+		WHERE
+		htrt.REG_CODE =#{regCode})
+	</select>
+
+	<!--按类型和角色查询主题或板块 -->
+	<select id="findSubjectByTypeAndRole" resultMap="BaseResultMap">
+		SELECT
+		target.TARGET_CODE, target.TARGET_NAME, target.SORT
+		from ht_target_tb
+		target
+		left join ht_role_target_tb role_target
+		on
+		target.TARGET_CODE=role_target.TARGET_CODE
+		where
+		target.IS_PLATE=#{isPlate} and
+		target.TARGET_TYPE='0' and
+		role_target.ROLE_CODE=#{role}
+		and target.IS_REALTIME=#{isRealtime}
+		AND
+		target.OP_TYPE!='D'
+		AND
+		role_target.OP_TYPE!='D'
+		order by
+		target.SORT
+	</select>
+
+
+	<!--按类型和角色查询已配置模板的指标信息 -->
+	<select id="findTargetByTypeAndRole" resultMap="BaseResultMap">
+		SELECT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.TARGET_TYPE,
+		target.PARENT_CODE,
+		target.SORT,
+		target.IS_PLATE,
+		target.IS_HOME_CORE_TARGET,
+		target.IS_MANAGE_TARGET,
+		target.TAR_DEF_SPEC,
+		target.DEPT_CODE,
+		target.CHANNEL,
+		target.CAL_FORMULA,
+		target.CAL_RATE,
+		target.IS_REALTIME,
+		target.IS_STATIS,
+		target.REMARK
+		FROM
+		ht_target_tb
+		target
+		LEFT JOIN
+		ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		WHERE
+		target.PARENT_CODE=#{pid} AND
+		target.IS_PLATE='1' AND
+		target.TARGET_TYPE=#{type} AND
+		role_target.ROLE_CODE=#{role}
+		AND
+		target.OP_TYPE!='D'
+		AND role_target.OP_TYPE!='D'
+		ORDER BY
+		target.SORT
+	</select>
+
+	<select id="findTargetByTypeAndRoleAndPlate" resultMap="BaseResultMap">
+		SELECT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.TARGET_TYPE,
+		target.PARENT_CODE,
+		target.SORT,
+		target.IS_PLATE,
+		target.IS_HOME_CORE_TARGET,
+		target.IS_MANAGE_TARGET,
+		target.TAR_DEF_SPEC,
+		target.DEPT_CODE,
+		target.CHANNEL,
+		target.CAL_FORMULA,
+		target.CAL_RATE,
+		target.IS_REALTIME,
+		target.IS_STATIS,
+		target.REMARK
+		FROM
+		ht_target_tb
+		target
+		LEFT JOIN
+		ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		WHERE
+		target.PARENT_CODE=#{pid} AND
+		target.IS_PLATE='0' AND
+		target.TARGET_TYPE=#{type} AND
+		role_target.ROLE_CODE=#{role}
+		AND
+		target.OP_TYPE!='D'
+		AND role_target.OP_TYPE!='D'
+		ORDER BY
+		target.SORT
+	</select>
+	<!--按类型和角色查询已配置模板的指标信息 -->
+	<select id="findTargetByTypeAndRoleAndReg" resultMap="BaseResultMap">
+		SELECT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.SORT
+		FROM
+		ht_target_tb
+		target
+		LEFT JOIN ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		RIGHT JOIN ht_tar_reg_tb
+		tar_reg
+		ON role_target.TARGET_CODE=tar_reg.TARGET_CODE
+		WHERE
+		target.PARENT_CODE=#{pid} AND
+		target.IS_PLATE='0' AND
+		target.TARGET_TYPE= #{type} AND
+		role_target.ROLE_CODE=#{role} AND
+		tar_reg.REG_ID=#{reg}
+		AND target.OP_TYPE!='D'
+		AND
+		role_target.OP_TYPE!='D'
+		AND tar_reg.OP_TYPE!='D'
+		ORDER BY
+		target.SORT
+	</select>
+
+	<select id="findTargetByRegId" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List"></include>
+		FROM
+		ht_target_tb htt
+		JOIN
+		ht_tar_reg_tb ht
+		ON
+		ht.TARGET_CODE =
+		htt.TARGET_CODE
+		WHERE
+		ht.reg_id = #{regId}
+		and
+		ht.op_type != 'D'
+		and
+		htt.op_type != 'D'
+	</select>
+
+	<select id="findTargetByTargetType" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		where OP_TYPE!='D' AND TARGET_TYPE =
+		#{targetType,jdbcType=VARCHAR}
+	</select>
+
+	<select id="findTargetSelective" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D'
+			<if test="targetCode!=null and targetCode!=''">
+				AND TARGET_CODE=#{targetCode}
+			</if>
+			<if test="targetName !=null and targetName!=''">
+				AND TARGET_NAME LIKE
+				CONCAT(CONCAT('%',#{targetName}),'%')
+			</if>
+			<if test="targetType !=null and targetType!=''">
+				AND TARGET_TYPE=#{targetType}
+			</if>
+			<if test="deptCode !=null and deptCode!=''">
+				AND DEPT_CODE=${deptCode}
+			</if>
+			<if test="parentCode !=null and parentCode!=''">
+				AND PARENT_CODE=#{parentCode}
+			</if>
+			<if test="isPlate!=null and isPlate!=''">
+				AND IS_PLATE=#{isPlate}
+			</if>
+
+		</where>
+	</select>
+
+	<select id="findTargetByPage" resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D'
+			<if test="targetCode!=null and targetCode!=''">
+				AND TARGET_CODE LIKE CONCAT(#{targetCode},'%')
+			</if>
+			<if test="targetName !=null and targetName!=''">
+				AND TARGET_NAME LIKE
+				CONCAT(CONCAT('%',#{targetName}),'%')
+			</if>
+			<if test="targetType !=null and targetType!=''">
+				AND TARGET_TYPE=#{targetType}
+			</if>
+			<if test="deptCode !=null and deptCode!=''">
+				AND dept_code in (${deptCode})
+			</if>
+			<if test="parentCode !=null and parentCode!=''">
+				AND PARENT_CODE LIKE CONCAT(#{parentCode},'%')
+			</if>
+			<if test="sort !=null and sort!=''">
+				AND SORT=#{sort}
+			</if>
+			<if test="isPlate!=null and isPlate!=''">
+				AND IS_PLATE=#{isPlate}
+			</if>
+			<if test="isHomeCoreTarget !=null and isHomeCoreTarget !=''">
+				AND IS_HOME_CORE_TARGET=#{isHomeCoreTarget}
+			</if>
+			<if test="isManageTarget !=null and isManageTarget !=''">
+				AND IS_MANAGE_TARGET=#{isManageTarget}
+			</if>
+			<if test="tarDefSpec != null">
+				TAR_DEF_SPEC = #{tarDefSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="channel != null">
+				CHANNEL = #{channel,jdbcType=VARCHAR},
+			</if>
+			<if test="calFormula != null">
+				CAL_FORMULA = #{calFormula,jdbcType=VARCHAR},
+			</if>
+			<if test="calRate != null">
+				CAL_RATE = #{calRate,jdbcType=VARCHAR},
+			</if>
+			<if test="isRealtime != null">
+				IS_REALTIME = #{isRealtime,jdbcType=CHAR},
+			</if>
+			<if test="isStatis != null">
+				IS_STATIS = #{isStatis,jdbcType=CHAR},
+			</if>
+			<if test="isWarnTarget != null">
+				IS_WARN_TARGET = #{isWarnTarget,jdbcType=CHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="opType !=null and opType !=''">
+				AND OP_TYPE=#{opType}
+			</if>
+			<if test="createTime !=null and createTime !=''">
+				AND CREATE_TIME=#{createTime}
+			</if>
+			<if test="modifyTime !=null and modifyTime !=''">
+				AND MODIFY_TIME=#{modifyTime}
+			</if>
+			<if test="creatorId !=null and creatorId !=''">
+				AND CREATOR_ID=#{creatorId}
+			</if>
+			<if test="modifierId !=null and modifierId !=''">
+				AND MODIFIER_ID=#{modifierId}
+			</if>
+		</where>
+		ORDER BY CREATE_TIME DESC
+	</select>
+
+	<select id="findTargetByPage2" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D' AND (TARGET_TYPE='1' OR TARGET_TYPE='3') AND
+			(IS_PLATE='0' or IS_PLATE='1' or IS_PLATE='2')
+			<if test="targetCode!=null and targetCode!=''">
+				AND TARGET_CODE=#{targetCode}
+			</if>
+			<if test="targetName !=null and targetName!=''">
+				AND TARGET_NAME LIKE '%${targetName}%'
+			</if>
+			<if test="targetType !=null and targetType!=''">
+				AND TARGET_TYPE=#{targetType}
+			</if>
+			<if test="deptCode !=null and deptCode!=''">
+				AND dept_code in (${deptCode})
+			</if>
+			<if test="parentCode !=null and parentCode!=''">
+				AND PARENT_CODE=#{parentCode}
+			</if>
+			<if test="sort !=null and sort!=''">
+				AND SORT=#{sort}
+			</if>
+			<if test="isPlate!=null and isPlate!=''">
+				AND IS_PLATE=#{isPlate}
+			</if>
+			<if test="isHomeCoreTarget !=null and isHomeCoreTarget !=''">
+				AND IS_HOME_CORE_TARGET=#{isHomeCoreTarget}
+			</if>
+			<if test="isManageTarget !=null and isManageTarget !=''">
+				AND IS_MANAGE_TARGET=#{isManageTarget}
+			</if>
+			<if test="tarDefSpec != null">
+				TAR_DEF_SPEC = #{tarDefSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="channel != null">
+				CHANNEL = #{channel,jdbcType=VARCHAR},
+			</if>
+			<if test="calFormula != null">
+				CAL_FORMULA = #{calFormula,jdbcType=VARCHAR},
+			</if>
+			<if test="calRate != null">
+				CAL_RATE = #{calRate,jdbcType=VARCHAR},
+			</if>
+			<if test="isRealtime != null">
+				IS_REALTIME = #{isRealtime,jdbcType=CHAR},
+			</if>
+			<if test="isStatis != null">
+				IS_STATIS = #{isStatis,jdbcType=CHAR},
+			</if>
+			<if test="isWarnTarget != null">
+				IS_WARN_TARGET = #{isWarnTarget,jdbcType=CHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="opType !=null and opType !=''">
+				AND OP_TYPE=#{opType}
+			</if>
+			<if test="createTime !=null and createTime !=''">
+				AND CREATE_TIME=#{createTime}
+			</if>
+			<if test="modifyTime !=null and modifyTime !=''">
+				AND MODIFY_TIME=#{modifyTime}
+			</if>
+			<if test="creatorId !=null and creatorId !=''">
+				AND CREATOR_ID=#{creatorId}
+			</if>
+			<if test="modifierId !=null and modifierId !=''">
+				AND MODIFIER_ID=#{modifierId}
+			</if>
+		</where>
+		ORDER BY CREATE_TIME DESC
+	</select>
+
+	<select id="selectTargetOrBlock" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		TARGET_CODE, TARGET_NAME, TARGET_TYPE, PARENT_CODE,
+		SORT, IS_HOME_CORE_TARGET,
+		IS_MANAGE_TARGET, OP_TYPE, CREATE_TIME,
+		MODIFY_TIME, CREATOR_ID,
+		MODIFIER_ID
+		from ht_target_tb
+		where IS_PLATE =
+		#{IS_PLATE}
+		AND OP_TYPE!='D'
+	</select>
+
+	<select id="selectTargetByTree" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_target_tb
+		where OP_TYPE!='D'
+	</select>
+
+	<update id="updateByOldTargetCode">
+		update ht_target_tb
+		<set>
+			<if test="record.targetCode != null and record.targetCode != ''">
+				TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+			</if>
+			TARGET_NAME = #{record.targetName,jdbcType=VARCHAR},
+			TARGET_TYPE =
+			#{record.targetType,jdbcType=CHAR},
+			<if test="record.parentCode != null">
+				PARENT_CODE = #{record.parentCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sort != null">
+				SORT = #{record.sort,jdbcType=INTEGER},
+			</if>
+			<if test="record.isPlate != null">
+				IS_PLATE = #{record.isPlate,jdbcType=CHAR},
+			</if>
+			<if test="record.isHomeCoreTarget != null">
+				IS_HOME_CORE_TARGET =
+				#{record.isHomeCoreTarget,jdbcType=CHAR},
+			</if>
+			<if test="record.isManageTarget != null">
+				IS_MANAGE_TARGET =
+				#{record.isManageTarget,jdbcType=CHAR},
+			</if>
+			<if test="record.isMath != null and record.isMath !=''">
+				IS_MATH = #{record.isMath,jdbcType=CHAR},
+			</if>
+			<if test="record.tarDefSpec != null">
+				TAR_DEF_SPEC = #{record.tarDefSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="record.deptCode != null">
+				DEPT_CODE = #{record.deptCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.channel != null">
+				CHANNEL = #{record.channel,jdbcType=VARCHAR},
+			</if>
+			<if test="record.calFormula != null">
+				CAL_FORMULA = #{record.calFormula,jdbcType=VARCHAR},
+			</if>
+			<if test="record.calRate != null">
+				CAL_RATE = #{record.calRate,jdbcType=VARCHAR},
+			</if>
+			<if test="record.fieldCode != null">
+				FIELD_CODE = #{record.fieldCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.isRealtime != null">
+				IS_REALTIME = #{record.isRealtime,jdbcType=CHAR},
+			</if>
+			<if test="record.isStatis != null">
+				IS_STATIS = #{record.isStatis,jdbcType=CHAR},
+			</if>
+			<if test="record.isStatisTarget != null">
+				IS_STATIS_TARGET =
+				#{record.isStatisTarget,jdbcType=CHAR},
+			</if>
+			<if test="record.isWarnTarget != null">
+				IS_WARN_TARGET = #{record.isWarnTarget,jdbcType=CHAR},
+			</if>
+			<if test="record.remark != null">
+				REMARK = #{record.remark,jdbcType=VARCHAR},
+			</if>
+			<if test="record.opType != null">
+				OP_TYPE = #{record.opType,jdbcType=VARCHAR},
+			</if>
+			MODIFY_TIME = NOW(),
+			<if test="record.modifierId != null">
+				MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where TARGET_CODE = #{oldTargetCode}
+	</update>
+
+	<select id="findTargetStatisByPage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D' AND TARGET_TYPE='0' AND (IS_PLATE='0' or IS_PLATE='1')
+			AND IS_STATIS='1'
+			<if test="targetCode!=null and targetCode!=''">
+				AND TARGET_CODE=#{targetCode}
+			</if>
+			<if test="targetName !=null and targetName!=''">
+				AND TARGET_NAME LIKE '%${targetName}%'
+			</if>
+			<if test="deptCode !=null and deptCode!=''">
+				AND dept_code=#{deptCode}
+			</if>
+			<if test="parentCode !=null and parentCode!=''">
+				AND PARENT_CODE=#{parentCode}
+			</if>
+			<if test="sort !=null and sort!=''">
+				AND SORT=#{sort}
+			</if>
+			<if test="isHomeCoreTarget !=null and isHomeCoreTarget !=''">
+				AND IS_HOME_CORE_TARGET=#{isHomeCoreTarget}
+			</if>
+			<if test="isManageTarget !=null and isManageTarget !=''">
+				AND IS_MANAGE_TARGET=#{isManageTarget}
+			</if>
+			<if test="tarDefSpec != null">
+				TAR_DEF_SPEC = #{tarDefSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="channel != null">
+				CHANNEL = #{channel,jdbcType=VARCHAR},
+			</if>
+			<if test="calFormula != null">
+				CAL_FORMULA = #{calFormula,jdbcType=VARCHAR},
+			</if>
+			<if test="calRate != null">
+				CAL_RATE = #{calRate,jdbcType=VARCHAR},
+			</if>
+			<if test="isRealtime != null">
+				IS_REALTIME = #{isRealtime,jdbcType=CHAR},
+			</if>
+			<if test="isWarnTarget != null">
+				IS_WARN_TARGET = #{isWarnTarget,jdbcType=CHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="opType !=null and opType !=''">
+				AND OP_TYPE=#{opType}
+			</if>
+			<if test="createTime !=null and createTime !=''">
+				AND CREATE_TIME=#{createTime}
+			</if>
+			<if test="modifyTime !=null and modifyTime !=''">
+				AND MODIFY_TIME=#{modifyTime}
+			</if>
+			<if test="creatorId !=null and creatorId !=''">
+				AND CREATOR_ID=#{creatorId}
+			</if>
+			<if test="modifierId !=null and modifierId !=''">
+				AND MODIFIER_ID=#{modifierId}
+			</if>
+		</where>
+	</select>
+
+	<select id="findRefTarget" resultMap="BaseResultMap">
+		select distinct t.* from ht_tar_reg_tb tarr
+		join ht_tem_reg_tb temr on
+		tarr.REG_ID = temr.REG_ID
+		join ht_target_tb t on
+		tarr.target_Code=t.target_Code
+		<where>
+			t.OP_TYPE!='D'
+			<if test="regCodes !=null">
+				and temr.REG_CODE in
+				<foreach item="regCode" collection="regCodes" separator=","
+					open="(" close=")" index="index">
+					'${regCode}'
+				</foreach>
+			</if>
+			<if test="target !=null">
+				<if test="target.targetCode!=null and target.targetCode!=''">
+					AND t.TARGET_CODE LIKE '%${target.targetCode}%'
+				</if>
+				<if test="target.targetName !=null and target.targetName!=''">
+					AND t.TARGET_NAME LIKE '%${target.targetName}%'
+				</if>
+			</if>
+		</where>
+	</select>
+
+	<!-- 接口关联数据 -->
+	<select id="findTargetParentId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D' AND
+			PARENT_CODE= '${parentCode}'
+		</where>
+	</select>
+
+	<!--根据角色名查询其主题下的某个区域的几级指标 -->
+	<select id="findTargetByRoleAndType" resultMap="BaseResultMap">
+		SELECT
+		tb.TARGET_CODE,
+		tb.TARGET_NAME,
+		tb.TARGET_TYPE,
+		tb.PARENT_CODE,
+		tb.SORT,
+		tb.IS_PLATE,
+		tb.IS_HOME_CORE_TARGET,
+		tb.IS_MANAGE_TARGET,
+		tb.TAR_DEF_SPEC,
+		tb.DEPT_CODE,
+		tb.CHANNEL,
+		tb.CAL_FORMULA,
+		tb.CAL_RATE,
+		tb.IS_REALTIME,
+		tb.IS_STATIS,
+		tb.REMARK
+		FROM
+		ht_target_tb tb
+		INNER JOIN
+		ht_role_target_tb rt ON tb.TARGET_CODE =
+		rt.TARGET_CODE
+		WHERE
+		rt.ROLE_CODE = #{role}
+		AND rt.OP_TYPE!='D'
+		AND tb.OP_TYPE!='D'
+		AND
+		tb.TARGET_TYPE = #{type}
+		AND tb.PARENT_CODE = #{parentCode}
+		AND
+		tb.TARGET_CODE IN (
+		SELECT
+		tr.TARGET_CODE
+		FROM
+		ht_tar_reg_tb tr
+		WHERE
+		tr.SUB_CODE = #{blockCode}
+		AND tr.OP_TYPE!='D'
+		)
+	</select>
+
+	<!--根据角色名查询其主题下的某个区域的几级指标 -->
+	<select id="findTargetByRoleAndTypeAndReg" resultMap="BaseResultMap">
+		SELECT
+		tb.TARGET_CODE,
+		tb.TARGET_NAME,
+		tb.TARGET_TYPE,
+		tb.PARENT_CODE,
+		tb.SORT,
+		tb.IS_PLATE,
+		tb.IS_HOME_CORE_TARGET,
+		tb.IS_MANAGE_TARGET,
+		tb.TAR_DEF_SPEC,
+		tb.DEPT_CODE,
+		tb.CHANNEL,
+		tb.CAL_FORMULA,
+		tb.CAL_RATE,
+		tb.IS_REALTIME,
+		tb.IS_STATIS,
+		tb.REMARK
+		FROM
+		ht_target_tb tb
+		INNER JOIN
+		ht_role_target_tb rt ON tb.TARGET_CODE =
+		rt.TARGET_CODE
+		WHERE
+		rt.ROLE_CODE = #{role}
+		AND rt.OP_TYPE!='D'
+		AND
+		tb.OP_TYPE!='D'
+		AND
+		tb.TARGET_TYPE = #{type}
+		AND tb.TARGET_CODE IN (
+		SELECT
+		tr.TARGET_CODE
+		FROM
+		ht_tar_reg_tb tr
+		WHERE
+		tr.SUB_CODE =
+		#{blockCode}
+		AND
+		tr.REG_ID =
+		#{regId}
+		AND tr.OP_TYPE!='D'
+		)
+	</select>
+
+	<select id="findParentTargetById" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D' AND
+			TARGET_CODE= #{parentCode}
+		</where>
+	</select>
+
+	<select id="findTargetBysubAndType" resultMap="BaseResultMap">
+		SELECT
+		tb.TARGET_CODE,
+		tb.TARGET_NAME,
+		tb.TARGET_TYPE,
+		tb.PARENT_CODE,
+		tb.SORT,
+		tb.IS_PLATE,
+		tb.IS_HOME_CORE_TARGET,
+		tb.IS_MANAGE_TARGET,
+		tb.TAR_DEF_SPEC,
+		tb.DEPT_CODE,
+		tb.CHANNEL,
+		tb.CAL_FORMULA,
+		tb.CAL_RATE,
+		tb.IS_REALTIME,
+		tb.IS_STATIS,
+		tb.REMARK
+		from
+		ht_target_tb tb INNER JOIN
+		ht_role_target_tb rt ON
+		tb.TARGET_CODE =
+		rt.TARGET_CODE
+		WHERE
+		rt.ROLE_CODE = #{role} AND
+		tb.TARGET_TYPE = #{type}
+		AND
+		tb.PARENT_CODE
+		=
+		#{sub}
+		AND rt.OP_TYPE!='D'
+		AND tb.OP_TYPE!='D'
+		ORDER BY tb.SORT
+	</select>
+
+	<select id="findDeptCodeByGroup" resultMap="BaseResultMap">
+		select
+		DEPT_CODE
+		from
+		ht_target_tb
+		where
+		OP_TYPE != 'D'
+		GROUP BY DEPT_CODE
+	</select>
+
+	<select id="findTargetTypeByRole" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		T03.*
+		FROM
+		(
+		SELECT
+		T01.TARGET_CODE AS TARGET_CODE,
+		T01.TARGET_NAME
+		FROM
+		(
+		SELECT
+		DISTINCT
+		target.PARENT_CODE AS TARGET_CODE,
+		target01.TARGET_NAME
+		FROM
+		ht_target_tb target
+		LEFT JOIN
+		ht_role_target_tb role_target ON
+		target.TARGET_CODE =
+		role_target.TARGET_CODE
+		LEFT JOIN ht_tar_gro_dim_tb
+		tar_gro_dim ON
+		target.TARGET_CODE =
+		tar_gro_dim.TARGET_CODE
+		LEFT JOIN
+		ht_gro_dim_detail_tb gro_dim_detail ON gro_dim_detail.GDD_ID =
+		tar_gro_dim.GDD_ID
+		LEFT JOIN ht_tar_init_sql_tb tar_init_sql ON
+		tar_init_sql.TARGET_CODE =
+		role_target.TARGET_CODE
+		LEFT JOIN
+		ht_target_tb target01 ON target.PARENT_CODE =
+		target01.TARGET_CODE
+		WHERE
+		role_target.ROLE_CODE = #{role}
+		AND target.TARGET_TYPE = '1'
+		AND
+		target.IS_PLATE IN ('0', '1')
+		AND tar_init_sql.FUN_IDS = '02'
+		AND
+		target.OP_TYPE != 'D'
+		AND target01.OP_TYPE != 'D'
+		AND
+		role_target.OP_TYPE != 'D'
+		AND tar_gro_dim.OP_TYPE != 'D'
+		AND
+		gro_dim_detail.OP_TYPE != 'D'
+		AND tar_init_sql.OP_TYPE != 'D'
+		AND
+		gro_dim_detail.GRO_DIM_CODE =
+		#{roleOrg}
+		) T01
+		UNION
+		SELECT
+		T02.TARGET_CODE AS TARGET_CODE,
+		T02.TARGET_NAME AS
+		TARGET_NAME
+		FROM
+		(
+		SELECT DISTINCT
+		target02.TARGET_CODE
+		,
+		target02.TARGET_NAME
+		FROM
+		ht_target_tb target
+		LEFT
+		JOIN
+		ht_role_target_tb
+		role_target ON
+		target.TARGET_CODE =
+		role_target.TARGET_CODE
+		LEFT JOIN
+		ht_tar_gro_dim_tb
+		tar_gro_dim ON
+		target.TARGET_CODE =
+		tar_gro_dim.TARGET_CODE
+		LEFT JOIN
+		ht_gro_dim_detail_tb gro_dim_detail ON
+		gro_dim_detail.GDD_ID =
+		tar_gro_dim.GDD_ID
+		LEFT JOIN ht_tar_init_sql_tb
+		tar_init_sql ON
+		tar_init_sql.TARGET_CODE =
+		role_target.TARGET_CODE
+		LEFT
+		JOIN
+		ht_target_tb
+		target01 ON target.PARENT_CODE =
+		target01.TARGET_CODE
+		LEFT
+		JOIN
+		ht_target_tb target02 ON target01.PARENT_CODE =
+		target02.TARGET_CODE
+		WHERE
+		role_target.ROLE_CODE = #{role}
+		AND
+		target.TARGET_TYPE = '3'
+		AND
+		target.IS_PLATE IN ('0', '1')
+		AND
+		tar_init_sql.FUN_IDS = '02'
+		AND
+		target.OP_TYPE != 'D'
+		AND
+		target01.OP_TYPE != 'D'
+		AND target02.OP_TYPE !=
+		'D'
+		AND role_target.OP_TYPE != 'D'
+		AND
+		tar_gro_dim.OP_TYPE != 'D'
+		AND
+		gro_dim_detail.OP_TYPE != 'D'
+		AND
+		tar_init_sql.OP_TYPE != 'D'
+		AND
+		gro_dim_detail.GRO_DIM_CODE = #{roleOrg}
+		) T02
+		) T03
+		WHERE
+		1 = 1
+	</select>
+
+	<!-- 按角色查询指标（一级、二级指标）清单 -->
+	<select id="findEditListTargetByRoleWithPage" resultMap="BaseResultMap">
+		SELECT
+		T8.TARGET_CODE AS TARGET_CODE,
+		T10.TARGET_NAME,
+		T10.TARGET_TYPE,
+		T10.DEPT_CODE,
+		T11.TARGET_NAME AS REMARK,
+		T10.CHANNEL,
+		CASE
+		WHEN
+		T20.TARGET_CODE IS
+		NOT
+		NULL THEN
+		'1'
+		ELSE
+		'0'
+		END AS IS_REALTIME
+		FROM
+		(
+		SELECT
+		T3.TARGET_CODE,
+		MIN(T6.GRO_DIM_CODE) AS ORG_TYPE
+		FROM
+		(
+		SELECT
+		T1.TARGET_CODE
+		FROM
+		HT_TAR_INIT_SQL_TB T1
+		JOIN (
+		SELECT
+		RTAR.TARGET_CODE
+		FROM
+		HT_ROLE_TARGET_TB RTAR
+		WHERE
+		RTAR.ROLE_CODE = #{role}
+		AND
+		RTAR.OP_TYPE != 'D'
+		) T2 ON T1.TARGET_CODE = T2.TARGET_CODE
+		WHERE
+		T1.OP_TYPE != 'D' AND T1.FUN_IDS = '02'
+		) T3
+		JOIN HT_TAR_GRO_DIM_TB T5
+		ON T5.TARGET_CODE = T3.TARGET_CODE
+		AND
+		T5.OP_TYPE != 'D'
+		JOIN
+		HT_GRO_DIM_DETAIL_TB T6 ON T5.GDD_ID = T6.GDD_ID
+		AND T6.OP_TYPE != 'D'
+		JOIN HT_GRO_DIM_TB T7 ON T6.GD_ID = T7.GD_ID
+		WHERE
+		T7.GRO_DIM_TYPE_CODE
+		= 'ORG_GROUP'
+		AND T7.OP_TYPE != 'D'
+		GROUP BY
+		T3.TARGET_CODE
+		) T8
+		JOIN
+		HT_TARGET_TB T10 ON T8.TARGET_CODE = T10.TARGET_CODE
+		AND T10.OP_TYPE !=
+		'D'
+		JOIN HT_TARGET_TB T11 ON SUBSTR(T10.PARENT_CODE,1,3) =
+		T11.TARGET_CODE
+		LEFT JOIN (
+		SELECT
+		TARGET_CODE
+		FROM
+		HT_BILL_TARGET_TB
+		WHERE
+		BILL_ID =#{billId}
+		AND OP_TYPE != 'D'
+		) T20 ON T8.TARGET_CODE =
+		T20.TARGET_CODE
+		<where>
+			T8.ORG_TYPE &lt;=
+			#{roleOrg}
+			<if test="targetCode!=null and targetCode!=''">
+				AND T10.TARGET_CODE LIKE
+				CONCAT(CONCAT('%',#{targetCode}),'%')
+			</if>
+			<if test="targetName!=null and targetName!=''">
+				AND T10.TARGET_NAME LIKE
+				CONCAT(CONCAT('%',#{targetName}),'%')
+			</if>
+			<if test="parentCode!=null and parentCode!=''">
+				AND T11.TARGET_CODE =#{parentCode}
+			</if>
+			AND T11.OP_TYPE != 'D'
+		</where>
+	</select>
+
+
+	<!-- 按角色查询指标（一级、二级指标）清单 -->
+	<select id="findSaveListTargetByRoleWithPage" resultMap="BaseResultMap">
+		SELECT
+		T8.TARGET_CODE AS TARGET_CODE,
+		T10.TARGET_NAME,
+		T10.TARGET_TYPE,
+		T10.DEPT_CODE,
+		T10.CHANNEL,
+		T11.TARGET_NAME AS REMARK
+		FROM
+		(
+		SELECT
+		T3.TARGET_CODE,
+		MIN(T6.GRO_DIM_CODE) AS ORG_TYPE
+		FROM
+		(
+		SELECT
+		T1.TARGET_CODE
+		FROM
+		HT_TAR_INIT_SQL_TB T1
+		JOIN (
+		SELECT
+		RTAR.TARGET_CODE
+		FROM
+		HT_ROLE_TARGET_TB RTAR
+		WHERE
+		RTAR.ROLE_CODE =#{role}
+		AND RTAR.OP_TYPE
+		!='D'
+		) T2 ON T1.TARGET_CODE =
+		T2.TARGET_CODE
+		WHERE
+		T1.OP_TYPE != 'D' AND
+		T1.FUN_IDS = '02'
+		) T3
+		JOIN
+		HT_TAR_GRO_DIM_TB T5 ON
+		T5.TARGET_CODE =
+		T3.TARGET_CODE
+		AND
+		T5.OP_TYPE
+		!= 'D'
+		JOIN
+		HT_GRO_DIM_DETAIL_TB T6 ON
+		T5.GDD_ID = T6.GDD_ID
+		AND
+		T6.OP_TYPE != 'D'
+		JOIN HT_GRO_DIM_TB T7 ON
+		T6.GD_ID = T7.GD_ID
+		WHERE
+		T7.GRO_DIM_TYPE_CODE
+		= 'ORG_GROUP'
+		AND
+		T7.OP_TYPE != 'D'
+		GROUP BY
+		T3.TARGET_CODE
+		) T8
+		JOIN
+		HT_TARGET_TB T10 ON
+		T8.TARGET_CODE =
+		T10.TARGET_CODE
+		JOIN HT_TARGET_TB T11 ON
+		SUBSTR(T10.PARENT_CODE,1,3) = T11.TARGET_CODE
+		<where>
+			T8.ORG_TYPE &lt;=
+			#{roleOrg}
+			<if test="targetCode!=null and targetCode!=''">
+				AND T10.TARGET_CODE LIKE
+				CONCAT(CONCAT('%',#{targetCode}),'%')
+			</if>
+			<if test="targetName!=null and targetName!=''">
+				AND T10.TARGET_NAME LIKE
+				CONCAT(CONCAT('%',#{targetName}),'%')
+			</if>
+			<if test="parentCode!=null and parentCode!=''">
+				AND T11.TARGET_CODE =#{parentCode}
+			</if>
+			AND T10.OP_TYPE != 'D'
+			AND T11.OP_TYPE != 'D'
+		</where>
+	</select>
+
+
+	<!-- 按角色查询板块指标（一级、二级指标） -->
+	<select id="findTargetByRoleAndTypeWithTarReg" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.TARGET_TYPE,
+		target.PARENT_CODE,
+		target.SORT,
+		target.IS_PLATE,
+		target.IS_HOME_CORE_TARGET,
+		target.IS_MANAGE_TARGET,
+		target.TAR_DEF_SPEC,
+		target.DEPT_CODE,
+		target.CHANNEL,
+		target.CAL_FORMULA,
+		target.CAL_RATE,
+		target.IS_REALTIME,
+		target.IS_STATIS,
+		target.REMARK
+		FROM
+		ht_target_tb target
+		LEFT JOIN
+		ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		RIGHT JOIN ht_tar_reg_tb
+		tar_reg
+		ON target.TARGET_CODE=tar_reg.TARGET_CODE
+		LEFT JOIN
+		ht_tem_reg_tb tem_reg
+		ON tem_reg.REG_ID=tar_reg.REG_ID
+		WHERE
+		role_target.ROLE_CODE = #{role}
+		AND
+		target.TARGET_TYPE=#{type}
+		AND
+		target.IS_PLATE IN('0','1')
+		AND tem_reg.REG_CODE=#{regCode}
+		AND
+		target.OP_TYPE !='D'
+		ORDER BY
+		target.TARGET_TYPE, target.SORT
+	</select>
+
+	<select id="findTargetByparentCode" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.TARGET_TYPE,
+		target.PARENT_CODE,
+		target.SORT,
+		target.IS_PLATE,
+		target.IS_HOME_CORE_TARGET,
+		target.IS_MANAGE_TARGET,
+		target.TAR_DEF_SPEC,
+		target.DEPT_CODE,
+		target.CHANNEL,
+		target.CAL_FORMULA,
+		target.CAL_RATE,
+		target.IS_REALTIME,
+		target.IS_STATIS,
+		target.REMARK
+		FROM
+		ht_target_tb target
+		LEFT JOIN
+		ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		RIGHT JOIN ht_tar_reg_tb
+		tar_reg
+		ON target.TARGET_CODE=tar_reg.TARGET_CODE
+		LEFT JOIN
+		ht_tem_reg_tb tem_reg
+		ON tem_reg.REG_ID=tar_reg.REG_ID
+		WHERE
+		role_target.ROLE_CODE = #{role}
+		AND
+		target.PARENT_CODE = #{parentCode}
+		AND
+		target.TARGET_TYPE=#{type}
+		AND
+		target.IS_PLATE IN('0','1')
+		AND
+		tem_reg.REG_CODE=#{regCode}
+		AND target.OP_TYPE != 'D'
+		AND
+		role_target.OP_TYPE != 'D'
+		AND tar_reg.OP_TYPE != 'D'
+		AND
+		tem_reg.OP_TYPE != 'D'
+		ORDER BY
+		target.TARGET_TYPE, target.SORT
+	</select>
+
+	<select id="findTargetByparentCodes" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.TARGET_TYPE,
+		target.PARENT_CODE,
+		target.SORT,
+		target.IS_PLATE,
+		target.IS_HOME_CORE_TARGET,
+		target.IS_MANAGE_TARGET,
+		target.TAR_DEF_SPEC,
+		target.DEPT_CODE,
+		target.CHANNEL,
+		target.CAL_FORMULA,
+		target.CAL_RATE,
+		target.IS_REALTIME,
+		target.IS_STATIS,
+		target.REMARK
+		FROM
+		ht_target_tb target
+		LEFT JOIN
+		ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		WHERE
+		role_target.ROLE_CODE =
+		#{role}
+		AND
+		target.PARENT_CODE = #{parentCode}
+		AND
+		target.TARGET_TYPE=#{type}
+		AND
+		target.IS_PLATE IN('0','1')
+		AND
+		target.OP_TYPE != 'D'
+		AND
+		role_target.OP_TYPE != 'D'
+		ORDER BY
+		target.TARGET_TYPE, target.SORT
+	</select>
+
+	<!-- 按角色查询板块指标（一级、二级指标） -->
+	<select id="findTargetByRoleAndRegWithTarReg" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.TARGET_TYPE,
+		target.PARENT_CODE,
+		target.SORT,
+		target.IS_PLATE,
+		target.IS_HOME_CORE_TARGET,
+		target.IS_MANAGE_TARGET,
+		target.TAR_DEF_SPEC,
+		target.DEPT_CODE,
+		target.CHANNEL,
+		target.CAL_FORMULA,
+		target.CAL_RATE,
+		target.IS_REALTIME,
+		target.IS_STATIS,
+		target.REMARK
+		FROM
+		ht_target_tb target
+		LEFT JOIN
+		ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		RIGHT JOIN ht_tar_reg_tb
+		tar_reg
+		ON target.TARGET_CODE=tar_reg.TARGET_CODE
+		WHERE
+		role_target.ROLE_CODE = #{role}
+		AND
+		tar_reg.REG_ID=#{reg}
+		AND
+		target.OP_TYPE != 'D'
+		AND
+		role_target.OP_TYPE != 'D'
+		AND tar_reg.OP_TYPE
+		!= 'D'
+		ORDER BY
+		target.TARGET_TYPE, target.SORT
+	</select>
+
+	<!--按角色、主题、区域、图形类型查找指标 -->
+	<select id="findTargetByRoleAndSubAndRegAndGraph" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.TARGET_TYPE,
+		target.PARENT_CODE,
+		target.SORT,
+		target.IS_PLATE,
+		target.IS_HOME_CORE_TARGET,
+		target.IS_MANAGE_TARGET,
+		target.TAR_DEF_SPEC,
+		target.DEPT_CODE,
+		target.CHANNEL,
+		target.CAL_FORMULA,
+		target.CAL_RATE,
+		target.IS_REALTIME,
+		target.IS_STATIS,
+		target.REMARK
+		FROM
+		ht_target_tb target
+		LEFT JOIN
+		ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		RIGHT JOIN ht_tar_reg_tb
+		tar_reg
+		ON target.TARGET_CODE=tar_reg.TARGET_CODE
+		WHERE
+		role_target.ROLE_CODE = #{role}
+		AND
+		target.TARGET_TYPE = #{type}
+		<if test="reg != null and reg !=''">
+			AND tar_reg.REG_ID = #{reg}
+		</if>
+		AND
+		tar_reg.GRAPH_TYPE IN ("line","column")
+		AND
+		target.PARENT_CODE =
+		#{sub}
+		ORDER BY
+		target.TARGET_TYPE, target.SORT
+	</select>
+
+	<select id="findTargetByRoleAndSubAndRegAndGraphType" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.TARGET_TYPE,
+		target.PARENT_CODE,
+		target.SORT,
+		target.IS_PLATE,
+		target.IS_HOME_CORE_TARGET,
+		target.IS_MANAGE_TARGET,
+		target.TAR_DEF_SPEC,
+		target.DEPT_CODE,
+		target.CHANNEL,
+		target.CAL_FORMULA,
+		target.CAL_RATE,
+		target.IS_REALTIME,
+		target.IS_STATIS,
+		target.REMARK
+		FROM
+		ht_target_tb target
+		LEFT JOIN
+		ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		RIGHT JOIN ht_tar_reg_tb
+		tar_reg
+		ON target.TARGET_CODE=tar_reg.TARGET_CODE
+		WHERE
+		role_target.ROLE_CODE = #{role}
+		AND
+		target.TARGET_TYPE = #{type}
+		AND
+		tar_reg.REG_ID = #{reg}
+		AND
+		tar_reg.GRAPH_TYPE NOT IN ("line","column")
+		AND
+		target.PARENT_CODE = #{sub}
+		ORDER BY
+		target.TARGET_TYPE, target.SORT
+	</select>
+
+	<!-- 按角色、主题、区域查询指标（一级、二级指标） -->
+	<select id="findTargetByRoleAndSubAndRegWithTarReg" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.TARGET_TYPE,
+		target.PARENT_CODE,
+		target.SORT,
+		target.IS_PLATE,
+		target.IS_HOME_CORE_TARGET,
+		target.IS_MANAGE_TARGET,
+		target.TAR_DEF_SPEC,
+		target.DEPT_CODE,
+		target.CHANNEL,
+		target.CAL_FORMULA,
+		target.CAL_RATE,
+		target.IS_REALTIME,
+		target.IS_STATIS,
+		target.REMARK
+		FROM
+		ht_target_tb target
+		LEFT JOIN
+		ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		RIGHT JOIN ht_tar_reg_tb
+		tar_reg
+		ON target.TARGET_CODE=tar_reg.TARGET_CODE
+		WHERE
+		role_target.ROLE_CODE = #{role}
+		AND
+		tar_reg.REG_ID=#{reg}
+		AND
+		tar_reg.SUB_CODE=#{sub}
+		AND target.OP_TYPE != 'D'
+		AND
+		role_target.OP_TYPE != 'D'
+		AND tar_reg.OP_TYPE != 'D'
+		ORDER BY
+		target.TARGET_TYPE, target.SORT
+	</select>
+
+	<!-- 按角色、类型、主题、区域查询指标 -->
+	<select id="findTargetByRoleAndtype" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.TARGET_TYPE,
+		target.PARENT_CODE,
+		target.SORT,
+		target.IS_PLATE,
+		target.IS_HOME_CORE_TARGET,
+		target.IS_MANAGE_TARGET,
+		target.TAR_DEF_SPEC,
+		target.DEPT_CODE,
+		target.CHANNEL,
+		target.CAL_FORMULA,
+		target.CAL_RATE,
+		target.IS_REALTIME,
+		target.IS_STATIS,
+		target.REMARK
+		FROM
+		ht_target_tb target
+		LEFT JOIN
+		ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		RIGHT JOIN ht_tar_reg_tb
+		tar_reg
+		ON target.TARGET_CODE=tar_reg.TARGET_CODE
+		WHERE
+		role_target.ROLE_CODE = #{role}
+		AND
+		role_target.TARGET_TYPE=#{type}
+		AND
+		tar_reg.REG_ID=#{reg}
+		AND
+		tar_reg.SUB_CODE=#{sub}
+		AND target.OP_TYPE !=
+		'D'
+		AND
+		role_target.OP_TYPE != 'D'
+		AND tar_reg.OP_TYPE != 'D'
+		ORDER BY
+		target.TARGET_TYPE, target.SORT
+	</select>
+
+	<select id="findBlockByRole" resultMap="BaseResultMap">
+		SELECT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.TARGET_TYPE,
+		target.PARENT_CODE,
+		target.SORT,
+		target.IS_PLATE,
+		target.IS_HOME_CORE_TARGET,
+		target.IS_MANAGE_TARGET,
+		target.TAR_DEF_SPEC,
+		target.DEPT_CODE,
+		target.CHANNEL,
+		target.CAL_FORMULA,
+		target.CAL_RATE,
+		target.IS_REALTIME,
+		target.IS_STATIS,
+		target.REMARK
+		FROM
+		ht_target_tb target
+		LEFT JOIN
+		ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		where
+		role_target.ROLE_CODE =
+		#{role}
+		AND
+		target.TARGET_TYPE='0'
+		AND
+		target.IS_PLATE='1'
+		AND
+		target.OP_TYPE != 'D'
+		AND
+		role_target.OP_TYPE != 'D'
+		ORDER BY
+		target.TARGET_TYPE,
+		target.SORT
+	</select>
+
+	<select id="findtargetByRole" resultMap="BaseResultMap">
+		SELECT
+		tb.TARGET_CODE,
+		tb.TARGET_NAME,
+		tb.TARGET_TYPE,
+		tb.PARENT_CODE,
+		tb.SORT,
+		tb.IS_PLATE,
+		tb.IS_HOME_CORE_TARGET,
+		tb.IS_MANAGE_TARGET,
+		tb.TAR_DEF_SPEC,
+		tb.DEPT_CODE,
+		tb.CHANNEL,
+		tb.CAL_FORMULA,
+		tb.CAL_RATE,
+		tb.IS_REALTIME,
+		tb.IS_STATIS,
+		tb.REMARK,
+		tb.OP_TYPE,
+		tb.CREATE_TIME,
+		tb.MODIFY_TIME,
+		tb.CREATOR_ID,
+		tb.MODIFIER_ID
+		from
+		ht_target_tb
+		tb
+		left join
+		ht_role_target_tb rt
+		on
+		tb.TARGET_CODE=rt.TARGET_CODE
+		where 1=1
+		<if test="targetCode!=null and targetCode!=''">
+			AND tb.TARGET_CODE=#{targetCode}
+		</if>
+		<if test="targetName !=null and targetName!=''">
+			AND tb.TARGET_NAME LIKE
+			CONCAT(CONCAT('%',#{targetName}),'%')
+		</if>
+		and tb.IS_PLATE='1' and
+		rt.ROLE_CODE=#{role} and
+		tb.TARGET_TYPE=
+		#{type}
+		order
+		by
+		tb.SORT
+	</select>
+
+	<select id="findTargetCodeByTargetName" parameterType="String"
+		resultType="String">
+		SELECT
+		TARGET_CODE
+		FROM
+		ht_target_tb
+		WHERE
+		TARGET_NAME =
+		#{targetName}
+		AND
+		OP_TYPE != 'D'
+	</select>
+
+	<select id="findTargetByDept" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_target_tb
+		where OP_TYPE!='D'
+		<if test="depts !=null and depts !=''">
+			AND dept_code in (${depts})
+		</if>
+	</select>
+
+	<select id="findTargetByIsWarnType" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List"></include>
+		FROM
+		ht_target_tb
+		WHERE
+		IS_WARN_TARGET = '1'
+		<if test="dept !=null and dept !=''">
+			AND dept_code in (${dept})
+		</if>
+		AND
+		OP_TYPE!='D'
+	</select>
+
+	<select id="findFieldByTargetCode" parameterType="String"
+		resultType="String">
+		SELECT
+		NAME_
+		FROM
+		jdp_dict_item
+		WHERE
+		dict_id = '5'
+		AND code_ = (
+		SELECT
+		FIELD_CODE
+		FROM
+		ht_target_tb
+		WHERE
+		TARGET_CODE = #{targetCode}
+		AND
+		OP_TYPE != 'D'
+		)
+	</select>
+
+	<select id="findTargetStatis" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D' AND ((TARGET_TYPE='0'
+			AND IS_STATIS='1') OR
+			(TARGET_TYPE!='0' AND IS_STATIS_TARGET='1'))
+		</where>
+	</select>
+
+	<select id="selectTargetByRole" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		<![CDATA[ 
+		  SELECT a.TARGET_CODE,a.TARGET_NAME,a.PARENT_CODE,b.name_5_1_ as FIELD_CODE FROM (
+	SELECT b.TARGET_CODE,b.TARGET_NAME,b.PARENT_CODE,b.FIELD_CODE FROM HT_ROLE_TARGET_TB a
+		LEFT JOIN ht_target_tb b
+		ON (a.target_code = b.target_code )
+		WHERE
+		b.target_type IN ('1','3')
+		AND
+		b.is_plate IN ('0','1','2')
+		AND b.is_warn_target = '1'
+		AND a.role_code = '${role}'
+		AND a.OP_TYPE <> 'D'
+	  AND b.OP_TYPE <> 'D'
+		UNION
+	SELECT b.TARGET_CODE,b.TARGET_NAME,b.PARENT_CODE,b.FIELD_CODE FROM HT_ROLE_TARGET_TB a
+			LEFT JOIN ht_target_tb b
+	ON (a.target_code = b.target_code )
+			WHERE
+			b.target_type = '0'
+			AND
+			b.is_plate IN ('0','1','2')
+			AND a.role_code = '${role}'
+			AND b.is_warn_target = '1'
+			AND a.OP_TYPE <> 'D'
+		  AND b.OP_TYPE <> 'D') a LEFT JOIN 
+		   (
+		 SELECT
+		  dictionary0_.cid        AS cid1_1_,
+		  dictionary0_.code_      AS code_2_1_,
+		  dictionary0_.descript   AS descript3_1_,
+		  dictionary0_.dict_id    AS dict_id8_1_,
+		  dictionary0_.disabled_  AS disabled4_1_,
+		  dictionary0_.name_      AS name_5_1_,
+		  dictionary0_.pid        AS pid6_1_,
+		  dictionary0_.sort_index AS sort_ind7_1_
+		FROM jdp_dict_item dictionary0_
+		  CROSS JOIN jdp_dict dictionary1_
+		WHERE dictionary0_.dict_id = dictionary1_.cid
+		    AND dictionary1_.code_ = 'UNIT_TYPE' 
+		ORDER BY dictionary0_.sort_index) b ON a.FIELD_CODE = b.code_2_1_
+		]]>
+	</select>
+
+	<select id="findByIsStatis" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D' AND ((TARGET_TYPE='0'
+			AND IS_STATIS='1') OR
+			(TARGET_TYPE!='0' AND IS_STATIS_TARGET='1'))
+		</where>
+	</select>
+
+	<select id="findByIsStaTar" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D' AND IS_STATIS_TARGET='1'
+		</where>
+	</select>
+
+	<select id="findByTargetType" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D' AND (TARGET_TYPE='1' OR TARGET_TYPE='3') AND
+			IS_STATIS_TARGET='1'
+			<if test="targetCode!=null">
+				TARGET_CODE=#{targetCode}
+			</if>
+		</where>
+	</select>
+
+	<select id="findByTargetCode" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D'
+			<if test="targetCode!=null">
+				AND TARGET_CODE=#{targetCode}
+			</if>
+		</where>
+	</select>
+
+	<select id="findTargetByRoleCode" parameterType="String"
+		resultType="com.huatai.web.bean.TargetDASBean">
+		SELECT
+		T6.target_name as 'name',
+		T6.target_code as 'code'
+		FROM
+		HT_ROLE_TARGET_TB T5
+		LEFT JOIN (
+		SELECT
+		t4.target_code,
+		t4.target_name,
+		t4.SORT,
+		t4.IS_PLATE,
+		t4.TARGET_TYPE
+		FROM
+		(
+		SELECT
+		T2.REG_CODE AS target_code
+		FROM
+		HT_TEM_REG_TB T2
+		WHERE
+		T2.TEMP_ID IN (
+		SELECT
+		t1.TEMP_ID
+		FROM
+		HT_TEMPLET_TB t1
+		WHERE
+		t1.TEMP_CODE = #{code}
+		AND
+		T1.OP_TYPE != 'D'
+		)
+		AND T2.OP_TYPE != 'D'
+		) t3
+		LEFT JOIN HT_TARGET_TB t4
+		ON t3.target_code = t4.target_code
+		AND t4.OP_TYPE != 'D'
+		WHERE
+		LENGTH(t3.target_code) = 7 and t4.IS_PLATE = '2'
+		) T6 ON T5.TARGET_CODE
+		= T6.target_code
+		WHERE
+		T5.OP_TYPE != 'D'
+		AND T5.ROLE_CODE = #{role}
+		AND
+		SUBSTRING(T5.TARGET_CODE,1,5) =
+		'DAS01'
+		AND T6.TARGET_TYPE = '0'
+	</select>
+
+	<select id="findToTargetByParentCodeAndRoleCode" parameterType="String"
+		resultType="com.huatai.web.bean.InsurProcessBean">
+		SELECT
+		T2.TARGET_CODE as 'code',
+		T2.TARGET_NAME as 'name',
+		T2.SORT
+		FROM
+		HT_ROLE_TARGET_TB T1
+		LEFT JOIN HT_TARGET_TB T2 ON
+		T1.TARGET_CODE = T2.TARGET_CODE
+		WHERE
+		T2.OP_TYPE != 'D'
+		AND
+		T2.PARENT_CODE = #{parnetCode}
+		AND T1.OP_TYPE !=
+		'D'
+		AND T1.ROLE_CODE =
+		#{roleCode}
+		ORDER BY sort
+	</select>
+
+	<select id="findInsurProcess" resultType="com.huatai.web.bean.InsurProcessBean">
+		SELECT
+		CODE_ as 'code',
+		NAME_ as 'name'
+		FROM
+		jdp_dict_item
+		WHERE
+		DICT_ID = (
+		SELECT
+		CID
+		FROM
+		jdp_dict
+		WHERE
+		CODE_ = "INSUR_PROCESS"
+		)
+	</select>
+
+	<select id="findTarManByPage" resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D' AND IS_MANAGE_TARGET='1'
+			<if test="targetCode!=null and targetCode!=''">
+				AND TARGET_CODE=#{targetCode}
+			</if>
+			<if test="targetName !=null and targetName!=''">
+				AND TARGET_NAME LIKE
+				CONCAT(CONCAT('%',#{targetName}),'%')
+			</if>
+			<if test="targetType !=null and targetType!=''">
+				AND TARGET_TYPE=#{targetType}
+			</if>
+			<if test="deptCode !=null and deptCode!=''">
+				AND dept_code in (${deptCode})
+			</if>
+			<if test="parentCode !=null and parentCode!=''">
+				AND PARENT_CODE=#{parentCode}
+			</if>
+			<if test="sort !=null and sort!=''">
+				AND SORT=#{sort}
+			</if>
+			<if test="isPlate!=null and isPlate!=''">
+				AND IS_PLATE=#{isPlate}
+			</if>
+			<if test="isHomeCoreTarget !=null and isHomeCoreTarget !=''">
+				AND IS_HOME_CORE_TARGET=#{isHomeCoreTarget}
+			</if>
+			<if test="isManageTarget !=null and isManageTarget !=''">
+				AND IS_MANAGE_TARGET=#{isManageTarget}
+			</if>
+			<if test="tarDefSpec != null">
+				TAR_DEF_SPEC = #{tarDefSpec,jdbcType=VARCHAR},
+			</if>
+			<if test="channel != null">
+				CHANNEL = #{channel,jdbcType=VARCHAR},
+			</if>
+			<if test="calFormula != null">
+				CAL_FORMULA = #{calFormula,jdbcType=VARCHAR},
+			</if>
+			<if test="calRate != null">
+				CAL_RATE = #{calRate,jdbcType=VARCHAR},
+			</if>
+			<if test="isRealtime != null">
+				IS_REALTIME = #{isRealtime,jdbcType=CHAR},
+			</if>
+			<if test="isStatis != null">
+				IS_STATIS = #{isStatis,jdbcType=CHAR},
+			</if>
+			<if test="isWarnTarget != null">
+				IS_WARN_TARGET = #{isWarnTarget,jdbcType=CHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="opType !=null and opType !=''">
+				AND OP_TYPE=#{opType}
+			</if>
+			<if test="createTime !=null and createTime !=''">
+				AND CREATE_TIME=#{createTime}
+			</if>
+			<if test="modifyTime !=null and modifyTime !=''">
+				AND MODIFY_TIME=#{modifyTime}
+			</if>
+			<if test="creatorId !=null and creatorId !=''">
+				AND CREATOR_ID=#{creatorId}
+			</if>
+			<if test="modifierId !=null and modifierId !=''">
+				AND MODIFIER_ID=#{modifierId}
+			</if>
+			Order by CREATE_TIME DESC
+		</where>
+	</select>
+
+	<select id="findTargetByTarMan" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D' AND (PARENT_CODE = 'JYFX' OR TARGET_CODE = 'JYFX')
+		</where>
+	</select>
+
+	<select id="findTargetByRoleAndBlockAndType" resultMap="BaseResultMap">
+		SELECT
+		target.TARGET_CODE,
+		target.TARGET_NAME,
+		target.TARGET_TYPE,
+		target.PARENT_CODE,
+		target.SORT,
+		target.IS_PLATE,
+		target.IS_HOME_CORE_TARGET,
+		target.IS_MANAGE_TARGET,
+		target.TAR_DEF_SPEC,
+		target.DEPT_CODE,
+		target.CHANNEL,
+		target.CAL_FORMULA,
+		target.CAL_RATE,
+		target.IS_REALTIME,
+		target.IS_STATIS,
+		target.REMARK
+		FROM
+		ht_target_tb target
+		LEFT JOIN
+		ht_role_target_tb role_target
+		ON
+		target.TARGET_CODE=role_target.TARGET_CODE
+		LEFT JOIN
+		ht_tar_reg_tb reg
+		ON target.TARGET_CODE=reg.TARGET_CODE
+		where
+		role_target.ROLE_CODE =
+		#{role}
+		AND
+		reg.REG_ID =#{regId}
+		AND
+		target.TARGET_TYPE=#{type}
+		AND
+		target.PARENT_CODE=#{parentCode}
+		AND target.OP_TYPE != 'D'
+		AND
+		role_target.OP_TYPE != 'D'
+		AND reg.OP_TYPE != 'D'
+		ORDER BY
+		target.TARGET_TYPE,
+		target.SORT
+	</select>
+
+	<select id="findTargetBySubject" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_target_tb
+		<where>
+			OP_TYPE!='D' AND PARENT_CODE = '0'
+		</where>
+	</select>
+
+	<!-- 查询板块指标-新增一级指标 -->
+	<select id="findSaveBlockOneTargetByParam" resultMap="BaseResultMap">
+		SELECT
+		T8.TARGET_CODE,
+		T10.TARGET_NAME,
+		T10.TARGET_TYPE,
+		T10.DEPT_CODE,
+		T10.CHANNEL,
+		T10.PARENT_CODE,
+		T11.TARGET_NAME AS CAL_FORMULA
+		FROM
+		(
+		SELECT
+		T3.TARGET_CODE,
+		MIN(T6.GRO_DIM_CODE) AS ORG_TYPE
+		FROM
+		(
+		SELECT
+		T1.TARGET_CODE
+		FROM
+		(
+		SELECT
+		TR.TARGET_CODE
+		FROM
+		HT_TAR_REG_TB TR
+		WHERE
+		TR.OP_TYPE != 'D'
+		AND TR.REG_ID
+		IN (
+		SELECT
+		REG.REG_ID
+		FROM
+		HT_TEM_REG_TB
+		REG
+		WHERE
+		REG.REG_CODE =
+		#{regCode}
+		AND REG.OP_TYPE != 'D'
+		)
+		) T1
+		JOIN (
+		SELECT
+		RTAR.TARGET_CODE
+		FROM
+		HT_ROLE_TARGET_TB RTAR
+		WHERE
+		RTAR.ROLE_CODE
+		=#{role}
+		AND RTAR.OP_TYPE
+		!='D'
+		) T2 ON T1.TARGET_CODE =
+		T2.TARGET_CODE
+		)
+		T3
+		JOIN HT_TAR_GRO_DIM_TB
+		T5 ON T5.TARGET_CODE =
+		T3.TARGET_CODE
+		AND
+		T5.OP_TYPE !='D'
+		JOIN
+		HT_GRO_DIM_DETAIL_TB T6 ON
+		T5.GDD_ID = T6.GDD_ID
+		AND T6.OP_TYPE != 'D'
+		JOIN HT_GRO_DIM_TB T7 ON
+		T6.GD_ID = T7.GD_ID
+		WHERE
+		T7.GRO_DIM_TYPE_CODE =
+		'ORG_GROUP'
+		AND
+		T7.OP_TYPE != 'D'
+		GROUP BY
+		T3.TARGET_CODE
+		) T8
+		JOIN
+		HT_TARGET_TB T10 ON
+		T8.TARGET_CODE =
+		T10.TARGET_CODE
+		JOIN
+		HT_TARGET_TB
+		T11 ON
+		T10.PARENT_CODE = T11.TARGET_CODE
+		AND T11.OP_TYPE
+		!= 'D'
+		WHERE
+		T8.ORG_TYPE &lt;= #{orgType}
+		AND
+		T10.PARENT_CODE!='R01'
+		AND
+		T10.OP_TYPE
+		!='D'
+	</select>
+
+
+	<!-- 查询板块指标-新增二级指标 -->
+	<select id="findSaveBlockTwoTargetByParam" resultMap="BaseResultMap">
+		SELECT
+		T8.TARGET_CODE,
+		T10.TARGET_NAME,
+		T10.TARGET_TYPE,
+		T10.DEPT_CODE,
+		T10.CHANNEL,
+		T12.TARGET_CODE AS PARENT_CODE,
+		T12.TARGET_NAME AS
+		CAL_FORMULA
+		FROM
+		(
+		SELECT
+		T3.TARGET_CODE,
+		MIN(T6.GRO_DIM_CODE) AS ORG_TYPE
+		FROM
+		(
+		SELECT
+		T1.TARGET_CODE
+		FROM
+		(
+		SELECT
+		TR.TARGET_CODE
+		FROM
+		HT_TAR_REG_TB TR
+		WHERE
+		TR.OP_TYPE != 'D'
+		AND TR.REG_ID
+		IN (
+		SELECT
+		REG.REG_ID
+		FROM
+		HT_TEM_REG_TB
+		REG
+		WHERE
+		REG.REG_CODE =
+		#{regCode}
+		AND REG.OP_TYPE != 'D'
+		)
+		)
+		T1
+		JOIN (
+		SELECT
+		RTAR.TARGET_CODE
+		FROM
+		HT_ROLE_TARGET_TB RTAR
+		WHERE
+		RTAR.ROLE_CODE
+		=#{role}
+		AND RTAR.OP_TYPE
+		!='D'
+		) T2 ON T1.TARGET_CODE =
+		T2.TARGET_CODE
+		)
+		T3
+		JOIN HT_TAR_GRO_DIM_TB
+		T5 ON T5.TARGET_CODE =
+		T3.TARGET_CODE
+		AND
+		T5.OP_TYPE !='D'
+		JOIN
+		HT_GRO_DIM_DETAIL_TB T6 ON
+		T5.GDD_ID = T6.GDD_ID
+		AND T6.OP_TYPE != 'D'
+		JOIN HT_GRO_DIM_TB T7 ON
+		T6.GD_ID = T7.GD_ID
+		WHERE
+		T7.GRO_DIM_TYPE_CODE =
+		'ORG_GROUP'
+		AND
+		T7.OP_TYPE != 'D'
+		GROUP BY
+		T3.TARGET_CODE
+		) T8
+		JOIN
+		HT_TARGET_TB T10 ON
+		T8.TARGET_CODE =
+		T10.TARGET_CODE
+		JOIN
+		HT_TARGET_TB
+		T11 ON
+		T10.PARENT_CODE =
+		T11.TARGET_CODE
+		AND T11.OP_TYPE
+		!= 'D'
+		JOIN
+		HT_TARGET_TB
+		T12 ON
+		T11.PARENT_CODE =
+		T12.TARGET_CODE
+		AND T12.OP_TYPE
+		!= 'D'
+		WHERE
+		T8.ORG_TYPE
+		&lt;= #{orgType}
+		AND T12.TARGET_CODE!='R01'
+		AND
+		T10.OP_TYPE
+		!='D'
+	</select>
+
+	<!-- 查询板块指标-编辑一级指标 -->
+	<select id="findEditBlockOneTargetByParam" resultMap="BaseResultMap">
+		SELECT
+		T8.TARGET_CODE,
+		T10.TARGET_NAME,
+		T10.TARGET_TYPE,
+		T10.DEPT_CODE,
+		T10.CHANNEL,
+		T10.PARENT_CODE,
+		T11.TARGET_NAME AS CAL_FORMULA,
+		CASE
+		WHEN
+		T80.TARGET_CODE IS
+		NOT NULL THEN
+		'1'
+		ELSE
+		'0'
+		END AS
+		REMARK
+		FROM
+		(
+		SELECT
+		T3.TARGET_CODE,
+		MIN(T6.GRO_DIM_CODE) AS ORG_TYPE
+		FROM
+		(
+		SELECT
+		T1.TARGET_CODE
+		FROM
+		(
+		SELECT
+		TR.TARGET_CODE
+		FROM
+		HT_TAR_REG_TB TR
+		WHERE
+		TR.OP_TYPE != 'D'
+		AND TR.REG_ID
+		IN (
+		SELECT
+		REG.REG_ID
+		FROM
+		HT_TEM_REG_TB
+		REG
+		WHERE
+		REG.REG_CODE =
+		'TEMP03_REG02'
+		AND
+		REG.OP_TYPE !=
+		'D'
+		)
+		) T1
+		JOIN (
+		SELECT
+		RTAR.TARGET_CODE
+		FROM
+		HT_ROLE_TARGET_TB RTAR
+		WHERE
+		RTAR.ROLE_CODE =
+		#{role}
+		AND
+		RTAR.OP_TYPE
+		!=
+		'D'
+		) T2 ON T1.TARGET_CODE =
+		T2.TARGET_CODE
+		) T3
+		JOIN
+		HT_TAR_GRO_DIM_TB
+		T5
+		ON T5.TARGET_CODE =
+		T3.TARGET_CODE
+		AND
+		T5.OP_TYPE
+		!= 'D'
+		JOIN
+		HT_GRO_DIM_DETAIL_TB T6 ON
+		T5.GDD_ID = T6.GDD_ID
+		AND
+		T6.OP_TYPE != 'D'
+		JOIN HT_GRO_DIM_TB T7 ON
+		T6.GD_ID = T7.GD_ID
+		WHERE
+		T7.GRO_DIM_TYPE_CODE
+		=
+		'ORG_GROUP'
+		AND
+		T7.OP_TYPE !='D'
+		GROUP BY
+		T3.TARGET_CODE
+		) T8
+		JOIN
+		HT_TARGET_TB T10 ON
+		T8.TARGET_CODE =
+		T10.TARGET_CODE
+		LEFT JOIN
+		HT_PLATE_ONE_TAR_TB T80 ON
+		T8.TARGET_CODE =
+		T80.TARGET_CODE
+		AND
+		T80.PLATE_ID = #{blockId}
+		AND
+		T80.OP_TYPE != 'D'
+		JOIN
+		HT_TARGET_TB T11 ON
+		T10.PARENT_CODE = T11.TARGET_CODE AND T11.OP_TYPE
+		!= 'D'
+		WHERE
+		T8.ORG_TYPE &lt;=#{orgType}
+		AND T10.PARENT_CODE != 'R01'
+		AND
+		T10.OP_TYPE !='D'
+	</select>
+
+	<!-- 查询板块一级指标分类 -->
+	<select id="findBlockOneTargetTypeByParam" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		T11.TARGET_CODE,
+		T11.TARGET_NAME
+		FROM
+		(
+		SELECT
+		T3.TARGET_CODE,
+		MIN(T6.GRO_DIM_CODE)
+		AS ORG_TYPE
+		FROM
+		(
+		SELECT
+		T1.TARGET_CODE
+		FROM
+		(
+		SELECT
+		TR.TARGET_CODE
+		FROM
+		HT_TAR_REG_TB TR
+		WHERE
+		TR.OP_TYPE != 'D'
+		AND TR.REG_ID
+		IN (
+		SELECT
+		REG.REG_ID
+		FROM
+		HT_TEM_REG_TB REG
+		WHERE
+		REG.REG_CODE =
+		'TEMP03_REG02'
+		AND
+		REG.OP_TYPE != 'D'
+		)
+		) T1
+		JOIN (
+		SELECT
+		RTAR.TARGET_CODE
+		FROM
+		HT_ROLE_TARGET_TB RTAR
+		WHERE
+		RTAR.ROLE_CODE = #{role}
+		AND
+		RTAR.OP_TYPE != 'D'
+		) T2 ON T1.TARGET_CODE = T2.TARGET_CODE
+		) T3
+		JOIN
+		HT_TAR_GRO_DIM_TB T5 ON T5.TARGET_CODE = T3.TARGET_CODE
+		AND
+		T5.OP_TYPE
+		!= 'D'
+		JOIN HT_GRO_DIM_DETAIL_TB T6 ON T5.GDD_ID = T6.GDD_ID
+		AND
+		T6.OP_TYPE != 'D'
+		JOIN HT_GRO_DIM_TB T7 ON T6.GD_ID = T7.GD_ID
+		WHERE
+		T7.GRO_DIM_TYPE_CODE = 'ORG_GROUP'
+		AND T7.OP_TYPE != 'D'
+		GROUP BY
+		T3.TARGET_CODE
+		) T8
+		JOIN HT_TARGET_TB T10 ON T8.TARGET_CODE =
+		T10.TARGET_CODE
+		LEFT JOIN HT_PLATE_ONE_TAR_TB T80 ON T8.TARGET_CODE =
+		T80.TARGET_CODE
+		AND T80.PLATE_ID = #{blockId}
+		AND T80.OP_TYPE != 'D'
+		JOIN
+		HT_TARGET_TB T11 ON T10.PARENT_CODE = T11.TARGET_CODE
+		AND
+		T11.OP_TYPE
+		!= 'D'
+		WHERE
+		T8.ORG_TYPE &lt;=#{orgType}
+		AND T10.OP_TYPE !=
+		'D'
+		AND T11.IS_REALTIME!='1'
+	</select>
+
+	<!-- 查询板块二级指标分类 -->
+	<select id="findBlockTwoTargetTypeByParam" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		T12.TARGET_NAME,
+		T12.TARGET_CODE
+		FROM
+		(
+		SELECT
+		T3.TARGET_CODE,
+		MIN(T6.GRO_DIM_CODE) AS ORG_TYPE
+		FROM
+		(
+		SELECT
+		T1.TARGET_CODE
+		FROM
+		(
+		SELECT
+		TR.TARGET_CODE
+		FROM
+		HT_TAR_REG_TB TR
+		WHERE
+		TR.OP_TYPE != 'D'
+		AND TR.REG_ID
+		IN (
+		SELECT
+		REG.REG_ID
+		FROM
+		HT_TEM_REG_TB
+		REG
+		WHERE
+		REG.REG_CODE =
+		'TEMP03_REG03'
+		AND REG.OP_TYPE != 'D'
+		)
+		) T1
+		JOIN (
+		SELECT
+		RTAR.TARGET_CODE
+		FROM
+		HT_ROLE_TARGET_TB RTAR
+		WHERE
+		RTAR.ROLE_CODE =
+		#{role}
+		AND RTAR.OP_TYPE
+		!= 'D'
+		) T2 ON T1.TARGET_CODE = T2.TARGET_CODE
+		) T3
+		JOIN
+		HT_TAR_GRO_DIM_TB T5 ON T5.TARGET_CODE = T3.TARGET_CODE
+		AND
+		T5.OP_TYPE
+		!= 'D'
+		JOIN HT_GRO_DIM_DETAIL_TB T6 ON T5.GDD_ID = T6.GDD_ID
+		AND
+		T6.OP_TYPE != 'D'
+		JOIN HT_GRO_DIM_TB T7 ON T6.GD_ID = T7.GD_ID
+		WHERE
+		T7.GRO_DIM_TYPE_CODE = 'ORG_GROUP'
+		AND T7.OP_TYPE != 'D'
+		GROUP BY
+		T3.TARGET_CODE
+		) T8
+		JOIN HT_TARGET_TB T10 ON T8.TARGET_CODE =
+		T10.TARGET_CODE
+		AND T10.OP_TYPE != 'D'
+		JOIN HT_TARGET_TB T11 ON
+		T10.PARENT_CODE = T11.TARGET_CODE
+		AND T11.OP_TYPE != 'D'
+		JOIN
+		HT_TARGET_TB T12 ON T11.PARENT_CODE = T12.TARGET_CODE
+		AND T12.OP_TYPE
+		!= 'D'
+		LEFT JOIN (
+		SELECT
+		T82.PTTG_ID,
+		T81.TARGET_CODE,
+		T82.TWO_GROUP_NAME
+		FROM
+		HT_PLATE_TWO_TAR_TB T81,
+		HT_PLATE_TWO_TAR_GRO_TB
+		T82
+		WHERE
+		T82.PLATE_ID =
+		#{blockId}
+		AND T81.PTTG_ID = T82.PTTG_ID
+		AND
+		T81.OP_TYPE !=
+		'D'
+		AND
+		T82.OP_TYPE != 'D'
+		) T80 ON T8.TARGET_CODE =
+		T80.TARGET_CODE
+		WHERE
+		T8.ORG_TYPE &lt;= #{orgType}
+		AND T10.OP_TYPE != 'D'
+		AND
+		T12.IS_REALTIME!='1'
+	</select>
+
+	<!-- 查询板块指标-编辑二级指标 -->
+	<select id="findEditBlockTwoTargetByParam" resultMap="BaseResultMap">
+		SELECT
+		T8.TARGET_CODE,
+		T10.TARGET_NAME,
+		T10.TARGET_TYPE,
+		T10.DEPT_CODE,
+		T10.CHANNEL,
+		T12.TARGET_CODE AS FIELD_CODE,
+		T12.TARGET_NAME AS
+		CAL_FORMULA,
+		CASE
+		WHEN
+		T80.TARGET_CODE IS
+		NOT NULL THEN
+		'1'
+		ELSE
+		'0'
+		END AS
+		REMARK,
+		T80.PTTG_ID AS
+		SORT,
+		T80.TWO_GROUP_NAME AS PARENT_CODE
+		FROM
+		(
+		SELECT
+		T3.TARGET_CODE,
+		MIN(T6.GRO_DIM_CODE) AS ORG_TYPE
+		FROM
+		(
+		SELECT
+		T1.TARGET_CODE
+		FROM
+		(
+		SELECT
+		TR.TARGET_CODE
+		FROM
+		HT_TAR_REG_TB TR
+		WHERE
+		TR.OP_TYPE != 'D'
+		AND TR.REG_ID
+		IN (
+		SELECT
+		REG.REG_ID
+		FROM
+		HT_TEM_REG_TB
+		REG
+		WHERE
+		REG.REG_CODE =
+		'TEMP03_REG03'
+		AND REG.OP_TYPE != 'D'
+		)
+		) T1
+		JOIN (
+		SELECT
+		RTAR.TARGET_CODE
+		FROM
+		HT_ROLE_TARGET_TB RTAR
+		WHERE
+		RTAR.ROLE_CODE =
+		#{role}
+		AND RTAR.OP_TYPE
+		!= 'D'
+		) T2 ON T1.TARGET_CODE = T2.TARGET_CODE
+		)
+		T3
+		JOIN
+		HT_TAR_GRO_DIM_TB T5 ON T5.TARGET_CODE = T3.TARGET_CODE
+		AND
+		T5.OP_TYPE
+		!= 'D'
+		JOIN HT_GRO_DIM_DETAIL_TB T6 ON T5.GDD_ID = T6.GDD_ID
+		AND
+		T6.OP_TYPE != 'D'
+		JOIN HT_GRO_DIM_TB T7 ON T6.GD_ID = T7.GD_ID
+		WHERE
+		T7.GRO_DIM_TYPE_CODE = 'ORG_GROUP'
+		AND T7.OP_TYPE != 'D'
+		GROUP BY
+		T3.TARGET_CODE
+		) T8
+		JOIN HT_TARGET_TB T10 ON T8.TARGET_CODE =
+		T10.TARGET_CODE
+		JOIN HT_TARGET_TB T11 ON
+		T10.PARENT_CODE =
+		T11.TARGET_CODE
+		AND T11.OP_TYPE != 'D'
+		JOIN
+		HT_TARGET_TB T12 ON
+		T11.PARENT_CODE = T12.TARGET_CODE
+		AND T12.OP_TYPE
+		!= 'D'
+		LEFT JOIN (
+		SELECT
+		T82.PTTG_ID,
+		T81.TARGET_CODE,
+		T82.TWO_GROUP_NAME
+		FROM
+		HT_PLATE_TWO_TAR_TB T81,
+		HT_PLATE_TWO_TAR_GRO_TB
+		T82
+		WHERE
+		T82.PLATE_ID =
+		#{blockId}
+		AND T81.PTTG_ID = T82.PTTG_ID
+		AND
+		T81.OP_TYPE != 'D'
+		AND
+		T82.OP_TYPE != 'D'
+		) T80 ON T8.TARGET_CODE =
+		T80.TARGET_CODE
+		WHERE
+		T8.ORG_TYPE &lt;= #{orgType}
+		AND T12.TARGET_CODE!='R01'
+		AND T10.OP_TYPE
+		!= 'D'
+	</select>
+
+	<select id="findDefaultTargetByLevel" resultMap="BaseResultMap">
+		select
+		A.TARGET_CODE,
+		A.TARGET_NAME,
+		A.SORT
+		from
+		ht_target_tb A left join
+		ht_tar_gro_dim_tb B on
+		A.TARGET_CODE = B.TARGET_CODE left join
+		ht_gro_dim_detail_tb c on
+		b.GDD_ID = c.GDD_ID
+		where
+		A.PARENT_CODE =#{pid}
+		and A.TARGET_TYPE = #{type}
+		and A.OP_TYPE != 'D'
+		and C.GRO_DIM_CODE =
+		#{dateType}
+		and B.OP_TYPE != 'D'
+		and C.OP_TYPE != 'D'
+		order by
+		A.SORT asc
+	</select>
+
+</mapper>

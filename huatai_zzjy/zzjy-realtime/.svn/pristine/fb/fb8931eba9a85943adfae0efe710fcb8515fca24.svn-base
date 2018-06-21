@@ -1,0 +1,10 @@
+i18n.language=\u4E2D\u6587
+i18n.locale=zh_CN
+login.username=\u767B\u5F55\u540D
+#login.username=\u7528\u6237\u540D
+login.password=\u5BC6\u7801
+login.captcha=\u9A8C\u8BC1\u7801
+login.notsee=\u770B\u4E0D\u6E05
+login.rememberme=\u8BB0\u4F4F\u6211
+admin.login.title=\u540E\u53F0\u7BA1\u7406\u767B\u5F55
+login.login=\u767B\u5F55

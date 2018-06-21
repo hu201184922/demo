@@ -1,0 +1,33 @@
+/* customer_plan.html 计划管理 */
+/* cust-plan-action */
+.cust-plan-action .mui-btn{width:auto !important;top:8px;font-size:15px;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none;padding:5px 10px !important}
+.cust-plan-action .btn-delete{right:150px}
+.cust-plan-action .btn-newtask{right:55px}
+.cust-plan-action > .mui-navigate-right:after{content:'\e581'}
+.cust-plan-action .mui-table-view{display:none;margin:11px -65px -11px -15px;padding-left:15px}
+.cust-plan-action.mui-active .mui-table-view{display:block}
+.cust-plan-action.mui-active > .mui-navigate-right:after{content:'\e580'}
+
+/* customer_plan_new.html 新增客户计划 */
+/* plan-status */
+/*.plan-status.mui-switch{width:90px;margin-right:15px}*/
+.plan-status.mui-switch:before{content:'未完成';font-size:13px;top:3px;right:3px;line-height:22px}
+.plan-status.mui-switch.mui-active:before{content:'完成';left:10px;}
+
+/* remindTable */
+.remindTable .mui-table-cell:nth-child(1){width:5em}
+.remindTable .mui-selects{text-align:right}
+
+/* linkShareUser */
+#linkShareUser .mui-icon{margin-left:10px;float:right;margin-top:8px}
+
+/* share_user */
+.conventionBox{background-color: #fff;border-bottom: 1px solid #dfdfdf;border-top: 1px solid #dfdfdf;padding: 15px 15px 0;}
+.mui-checkbox i{position:absolute; font-style:normal;right:40px;}
+.mui-checkbox-ul{border-top:1px solid #bbb;}
+.mui-checkbox-ul li{border-bottom:1px solid #ddd;}
+.mui-checkbox-ul li:last-child{border-bottom:none;}
+.mui-checkbox-ul li:nth-child(2n){background:#fff;}
+.mui-checkbox-ul li:nth-child(2n+1){background:#f6f6f6;}
+/* .share_user-btn{position: fixed;bottom:0;left:0;width:100%;height:50px;background:#fff;border-top:1px solid #f1f1f1;}
+.share_user-btn button{width:50%;float:left;border-right:1px solid #f00; text-align:center;} */

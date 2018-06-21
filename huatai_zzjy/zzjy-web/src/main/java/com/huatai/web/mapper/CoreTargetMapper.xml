@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.CoreTargetMapper">
+	<resultMap id="BaseResultMap" type="com.huatai.web.model.CoreTarget">
+		<id column="CT_ID" property="ctId" jdbcType="INTEGER" />
+		<result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+		<result column="TARGET_CODE" property="targetCode" jdbcType="VARCHAR" />
+		<result column="PID" property="pid" jdbcType="INTEGER" />
+		<result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+		<result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+	</resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CT_ID, DEPT_CODE, TARGET_CODE, PID, OP_TYPE, CREATE_TIME, MODIFY_TIME, CREATOR_ID, 
+    MODIFIER_ID
+  </sql>
+  <sql id="Tree_Column_List" >
+    CT_ID, DEPT_CODE, TARGET_CODE, PID, OP_TYPE, CREATE_TIME, MODIFY_TIME, CREATOR_ID, 
+    MODIFIER_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.huatai.web.model.CoreTargetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ht_core_target_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ht_core_target_tb
+    where CT_ID = #{ctId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ht_core_target_tb
+    where CT_ID = #{ctId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.huatai.web.model.CoreTargetExample" >
+    delete from ht_core_target_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.huatai.web.model.CoreTarget" >
+    insert into ht_core_target_tb (CT_ID, DEPT_CODE, TARGET_CODE, 
+      PID, OP_TYPE, CREATE_TIME, 
+      MODIFY_TIME, CREATOR_ID, MODIFIER_ID
+      )
+    values (#{ctId,jdbcType=INTEGER}, #{deptCode,jdbcType=VARCHAR}, #{targetCode,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=INTEGER}, #{opType,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=VARCHAR}, #{modifierId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huatai.web.model.CoreTarget" >
+    insert into ht_core_target_tb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ctId != null" >
+        CT_ID,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="targetCode != null" >
+        TARGET_CODE,
+      </if>
+      <if test="pid != null" >
+        PID,
+      </if>
+      <if test="opType != null" >
+        OP_TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID,
+      </if>
+      <if test="modifierId != null" >
+        MODIFIER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ctId != null" >
+        #{ctId,jdbcType=INTEGER},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="targetCode != null" >
+        #{targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="opType != null" >
+        #{opType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.huatai.web.model.CoreTargetExample" resultType="java.lang.Integer" >
+    select count(*) from ht_core_target_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ht_core_target_tb
+    <set >
+      <if test="record.ctId != null" >
+        CT_ID = #{record.ctId,jdbcType=INTEGER},
+      </if>
+      <if test="record.deptCode != null" >
+        DEPT_CODE = #{record.deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetCode != null" >
+        TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null" >
+        PID = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.opType != null" >
+        OP_TYPE = #{record.opType,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creatorId != null" >
+        CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifierId != null" >
+        MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ht_core_target_tb
+    set CT_ID = #{record.ctId,jdbcType=INTEGER},
+      DEPT_CODE = #{record.deptCode,jdbcType=VARCHAR},
+      TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+      PID = #{record.pid,jdbcType=INTEGER},
+      OP_TYPE = #{record.opType,jdbcType=CHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+      MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.CoreTarget" >
+    update ht_core_target_tb
+    <set >
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="targetCode != null" >
+        TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        PID = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="opType != null" >
+        OP_TYPE = #{opType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null" >
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CT_ID = #{ctId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huatai.web.model.CoreTarget" >
+    update ht_core_target_tb
+    set DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+      PID = #{pid,jdbcType=INTEGER},
+      OP_TYPE = #{opType,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR}
+    where CT_ID = #{ctId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findByPager" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_core_target_tb
+		<where>
+			<if test="ctId!=null and ctId!=''">
+				CT_ID = #{ctId,jdbcType=INTEGER}
+			</if>
+			<if test="dclist!=null and dclist!=NULL">
+				and DEPT_CODE in 
+				<foreach item="dc" collection="dclist" separator="," open="(" close=")" index="index">
+      				'${dc}'
+    			</foreach>
+			</if>
+			<if test="targetCode!=null and targetCode!=''">
+				and TARGET_CODE = #{targetCode,jdbcType=VARCHAR}
+			</if>
+			<if test="pid!=null and pid!=''">
+				and PID = #{pid,jdbcType=INTEGER}
+			</if>
+			<if test="opType!=null and opType!=''">
+				and OP_TYPE = #{opType,jdbcType=CHAR}
+			</if>
+			<if test="createTime!=null and createTime!=''">
+				and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyTime!=null and modifyTime!=''">
+				and MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="creatorId!=null and creatorId!=''">
+				and CREATOR_ID = #{creatorId,jdbcType=VARCHAR}
+			</if>
+			<if test="modifierId!=null and modifierId!=''">
+				and MODIFIER_ID = #{modifierId,jdbcType=VARCHAR}
+			</if>
+			and pid = 1
+			and dept_code = #{deptCode,jdbcType=VARCHAR}
+		</where>
+	</select>
+	<select id="selectBydeptCodeAndTargetCode" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from ht_core_target_tb
+    where OP_TYPE!='D' AND DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+    and TARGET_CODE = #{targetCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteBydeptCode" parameterType="java.lang.String" >
+    delete from ht_core_target_tb
+    where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteBydeptCodeAndTargetCode">
+  	delete from ht_core_target_tb WHERE CT_ID NOT IN (SELECT ID FROM (SELECT MIN(CT_ID) AS ID FROM ht_core_target_tb GROUP BY DEPT_CODE,TARGET_CODE) AS TEMP)
+  </delete>
+  <delete id="deleteByPid" parameterType="java.lang.Integer" >
+    delete from ht_core_target_tb
+    where PID = #{pid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByRoleCodeAndTargetCode">
+  	delete from ht_core_target_tb WHERE CT_ID NOT IN (SELECT ID FROM (SELECT MIN(CT_ID) AS ID FROM ht_core_target_tb GROUP BY DEPT_CODE,TARGET_CODE) AS TEMP)
+  </delete>
+	
+	<select id="selectByRoleCodeAndTargetCode" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_core_target_tb
+		where OP_TYPE!='D' AND DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+		and TARGET_CODE = #{targetCode,jdbcType=VARCHAR}
+	</select>
+	
+	<delete id="deleteByRoleCode" parameterType="java.lang.String">
+		delete from ht_core_target_tb
+		where DEPT_CODE = #{deptCode,jdbcType=VARCHAR}
+	</delete>
+	
+	<select id="selectByPid" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_core_target_tb
+		where PID = #{pid,jdbcType=INTEGER}
+	</select>
+	
+  <select id="findByPid" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ht_core_target_tb
+    where OP_TYPE!='D' AND pid = #{pid , jdbcType=VARCHAR}
+    and dept_Code = #{deptCode, jdbcType=VARCHAR} 
+  </select>
+  <delete id="deleteByPidAndTargetCode" parameterType="java.lang.String">
+  	delete from ht_core_target_tb where pid = #{pid , jdbcType=VARCHAR} and target_code = #{targetCode, jdbcType=VARCHAR}
+  </delete>
+  <select id="findByTargetCodeAndDeptCode" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ht_core_target_tb
+    where OP_TYPE!='D' AND target_Code = #{targetCode , jdbcType=VARCHAR}
+    and dept_Code = #{deptCode, jdbcType=VARCHAR}
+    and pid = 1
+  </select>
+  <select id="findByDeptCodeStr" parameterType="java.lang.String" resultType="com.huatai.web.model.DeptInfo">
+    SELECT b.CODE_ AS deptCode, b.NAME_ AS deptName
+		FROM jdp_dict a
+		  LEFT JOIN jdp_dict_item b
+		    ON a.cid = b.DICT_ID
+		WHERE A.CODE_ = 'DETP_DICT' AND b.code_ IN (${dstr});
+  </select>
+</mapper>

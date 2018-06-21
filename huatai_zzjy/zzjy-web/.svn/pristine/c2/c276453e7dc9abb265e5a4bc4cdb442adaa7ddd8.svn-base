@@ -1,0 +1,259 @@
+body, label, input, select, button, textarea{font-family:Arial, Simhei, '黑体', sans-serif !important}
+div, section, h1, h2, h3, h4, h5, h6, ul, dl, ol, p, strong, span, label, li, dt, dd{margin:0;padding:0}
+ul, ol, dl{list-style-type:none}
+
+/* Margin & Padding */
+.mt5{margin-top:5px !important}
+.mt10{margin-top:10px !important}
+.mt20{margin-top:20px !important}
+.mt30{margin-top:30px !important}
+.mt40{margin-top:40px !important}
+.mt50{margin-top:50px !important}
+.mb10{margin-bottom:10px !important}
+.mb20{margin-bottom:20px !important}
+.mb30{margin-bottom:30px !important}
+.mb40{margin-bottom:40px !important}
+.mb50{margin-bottom:50px !important}
+.mb54{margin-bottom:54px !important}
+.ml10{margin-left:10px !important}
+.ml20{margin-left:20px !important}
+.ml30{margin-left:30px !important}
+.ml40{margin-left:40px !important}
+.ml50{margin-left:50px !important}
+.mr10{margin-right:10px !important}
+.mr20{margin-right:20px !important}
+.mr30{margin-right:30px !important}
+.mr40{margin-right:40px !important}
+.mr50{margin-right:50px !important}
+
+/* btn-out-ul */
+.btn-out-ul{padding:0 15px;}
+.btn-out-ul .mui-btn{width:100%}
+
+/* Icon */
+
+/* mui */
+.mui-align-center{text-align:center}
+.mui-input-group .mui-input-row{padding-top:5px;padding-bottom:5px;height:50px}
+.mui-input-row label{color:#333}
+.mui-input-row input{text-align:right}
+.mui-input-row.mui-row-long label{width:65%}
+.mui-input-row.mui-row-long input, .mui-input-row.mui-row-long .mui-input-value{width:35%}
+.mui-input-row.mui-row-auto label, .mui-input-row.mui-row-auto input, .mui-input-row.mui-row-auto .mui-input-value{width:auto}
+.mui-input-row .mui-input-title{color:#333;font-size:18px}
+.mui-input-row:last-child:after{display:none}
+.mui-input-row-auto{height:auto !important}
+.mui-input-row-auto .mui-input-value{height:auto;line-height:24px;padding:8px 15px 8px 0}
+.mui-input-value{float:right;width:65%;height:40px;line-height:40px;padding-right:15px;font-size:100%;text-align:right;color:#333}
+.mui-input-more{padding:0 15px;text-align:center;line-height:40px;font-size:18px;cursor:pointer}
+.mui-input-text{padding:0 15px;line-height:40px;color:#333;font-size:17px}
+.mui-input-text em{font-style:normal;margin-left:10px;font-size:14px;color:#999}
+.mui-btn-white{color: #fff;}
+.mui-selects, .mui-select-date{position:relative;padding-right:38px;color:#333;cursor:pointer}
+.mui-selects:after, .mui-select-date:after{position:absolute;right:12px;content:'\e581';font-family:Muiicons;font-size:23px}
+.mui-out-text{padding:10px 15px;line-height:24px;font-size:16px}
+.mui-text-group{position:relative;background-color:#fff}
+.mui-text-group:before{position:absolute;top:0;right:0;left:0;height:1px;content:'';-webkit-transform:scaleY(.5);transform:scaleY(.5);background-color:#c8c7cc}
+.mui-text-group:after{position:absolute;bottom:0;right:0;left:0;height:1px;content:'';-webkit-transform:scaleY(.5);transform:scaleY(.5);background-color:#c8c7cc}
+.mui-text-row{min-height:50px;box-sizing:border-box;padding:16px 15px;line-height:24px}
+.mui-text-row:after{position:absolute;bottom:0;right:0;left:15px;height:1px;content:'';-webkit-transform:scaleY(.5);transform:scaleY(.5);background-color:#c8c7cc}
+.mui-text-row:last-child:after{display:none}
+.mui-text-row p{font-size:16px;line-height:24px;color:#5a5a5a;text-align:justify}
+.mui-table-border{border:1px solid #dfdfdf}
+.mui-table-header{background-color:#dfdfdf}
+.mui-table-row{display:table-row}
+.mui-table-cell{font-size:16px;padding:5px 0;vertical-align:middle;color:#888}
+.mui-table-cell .mui-selects{color:#888;margin-right:-15px}
+.mui-table-header .mui-table-cell{padding-top:8px;padding-bottom:8px;color:#5a5a5a}
+.mui-table-border .mui-table-cell{padding-left:10px}
+.mui-table-border .mui-table-cell:last-child{padding-right:10px}
+.mui-height-auto{height:auto !important;padding:15px 15px !important}
+.mui-table-view-cell span{float:right;color:#888}
+.mui-table-view-cell a{line-height:28px}
+.mui-table-view-cell a:after{font-size:23px;color:#888}
+.mui-font-x1{font-size:19px}
+.mui-font-b{font-weight:bold}
+.mui-color-gray{color:#999 !important}
+.mui-color-black{color:#333 !important}
+.mui-color-warning{color:#f0ad4e !important}
+.mui-color-blue{color:#007aff !important}
+.mui-color-danger{color:#dd524d !important}
+.mui-camera-right{position: absolute;top:55px;right:15px;z-index:0;}
+.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio]:checked:before{color:#6eb92b}
+.mui-btn-block{font-size:21px;padding:11px 0}
+
+.mui-popup{position:fixed}
+.mui-popup-title{margin-bottom:5px}
+.mui-popup-title+.mui-popup-text{margin:0;font-family:Arial, Simhei, '黑体', sans-serif !important}
+.mui-popup-input input{height:32px;border-radius:5px;padding:0 10px}
+
+.mui-icon-home{width:44px;height:44px;background:url(../images/icon-home.png) no-repeat center center;background-size:24px}
+.mui-icon-home:before{display:none}
+
+.mui-icon-camera{width:31px;height:24px;background:url(../images/icon-camera.png) no-repeat center center;background-size:100%}
+.mui-icon-camera:before{display:none}
+
+.mui-table-view-cell>a:not(.mui-btn){color:#333}
+
+.mui-input-btn{width:auto !important;font-size:15px;padding:6px 10px !important;margin:5px 15px 0 0}
+
+.mui-table-view-cell.mui-active{background-color:transparent}
+.mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell:last-child:after, .mui-table-view-cell.mui-collapse .mui-table-view:after, .mui-table-view-cell.mui-collapse .mui-table-view:before{height:1px}
+
+
+.mui-btn-white{border-color:#fff;color:#fff}
+.mui-btn-white.mui-active:enabled,.mui-btn-white:enabled:active{background-color:#fff;color:#007aff}
+
+.mui-remind-1, .mui-remind-2{width:19px;height:20px;vertical-align:middle;background:no-repeat center center;background-size:100%}
+.mui-remind-1{background-image:url(../images/icon-remind-1.png)}
+.mui-remind-2{background-image:url(../images/icon-remind-2.png)}
+
+
+/*********************************************************/
+/* header */
+#header{background-color:#005bac}
+#header h1{color:#fff}
+#header .mui-pull-left, #header .mui-pull-right{color:#fff}
+#header a{color: #fff}
+
+/* title */
+.title{font-size:18px;padding:0 15px;line-height:36px;margin-top:5px;font-weight:lighter;color:#5a5a5a}
+
+/* customer_plan.html 计划管理 */
+/* cust-plan-action */
+.cust-plan-action .mui-btn{width:auto !important;top:8px;font-size:15px;-webkit-transform:none;-moz-transform:none;-ms-transform:none;-o-transform:none;transform:none;padding:5px 10px !important}
+.cust-plan-action .btn-delete{right:150px}
+.cust-plan-action .btn-newtask{right:55px}
+.cust-plan-action > .mui-navigate-right:after{content:'\e581'}
+.cust-plan-action .mui-table-view{display:none;margin:11px -65px -11px -15px;padding-left:15px}
+.cust-plan-action.mui-active .mui-table-view{display:block}
+.cust-plan-action.mui-active > .mui-navigate-right:after{content:'\e580'}
+
+/* customer_plan_new.html 新增客户计划 */
+/* plan-status */
+.plan-status.mui-switch{width:90px;margin-right:15px}
+.plan-status.mui-switch:before{content:'未完成';font-size:15px;top:2px;line-height:22px}
+.plan-status.mui-switch.mui-active:before{content:'完成'}
+
+/* remindTable */
+.remindTable .mui-table-cell:nth-child(1){width:5em}
+.remindTable .mui-selects{text-align:right}
+
+/* linkShareUser */
+#linkShareUser .mui-icon{margin-left:10px;float:right;margin-top:8px}
+
+
+/* calendarTable */
+.calendarTable .mui-table-cell{position:relative;text-align:center;border-left:1px solid #dfdfdf;border-bottom:1px solid #dfdfdf;background-color:#f1f1f1;overflow:hidden}
+.calendarTable .mui-table-cell:first-child{border-left:0}
+.calendarTable .mui-table-cell p{color:inherit}
+.calendarTable .mui-table-cell.check-off{background-color:#ccc}
+.calendarTable .mui-table-cell.check-on, .calendarTable .mui-table-cell.active{background-color:#007aff;color:#fff}
+.calendarTable .mui-table-cell.check-on:before{position:absolute;right:0;bottom:0;content:'';width:40px;height:40px;background-color:#fff;z-index:1; transform:rotate(45deg) translate(28px, 0)}
+.calendarTable .mui-table-cell.check-on:after{position:absolute;right:-8px;bottom:0;color:#007aff;content:'\e472';font-family:Muiicons;z-index:2;font-size:33px}
+.calendarTable .mui-table-row:last-child .mui-table-cell{border-bottom:0}
+.calendarTable :not(.mui-table-header) .mui-table-cell{height:60px}
+.calendarTable :not(.mui-table-header) .mui-table-cell:first-child, .calendarTable :not(.mui-table-header) .mui-table-cell:last-child{color:#ccc}
+.calendarTable .mui-table-header .mui-table-cell{background-color:#fff}
+
+
+/* calendar.html 行事历 */
+/* calendarHeader */
+.calendarHeader{height:44px;position:relative;background-color:#007aff;padding:6px 0}
+.calendarHeader .mui-segmented-control{width:100px;margin:0 auto;border-color:#fff}
+.calendarHeader .mui-segmented-control .mui-control-item{line-height:30px;color:#fff;border-color:#fff}
+.calendarHeader .mui-segmented-control .mui-control-item.mui-active{color:#007aff;background-color:#fff}
+.calendarHeader .calendarMonth{position:absolute;left:0;top:0;height:100%;padding:0 15px;line-height:44px;font-size:18px;color:#fff}
+.calendarHeader .btnNewPlan{position:absolute;right:15px;top:5px}
+
+/* calendarBox */
+.calendarBox{background-color:#f7f7f7}
+.calendarBox .mui-table-cell{position:relative;color:#333;text-align:center;border-bottom:1px solid #ccc;overflow:hidden}
+.calendarBox .mui-table-cell:first-child{border-left:0}
+.calendarBox .mui-table-cell strong{font-size:20px;display:block;line-height:22px}
+.calendarBox .mui-table-cell p{color:inherit;line-height:18px}
+.calendarBox .mui-table-row:last-child .mui-table-cell{border-bottom:0}
+.calendarBox :not(.mui-table-header) .mui-table-cell{padding-bottom:15px}
+.calendarBox .mui-table-cell:first-child, .calendarBox .mui-table-cell:last-child{color:#a2a2a2}
+.calendarBox .mui-table-header .mui-table-cell{background-color:#fff}
+.calendarBox .mui-table-cell.active:after{position:absolute;content:'';left:50%;bottom:5px;width:6px;height:6px;border-radius:3px;overflow:hidden;background-color:#007aff;margin-left:-3px;}
+.calendarBox .mui-table-cell.current{background-color:#007aff !important;color:#fff !important}
+.calendarBox .mui-table-cell.current.active:after{background-color:#fff}
+
+
+/* weekPlan */
+/* weekPlanNav */
+.weekPlanNav{padding:15px}
+
+/* calendar-group */
+.calendar-group .mui-table-view-cell{font-size:20px;padding:8px 15px}
+.calendar-group .time{height:42px;display:inline-block;width:75px;padding-left:15px;margin-right:15px;vertical-align:middle;border-right:2px solid #dfdfdf}
+.calendar-group .time p{color:#333;font-size:16px}
+.calendar-group .time p:last-child{color:#888}
+.calendar-group .mui-table-view-cell .mui-btn{position:inherit;transform:none;right:auto;top:auto;display:inline-block;vertical-align:middle;padding:2px 3px;margin-left:10px}
+.calendar-group .mui-table-view-cell span{font-size:16px;line-height:42px}
+
+/* calendar-remind */
+.calendar-remind .mui-table-view-cell{line-height:30px}
+.calendar-remind .mui-table-view-cell strong{font-weight:lighter;display:inline-block;width:130px}
+.calendar-remind .mui-table-view-cell strong i{float:left;margin-top:3px;margin-right:5px}
+.calendar-remind .mui-table-view-cell p{display:inline-block;margin-left:10px}
+.calendar-remind .mui-table-view-cell button{padding:0 10px;height:30px}
+
+
+.check-on{position:absolute;width:40px;height:40px;background:url(../images/right-ico-bg.png) no-repeat bottom right; background-size:50%;}
+/* monthPlan */
+/* monthToday */
+.monthToday{padding:5px 15px;line-height:26px}
+.monthToday strong{float:left;font-size:16px}
+.monthToday p{float:right;font-size:16px}
+
+.ui-bottom-bg{
+	position: fixed;
+	bottom:0;
+	left:0;
+	width:100%;
+	height:50px;
+    background: url(../images/bottom-bg.png) no-repeat;
+	background-size:100%
+}
+
+.ui-account-bottom {
+    padding: 1rem 0.5rem;
+    text-align: center;
+}
+
+.ui-account-btn {
+    border: 1px solid #ffc600;
+    display: block;
+    background: #ffc600;
+    color: #fff;
+    border-radius: 1.3rem;
+    line-height: 2.6rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

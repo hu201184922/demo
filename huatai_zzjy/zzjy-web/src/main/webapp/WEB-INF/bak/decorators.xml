@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/layouts/">
+	<excludes>
+		<pattern>/static/*</pattern>
+		<pattern>/api/*</pattern><!-- 此处应该不是必须的，SiteMesh针对text/html做特殊处理 -->
+		<pattern>/activiti-modeler/*</pattern>
+		<pattern>/person/pascard/uploadphoto/*</pattern>
+		<pattern>/ezt/group/wechat/*</pattern>
+		<pattern>/upImage2</pattern>
+	</excludes>
+	<!-- 
+	<decorator name="none">
+		<pattern>/bpmn/form2/metadata/forward/*</pattern>
+	</decorator> -->
+	<decorator-mappers>
+		<mapper class="com.opensymphony.module.sitemesh.mapper.PageDecoratorMapper" >
+			<param name="property.1" value="meta.decorator"/>
+		</mapper>
+	</decorator-mappers>
+	<decorator name="nodecorate" />
+	
+	<!--====================工作流系统配置管理弹出页面===================
+	<decorator name="bpmn-index" page="bpmn/index.jsp">
+		<pattern>/bpmn/*</pattern>
+	</decorator>-->
+	<!--====================知识库===================-->
+	<decorator name="knowledge" page="crm/knowledge.jsp">
+		<pattern>/knowledgeManager/*</pattern>
+	</decorator>
+	
+	<decorator name="catalogManage" page="	crm/knowledgeManage.jsp">
+		<pattern>/catalogManage/*</pattern>
+	</decorator>
+	
+	<decorator name="changepsw" page="crm/changepsw.jsp">
+		<pattern>/admin/sec/user/changepsw</pattern>
+	</decorator>
+	<decorator name="changepsw2" page="crm/changepsw.jsp">
+		<pattern>/changepsw/findPsw</pattern>
+	</decorator>
+	<decorator name="admin" page="crm/admin.jsp">
+		<pattern>/admin/*</pattern>
+	</decorator>
+
+	<decorator name="default" page="crm/default.jsp">
+		<pattern>*</pattern>
+	</decorator>
+	<!-- <decorator name="psacardDefault" page="crm/psacardDefault.jsp">
+		<pattern>/person/pascard/index</pattern>
+	</decorator> -->
+	
+	
+	<decorator name="null">
+		<pattern>/mobileservice</pattern>
+	</decorator>
+	
+	<decorator name="null">
+		<pattern>/ezt/planShare/*</pattern>
+	</decorator>
+	
+	<decorator name="null">
+		<pattern>/ezt/customerPlan/*</pattern>
+	</decorator>
+	
+	<decorator name="null">
+		<pattern>/ezt/wechat/customers/*</pattern>
+	</decorator>
+	
+</decorators>

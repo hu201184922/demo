@@ -1,0 +1,42 @@
+package com.huatai.web.job;
+
+import java.util.Date;
+
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.quartz.QuartzJobBean;
+
+import com.huatai.web.model.TriggleExecute;
+import com.huatai.web.service.TriggleExecuteService;
+import com.huatai.web.utils.RedisDataSwitch;
+
+public class StartRedisJob extends QuartzJobBean {
+
+	private ApplicationContext applicationContext;
+
+	public void setApplicationContext(ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
+	}
+
+	@Override
+	protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
+		TriggleExecuteService triggleExecuteService = applicationContext.getBean(TriggleExecuteService.class);
+		Date now = new Date();
+		TriggleExecute teToday = new TriggleExecute();
+		teToday.setQrtzGroupId(37L);
+		teToday.setQrtzCode("START");
+		teToday.setExecBeginTime(now);
+		teToday.setExecEndTime(null);
+		teToday.setExecStatus("0");
+		triggleExecuteService.insert(teToday);
+		// --------------
+		RedisDataSwitch.startRedisData();
+		// --------------
+		teToday.setExecStatus("1");
+		Date endTime = new Date();
+		teToday.setExecEndTime(endTime);
+		triggleExecuteService.updateByPrimaryKey(teToday);
+	}
+
+}

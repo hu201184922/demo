@@ -1,0 +1,129 @@
+package com.ehuatai.biz.domain;
+
+import java.util.Date;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+public class AccPageInfo {
+    private String accessid;
+
+    private String accessname;
+
+    private String accessurl;
+
+    private String behaviorid;
+
+    private String userId;
+
+    private String dateCode;
+
+    private String fmName;
+
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    private Date accessTime;
+
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    private Date outTime;
+
+    private Integer isOut;
+
+    private String resTime;
+
+    private Double ratio;//比例
+
+	public String getAccessid() {
+        return accessid;
+    }
+
+    public void setAccessid(String accessid) {
+        this.accessid = accessid == null ? null : accessid.trim();
+    }
+
+    public String getAccessname() {
+        return accessname;
+    }
+
+    public void setAccessname(String accessname) {
+        this.accessname = accessname == null ? null : accessname.trim();
+    }
+
+    public String getAccessurl() {
+        return accessurl;
+    }
+
+    public void setAccessurl(String accessurl) {
+        this.accessurl = accessurl == null ? null : accessurl.trim();
+    }
+
+    public String getBehaviorid() {
+        return behaviorid;
+    }
+
+    public void setBehaviorid(String behaviorid) {
+        this.behaviorid = behaviorid == null ? null : behaviorid.trim();
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getDateCode() {
+        return dateCode;
+    }
+
+    public void setDateCode(String dateCode) {
+        this.dateCode = dateCode == null ? null : dateCode.trim();
+    }
+
+    public String getFmName() {
+        return fmName;
+    }
+
+    public void setFmName(String fmName) {
+        this.fmName = fmName == null ? null : fmName.trim();
+    }
+
+    public Date getAccessTime() {
+        return accessTime;
+    }
+
+    public void setAccessTime(Date accessTime) {
+        this.accessTime = accessTime;
+    }
+
+    public Date getOutTime() {
+        return outTime;
+    }
+
+    public void setOutTime(Date outTime) {
+        this.outTime = outTime;
+    }
+
+    public Integer getIsOut() {
+        return isOut;
+    }
+
+    public void setIsOut(Integer isOut) {
+        this.isOut = isOut;
+    }
+
+    public String getResTime() {
+        return resTime;
+    }
+
+    public void setResTime(String resTime) {
+        this.resTime = resTime == null ? null : resTime.trim();
+    }
+    
+    public Double getRatio() {
+		return ratio;
+	}
+
+	public void setRatio(Double ratio) {
+		this.ratio = ratio;
+	}
+}

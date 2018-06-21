@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.InterMapper">
+	<resultMap id="BaseResultMap" type="com.huatai.web.model.Inter">
+		<id column="INTER_ID" property="interId" jdbcType="INTEGER" />
+		<result column="INTER_NAME" property="interName" jdbcType="VARCHAR" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+		<result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		INTER_ID, INTER_NAME, REMARK, OP_TYPE, CREATE_TIME,
+		MODIFY_TIME, CREATOR_ID,
+		MODIFIER_ID
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.huatai.web.model.InterExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ht_inter_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from ht_inter_tb
+		where INTER_ID = #{interId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		ht_inter_tb
+		where TI_ID = #{tiId}
+
+
+	</delete>
+	<delete id="deleteByExample" parameterType="com.huatai.web.model.InterExample">
+		delete from ht_inter_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.huatai.web.model.Inter">
+		insert into ht_inter_tb
+		(INTER_ID, INTER_NAME, REMARK,
+		OP_TYPE, CREATE_TIME, MODIFY_TIME,
+		CREATOR_ID, MODIFIER_ID)
+		values (#{interId,jdbcType=INTEGER},
+		#{interName,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},
+		#{opType,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{modifyTime,jdbcType=TIMESTAMP},
+		#{creatorId,jdbcType=VARCHAR},
+		#{modifierId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huatai.web.model.Inter">
+		insert into ht_inter_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="interId != null">
+				INTER_ID,
+			</if>
+			<if test="interName != null">
+				INTER_NAME,
+			</if>
+			<if test="remark != null">
+				REMARK,
+			</if>
+			<if test="opType != null">
+				OP_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME,
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID,
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="interId != null">
+				#{interId,jdbcType=INTEGER},
+			</if>
+			<if test="interName != null">
+				#{interName,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				#{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				#{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				#{modifierId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.huatai.web.model.InterExample"
+		resultType="java.lang.Integer">
+		select count(*) from ht_inter_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update ht_inter_tb
+		<set>
+			<if test="record.interId != null">
+				INTER_ID = #{record.interId,jdbcType=INTEGER},
+			</if>
+			<if test="record.interName != null">
+				INTER_NAME = #{record.interName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.remark != null">
+				REMARK = #{record.remark,jdbcType=VARCHAR},
+			</if>
+			<if test="record.opType != null">
+				OP_TYPE = #{record.opType,jdbcType=CHAR},
+			</if>
+			<if test="record.createTime != null">
+				CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.modifyTime != null">
+				MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.creatorId != null">
+				CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.modifierId != null">
+				MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update ht_inter_tb
+		set INTER_ID = #{record.interId,jdbcType=INTEGER},
+		INTER_NAME = #{record.interName,jdbcType=VARCHAR},
+		REMARK =
+		#{record.remark,jdbcType=VARCHAR},
+		OP_TYPE =
+		#{record.opType,jdbcType=CHAR},
+		CREATE_TIME =
+		#{record.createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME =
+		#{record.modifyTime,jdbcType=TIMESTAMP},
+		CREATOR_ID =
+		#{record.creatorId,jdbcType=VARCHAR},
+		MODIFIER_ID =
+		#{record.modifierId,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.Inter">
+		update ht_inter_tb
+		<set>
+			<if test="interName != null">
+				INTER_NAME = #{interName,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				OP_TYPE = #{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			MODIFY_TIME = NOW(),
+			<if test="creatorId != null">
+				CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where INTER_ID = #{interId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huatai.web.model.Inter">
+		update ht_inter_tb
+		set INTER_NAME = #{interName,jdbcType=VARCHAR},
+		REMARK =
+		#{remark,jdbcType=VARCHAR},
+		OP_TYPE = #{opType,jdbcType=CHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME =
+		#{modifyTime,jdbcType=TIMESTAMP},
+		CREATOR_ID =
+		#{creatorId,jdbcType=VARCHAR},
+		MODIFIER_ID =
+		#{modifierId,jdbcType=VARCHAR}
+		where INTER_ID =
+		#{interId,jdbcType=INTEGER}
+	</update>
+	<select id="findByPager" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_inter_tb
+		<where>
+			OP_TYPE!='D'
+			<if test="interId!=null and interId!=''">
+				and INTER_ID = #{interId,jdbcType=INTEGER}
+			</if>
+			<if test="interName!=null and interName!=''">
+				and INTER_NAME LIKE
+				CONCAT(CONCAT(#{interName,jdbcType=VARCHAR},'%'),'%')
+			</if>
+			<if test="remark!=null and remark!=''">
+				and REMARK = #{remark,jdbcType=VARCHAR}
+			</if>
+			<if test="opType!=null and opType!=''">
+				and OP_TYPE = #{opType,jdbcType=CHAR}
+			</if>
+			<if test="createTime!=null and createTime!=''">
+				and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyTime!=null and modifyTime!=''">
+				and MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="creatorId!=null and creatorId!=''">
+				and CREATOR_ID = #{creatorId,jdbcType=VARCHAR}
+			</if>
+			<if test="modifierId!=null and modifierId!=''">
+				and MODIFIER_ID = #{modifierId,jdbcType=VARCHAR}
+			</if>
+		</where>
+		ORDER BY CREATE_TIME DESC
+	</select>
+	<select id="findInterList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_inter_tb
+		<where>
+			OP_TYPE!='D'
+		</where>
+	</select>
+
+	<select id="findInterFieldByInterId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_inter_tb
+		<where>
+			OP_TYPE!='D' AND INTER_ID = #{interId,jdbcType=INTEGER}
+		</where>
+	</select>
+
+	<!-- 按表名和查询维度查询接口信息 -->
+	<select id="findInterByTabNameAndQueDim" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		A.INTER_ID,
+		A.INTER_NAME,
+		A.REMARK
+		FROM
+		ht_inter_tb A
+		LEFT JOIN
+		ht_inter_field_tb B
+		ON A.INTER_ID=B.INTER_ID
+		WHERE
+		A.INTER_NAME
+		=#{tableName}
+		AND B.DIM_CODE=#{dimCode}
+		AND A.OP_TYPE!='D' 
+		AND B.OP_TYPE!='D' 
+	</select>
+
+</mapper>

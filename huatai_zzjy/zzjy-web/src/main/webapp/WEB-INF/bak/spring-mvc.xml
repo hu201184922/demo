@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+	default-lazy-init="true">
+
+<context:property-placeholder
+			ignore-unresolvable="true" location="classpath*:/application.properties" />
+			
+	<aop:aspectj-autoproxy proxy-target-class="false"/>
+	<!-- <aop:config proxy-target-class="true" /> -->
+	<!-- 自动扫描且只扫描@Controller -->
+	<context:component-scan base-package="com.fairyland.jdp.**,com.metlife.ezt.**">
+<!-- 		<context:include-filter type="annotation" -->
+<!-- 			expression="org.springframework.stereotype.Controller" /> -->
+<!-- 		<context:include-filter type="annotation" -->
+<!-- 			expression="org.springframework.web.bind.annotation.ControllerAdvice" /> -->
+<!-- 		<context:exclude-filter type="annotation" -->
+<!-- 			expression="org.springframework.stereotype.Service" /> -->
+	</context:component-scan>
+	
+	<!-- 禁用"/",".*"的映射匹配，须在 mvc:annotation-driven之前-->
+	<bean class="com.fairyland.jdp.framework.webconfig.RequestMappingHandlerMappingPostProcessor">
+	    <property name="useSuffixPatternMatch" value="false"/>
+	    <property name="useTrailingSlashMatch" value="true"/>
+	</bean>
+	
+	<!-- 全局日期转换配置 -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">    
+        <property name="converters">    
+            <list>    
+                <bean class="com.fairyland.jdp.webbindsupport.DateConverter" />
+                <bean class="com.fairyland.jdp.webbindsupport.SqlDateConverter" /> 
+                <bean class="com.fairyland.jdp.webbindsupport.TimeConverter" /> 
+                <bean class="com.fairyland.jdp.webbindsupport.TimestampConverter" />     
+            </list>    
+        </property>    
+    </bean> 
+	<mvc:annotation-driven conversion-service="conversionService">
+		<mvc:message-converters register-defaults="true">
+			<!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+			</bean>
+			<!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="prettyPrint" value="true" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- 定义JSP文件的位置 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
+	<mvc:default-servlet-handler />
+
+	<!-- 定义无需Controller的url<->view直接映射 -->
+	<mvc:view-controller path="/" view-name="redirect:/index" />
+	<mvc:view-controller path="/biz" view-name="redirect:/biz/desktop" />
+	<mvc:view-controller path="/biz/" view-name="redirect:/biz/desktop" />
+	<mvc:view-controller path="/admin" view-name="redirect:/admin/desktop" />
+	<mvc:view-controller path="/admin/" view-name="redirect:/admin/desktop" />
+	<mvc:view-controller path="/admin/unauthorized"
+		view-name="jdp-framework/error/unauthorized" />
+	<mvc:view-controller path="/unauthorized"
+		view-name="unauthorized" />
+	<mvc:view-controller path="/admin/permloading"
+		view-name="jdp-framework/error/urlpermloading" />
+	<!-- 定义无需Spring MVC处理的文件 -->
+	<mvc:resources location="/activiti-modeler/" mapping="/activiti-modeler/**" />
+	<mvc:resources location="/static/" mapping="/static/**" />
+	<mvc:resources location="/api/" mapping="/api/**" /><!-- 未测试 -->
+
+	<!-- 将Controller抛出的异常转到特定View, 保持SiteMesh的装饰效果 -->
+<!-- 	<bean -->
+<!-- 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> -->
+<!-- 		<property name="exceptionMappings"> -->
+<!-- 			<props> -->
+<!-- 				<prop key="java.lang.Throwable">error/500</prop> -->
+<!-- 			</props> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 微信授权 -->
+			<mvc:mapping path="/**/wechat/**"/>
+			<mvc:exclude-mapping path="/**/static/**" />
+			<bean class="com.metlife.ezt.wechat.interceptor.OAuth2Interceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<!-- 返回操作 -->
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/**/static/**" />
+			<bean class="com.metlife.ezt.interceptor.GoBackInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<!-- 登录页面的所有请求，不需要处理 -->
+			<mvc:exclude-mapping path="/**/login" />
+			<mvc:exclude-mapping path="/**/captcha" />
+			<mvc:exclude-mapping path="/" />
+			<!-- 未测试，此处应直接利mvc:resource标签已经过虑，可以去掉配置 -->
+			<mvc:exclude-mapping path="/**/static/**" />
+			<mvc:exclude-mapping path="/**/api/**" />
+			<mvc:exclude-mapping path="/**/activiti-modeler/**" />
+			<bean class="com.fairyland.jdp.framework.menu.interceptor.MenuInterceptor" />
+		</mvc:interceptor>
+		<!-- 首次登录需要修改密码 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean
+				class="com.fairyland.jdp.framework.security.interceptor.FirstLogonChangePswInterceptor" />
+		</mvc:interceptor>
+		<!-- 会话强制退出 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**" />
+			<bean
+				class="com.fairyland.jdp.framework.security.interceptor.OnlineSessionInterceptor">
+				<property name="loginUrl" value="${shiro.admin.login.url}" />
+			</bean>
+		</mvc:interceptor>
+		<!-- 日志拦截器，记录系统访问日志 -->
+		<mvc:interceptor>
+			<!-- 后台 -->
+			<mvc:mapping path="/admin/**" />
+			<mvc:mapping path="/logout" />
+			
+			<!-- 联系人 -->
+			<mvc:mapping path="/contact/**" />
+			<!-- 客户数-->
+			<mvc:mapping path="/account/**" />
+			<!-- 业务伙伴-->
+			<mvc:mapping path="/partner/**" />
+			<!-- 业务机会-->
+			<mvc:mapping path="/opportunity/**" />
+			<!-- 市场活动-->
+			<mvc:mapping path="/campaign/**" />
+			<!-- 培训活动-->
+			<mvc:mapping path="/training/**" />
+			<!-- 任务 -->
+			<mvc:mapping path="/task/**"/>
+			<!-- 目标 -->
+			<mvc:mapping path="/target/**"/>
+			
+			<!-- 微信日志 -->
+			<mvc:mapping path="/**/wechat/**"/>
+			<mvc:exclude-mapping path="/**/static/**" />
+			
+			<mvc:exclude-mapping path="/**/captcha" />
+			<bean class="com.fairyland.jdp.framework.log.interceptor.LogInterceptor" />
+		</mvc:interceptor>
+
+		<!-- 登录拦截器 ，用于会话过期后再次登录直接跳转到之前访问的页面 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**/login" />
+			<bean
+				class="com.fairyland.jdp.framework.security.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<!-- 动态国际化 -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**" /> -->
+<!-- 			<ref bean="localeChangeInterceptor" /> -->
+<!-- 		</mvc:interceptor> -->
+		
+		<!-- url权限加载状态 -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**" /> -->
+<!-- 			<bean -->
+<!-- 				class="com.fairyland.jdp.framework.security.interceptor.UrlLoadingStatusInterceptor"> -->
+<!-- 				<property name="viewName" value="jdp-framework/error/urlpermloading" /> -->
+<!-- 			</bean> -->
+<!-- 		</mvc:interceptor> -->
+		<!-- 缓存拦截器 ，用于缓存不常变化的数据 -->
+		<mvc:interceptor>  
+		    <mvc:mapping path="/ezt/wechat/customers/getAddressData.js" />
+		    <bean class="org.springframework.web.servlet.mvc.WebContentInterceptor" >  
+		        <property name="cacheMappings">  
+		            <map>  
+		                <entry key="/ezt/wechat/customers/getAddressData.js" value="31536000"></entry>  
+		            </map>  
+		        </property>  
+		    </bean>  
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- Enable Shiro Annotations for Spring-configured beans. Only run after -->
+	<!-- shiro注解的支持与springmvc整合必须配置在springmvc.xml中 <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" 
+		depends-on="lifecycleBeanPostProcessor" /> -->
+
+	<!-- 控制器异常处理 -->
+	<bean id="exceptionHandlerExceptionResolver"
+		class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver" />
+
+	<!-- 注解中异常的处理 -->
+	<!-- <bean -->
+	<!-- class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> -->
+	<!-- <property name="exceptionMappings"> -->
+	<!-- <props> -->
+	<!-- <prop key="org.apache.shiro.authz.UnauthorizedException"> -->
+	<!-- /unauthorized -->
+	<!-- </prop> -->
+	<!-- </props> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+	<!-- 支持上传文件  -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> 
+
+	<import resource="spring-mvc-shiro.xml" />
+</beans>

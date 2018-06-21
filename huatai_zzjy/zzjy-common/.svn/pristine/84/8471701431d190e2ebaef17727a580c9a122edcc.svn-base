@@ -1,0 +1,22 @@
+#analysis template code
+template.analysis.common=TEMP03_REG01
+template.analysis.main=TEMP03_REG02
+template.analysis.sub=TEMP03_REG03
+template.analysis.dist=TEMP03_REG04
+template.analysis.org=TEMP03_REG05
+template.analysis.spec=TEMP03_REG06
+template.analysis.torg=TEMP03_REG07
+
+#fixed target template code
+template.index.fixed.main=TEMP02_REG01
+template.index.fixed.month=TEMP02_REG02
+template.index.fixed.map=TEMP02_REG03
+template.index.fixed.honor=TEMP02_REG04
+template.index.fixed.rank=TEMP02_REG05
+template.index.fixed.monthlist=TEMP02_REG06
+template.index.fixed.notice=TEMP02_REG07
+
+#block template code
+template.block.all=TEMP04_REG01
+template.block.down=TEMP04_REG02
+

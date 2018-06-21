@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ehuatai.biz.mapper.SszbMapper" >
+
+	<!--  全国角色 -->
+  	<select id="findPurZongByOra" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  	 SELECT ORG_CODE AS CODE,STAD_PREM AS VAL 
+	  FROM HT_RISK_TARGET_TB
+	  WHERE DATE_CODE = TO_CHAR(SYSDATE-1,'${partten}')
+	  AND LENGTH(ORG_CODE)= 3 
+  	</select>
+  	
+	<!-- 分公司 -->
+  	<select id="findPurFenByOra" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  	 SELECT ORG_CODE AS CODE,STAD_PREM AS VAL 
+	  FROM HT_RISK_TARGET_TB
+	  WHERE DATE_CODE = TO_CHAR(SYSDATE-1,'${partten}')
+	  AND LENGTH(ORG_CODE)= 5
+	  AND ORG_CODE LIKE '${org}%' 
+  	</select>
+  	
+  	<!-- 中支 -->
+  	<select id="findPurZhiByOra" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  	 SELECT ORG_CODE AS CODE,STAD_PREM AS VAL 
+	  FROM HT_RISK_TARGET_TB
+	  WHERE DATE_CODE = TO_CHAR(SYSDATE-1,'${partten}')
+	  AND LENGTH(ORG_CODE) >= 10
+	  AND ( ORG_CODE LIKE '${org}%' OR ORG_CODE LIKE 'DEV${org}%' ) 
+  	</select>
+</mapper>

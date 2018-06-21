@@ -1,0 +1,17 @@
+/* CSS Document */
+.form-horizontal .form-group { position: relative; }
+.add {
+	position: absolute;
+	left: 100%;
+	top: 50%;
+	margin-top: -8px;
+	background: #5bc0de;
+	border-radius: 50%;
+	width: 16px;
+	height: 16px;
+	line-height:14px;
+	padding: 0px;
+	cursor: pointer;
+	z-index: 11;
+	overflow: hidden;
+}

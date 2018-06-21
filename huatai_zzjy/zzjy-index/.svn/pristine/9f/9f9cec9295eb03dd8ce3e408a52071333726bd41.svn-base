@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ehuatai.biz.mapper.InterceptorMapper">
+	<resultMap id="UserDataResultMap" type="com.ehuatai.biz.domain.UserBehInfo">
+		<id column="BEHAVIORID" property="behaviorid" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+		<result column="DATE_CODE" property="dateCode" jdbcType="VARCHAR" />
+		<result column="LOGIN_TIME_NOW" property="loginTimeNow"
+			jdbcType="TIMESTAMP" />
+		<result column="LOGIN_TIME_FIRST" property="loginTimeFirst"
+			jdbcType="TIMESTAMP" />
+		<result column="LOGIN_TIME_LAST" property="loginTimeLast"
+			jdbcType="TIMESTAMP" />
+		<result column="IS_ONLINE" property="isOnline" jdbcType="CHAR" />
+		<result column="REGEDIT_DATE" property="regeditDate" jdbcType="TIMESTAMP" />
+		<result column="IS_RECENT" property="isRecent" jdbcType="CHAR" />
+		<result column="LEVEL" property="level" jdbcType="VARCHAR" />
+		<result column="OUT_TIME" property="outTime" jdbcType="TIMESTAMP" />
+		<result column="TERMINAL_TYPE" property="terminalType"
+			jdbcType="VARCHAR" />
+		<result column="VERSION" property="version" jdbcType="VARCHAR" />
+		<result column="IS_EXC" property="isExc" jdbcType="CHAR" />
+		<result column="ERROR_INFO" property="errorInfo" jdbcType="VARCHAR" />
+		<result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="AccDataResultMap" type="com.ehuatai.biz.domain.AccPageInfo">
+		<id column="ACCESSID" property="accessid" jdbcType="VARCHAR" />
+		<result column="ACCESSNAME" property="accessname" jdbcType="VARCHAR" />
+		<result column="ACCESSURL" property="accessurl" jdbcType="VARCHAR" />
+		<result column="BEHAVIORID" property="behaviorid" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="DATE_CODE" property="dateCode" jdbcType="VARCHAR" />
+		<result column="FM_NAME" property="fmName" jdbcType="VARCHAR" />
+		<result column="ACCESS_TIME" property="accessTime" jdbcType="TIMESTAMP" />
+		<result column="OUT_TIME" property="outTime" jdbcType="TIMESTAMP" />
+		<result column="IS_OUT" property="isOut" jdbcType="INTEGER" />
+		<result column="RES_TIME" property="resTime" jdbcType="VARCHAR" />
+		<result column="SUB_CODE" jdbcType="VARCHAR" property="subCode" />
+		<result column="TYPE" jdbcType="VARCHAR" property="type" />
+	</resultMap>
+	<sql id="AccData_Column_List">
+		ACCESSID, ACCESSNAME, ACCESSURL, BEHAVIORID, USER_ID,
+		DATE_CODE, FM_NAME,
+		ACCESS_TIME,
+		OUT_TIME, IS_OUT, RES_TIME, SUB_CODE,
+		TYPE
+	</sql>
+	<sql id="UserData_Column_List">
+		BEHAVIORID, USER_ID, USER_NAME, DATE_CODE, LOGIN_TIME_NOW,
+		LOGIN_TIME_FIRST,
+		LOGIN_TIME_LAST,
+		IS_ONLINE, REGEDIT_DATE, IS_RECENT,
+		LEVEL, OUT_TIME, TERMINAL_TYPE, VERSION,
+		IS_EXC,
+		ERROR_INFO,ROLE_CODE
+	</sql>
+	<insert id="insertUserData" parameterType="com.ehuatai.biz.domain.UserBehInfo">
+		insert into user_behavior_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="behaviorid != null">
+				BEHAVIORID,
+			</if>
+			<if test="userId != null">
+				USER_ID,
+			</if>
+			<if test="userName != null">
+				USER_NAME,
+			</if>
+			<if test="dateCode != null">
+				DATE_CODE,
+			</if>
+			<if test="loginTimeNow != null">
+				LOGIN_TIME_NOW,
+			</if>
+			<if test="loginTimeFirst != null">
+				LOGIN_TIME_FIRST,
+			</if>
+			<if test="loginTimeLast != null">
+				LOGIN_TIME_LAST,
+			</if>
+			<if test="isOnline != null">
+				IS_ONLINE,
+			</if>
+			<if test="regeditDate != null">
+				REGEDIT_DATE,
+			</if>
+			<if test="isRecent != null">
+				IS_RECENT,
+			</if>
+			<if test="level != null">
+				LEVEL,
+			</if>
+			<if test="outTime != null">
+				OUT_TIME,
+			</if>
+			<if test="terminalType != null">
+				TERMINAL_TYPE,
+			</if>
+			<if test="version != null">
+				VERSION,
+			</if>
+			<if test="isExc != null">
+				IS_EXC,
+			</if>
+			<if test="errorInfo != null">
+				ERROR_INFO,
+			</if>
+			<if test="roleCode != null">
+				ROLE_CODE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="behaviorid != null">
+				#{behaviorid,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="dateCode != null">
+				#{dateCode,jdbcType=VARCHAR},
+			</if>
+			<if test="loginTimeNow != null">
+				#{loginTimeNow,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginTimeFirst != null">
+				#{loginTimeFirst,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginTimeLast != null">
+				#{loginTimeLast,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isOnline != null">
+				#{isOnline,jdbcType=CHAR},
+			</if>
+			<if test="regeditDate != null">
+				#{regeditDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isRecent != null">
+				#{isRecent,jdbcType=CHAR},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=VARCHAR},
+			</if>
+			<if test="outTime != null">
+				#{outTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="terminalType != null">
+				#{terminalType,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=VARCHAR},
+			</if>
+			<if test="isExc != null">
+				#{isExc,jdbcType=CHAR},
+			</if>
+			<if test="errorInfo != null">
+				#{errorInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="roleCode != null">
+				#{roleCode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<insert id="insertAccData" parameterType="com.ehuatai.biz.domain.AccPageInfo">
+		insert into access_page_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="accessid != null">
+				ACCESSID,
+			</if>
+			<if test="accessname != null">
+				ACCESSNAME,
+			</if>
+			<if test="accessurl != null">
+				ACCESSURL,
+			</if>
+			<if test="behaviorid != null">
+				BEHAVIORID,
+			</if>
+			<if test="userId != null">
+				USER_ID,
+			</if>
+			<if test="dateCode != null">
+				DATE_CODE,
+			</if>
+			<if test="fmName != null">
+				FM_NAME,
+			</if>
+			<if test="accessTime != null">
+				ACCESS_TIME,
+			</if>
+			<if test="outTime != null">
+				OUT_TIME,
+			</if>
+			<if test="isOut != null">
+				IS_OUT,
+			</if>
+			<if test="resTime != null">
+				RES_TIME,
+			</if>
+			<if test="subCode != null">
+				SUB_CODE,
+			</if>
+			<if test="type != null">
+				TYPE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="accessid != null">
+				#{accessid,jdbcType=VARCHAR},
+			</if>
+			<if test="accessname != null">
+				#{accessname,jdbcType=VARCHAR},
+			</if>
+			<if test="accessurl != null">
+				#{accessurl,jdbcType=VARCHAR},
+			</if>
+			<if test="behaviorid != null">
+				#{behaviorid,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="dateCode != null">
+				#{dateCode,jdbcType=VARCHAR},
+			</if>
+			<if test="fmName != null">
+				#{fmName,jdbcType=VARCHAR},
+			</if>
+			<if test="accessTime != null">
+				#{accessTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="outTime != null">
+				#{outTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isOut != null">
+				#{isOut,jdbcType=INTEGER},
+			</if>
+			<if test="resTime != null">
+				#{resTime,jdbcType=VARCHAR},
+			</if>
+			<if test="subCode != null">
+				#{subCode,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<select id="findUserDataInfo" resultMap="UserDataResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="UserData_Column_List" />
+		from user_behavior_info
+		where USER_ID=#{userName} AND IS_RECENT='1'
+		<if test="behaviorid != null">
+			AND #{behaviorid,jdbcType=VARCHAR},
+		</if>
+	</select>
+
+	<select id="findAccDataInfo" resultMap="AccDataResultMap">
+		select
+		<include refid="AccData_Column_List" />
+		from access_page_info where ACCESS_TIME=(select max(ACCESS_TIME) from
+		access_page_info where BEHAVIORID=#{behaviorid})
+	</select>
+
+	<update id="updateAccData" parameterType="com.ehuatai.biz.domain.AccPageInfo">
+		update access_page_info
+		<set>
+			<if test="accessname != null and accessname !=''">
+				ACCESSNAME = #{accessname,jdbcType=VARCHAR},
+			</if>
+			<if test="accessurl != null and accessurl !=''">
+				ACCESSURL = #{accessurl,jdbcType=VARCHAR},
+			</if>
+			<if test="behaviorid != null and behaviorid !=''">
+				BEHAVIORID = #{behaviorid,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null and userId !=''">
+				USER_ID = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="dateCode != null and dateCode !=''">
+				DATE_CODE = #{dateCode,jdbcType=VARCHAR},
+			</if>
+			<if test="fmName != null and fmName !=''">
+				FM_NAME = #{fmName,jdbcType=VARCHAR},
+			</if>
+			<if test="accessTime != null">
+				ACCESS_TIME = #{accessTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="outTime != null">
+				OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isOut != null and isOut !=''">
+				IS_OUT = #{isOut,jdbcType=INTEGER},
+			</if>
+			<if test="resTime != null and resTime !=''">
+				RES_TIME = #{resTime,jdbcType=VARCHAR},
+			</if>
+			<if test="subCode != null and subCode !=''">
+				SUB_CODE = #{subCode,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null and type !=''">
+				TYPE = #{type,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where BEHAVIORID = #{behaviorid,jdbcType=VARCHAR} AND IS_OUT='0'
+	</update>
+
+	<update id="updateUserData" parameterType="com.ehuatai.biz.domain.UserBehInfo">
+		update user_behavior_info
+		<set>
+			<if test="userId != null and userId!=''">
+				USER_ID = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null and userName !=''">
+				USER_NAME = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="dateCode != null and dateCode !=''">
+				DATE_CODE = #{dateCode,jdbcType=VARCHAR},
+			</if>
+			<if test="loginTimeNow != null">
+				LOGIN_TIME_NOW = #{loginTimeNow,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginTimeFirst != null">
+				LOGIN_TIME_FIRST = #{loginTimeFirst,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginTimeLast != null">
+				LOGIN_TIME_LAST = #{loginTimeLast,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isOnline != null and isOnline !=''">
+				IS_ONLINE = #{isOnline,jdbcType=CHAR},
+			</if>
+			<if test="regeditDate != null">
+				REGEDIT_DATE = #{regeditDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isRecent != null and isRecent !=''">
+				IS_RECENT = #{isRecent,jdbcType=CHAR},
+			</if>
+			<if test="level != null and level !=''">
+				LEVEL = #{level,jdbcType=VARCHAR},
+			</if>
+			<if test="outTime != null">
+				OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="terminalType != null and terminalType !=''">
+				TERMINAL_TYPE = #{terminalType,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null and version !=''">
+				VERSION = #{version,jdbcType=VARCHAR},
+			</if>
+			<if test="isExc != null and isExc !=''">
+				IS_EXC = #{isExc,jdbcType=CHAR},
+			</if>
+			<if test="errorInfo != null and errorInfo !=''">
+				ERROR_INFO = #{errorInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="roleCode != null and roleCode !=''">
+				ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where BEHAVIORID = #{behaviorid,jdbcType=VARCHAR} AND IS_RECENT = '1'
+		<if test="terminalType != null and terminalType !=''">
+			AND TERMINAL_TYPE=#{terminalType,jdbcType=VARCHAR}
+		</if> 
+	</update>
+	<update id="updateOtherUserData" parameterType="com.ehuatai.biz.domain.UserBehInfo">
+		update user_behavior_info
+		<set>
+			<if test="userName != null and userName !=''">
+				USER_NAME = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="dateCode != null and dateCode !=''">
+				DATE_CODE = #{dateCode,jdbcType=VARCHAR},
+			</if>
+			<if test="loginTimeNow != null">
+				LOGIN_TIME_NOW = #{loginTimeNow,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginTimeFirst != null">
+				LOGIN_TIME_FIRST = #{loginTimeFirst,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginTimeLast != null">
+				LOGIN_TIME_LAST = #{loginTimeLast,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isOnline != null and isOnline !=''">
+				IS_ONLINE = #{isOnline,jdbcType=CHAR},
+			</if>
+			<if test="regeditDate != null">
+				REGEDIT_DATE = #{regeditDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isRecent != null and isRecent !=''">
+				IS_RECENT = #{isRecent,jdbcType=CHAR},
+			</if>
+			<if test="level != null and level !=''">
+				LEVEL = #{level,jdbcType=VARCHAR},
+			</if>
+			<if test="outTime != null">
+				OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="terminalType != null and terminalType !=''">
+				TERMINAL_TYPE = #{terminalType,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null and version !=''">
+				VERSION = #{version,jdbcType=VARCHAR},
+			</if>
+			<if test="isExc != null and isExc !=''">
+				IS_EXC = #{isExc,jdbcType=CHAR},
+			</if>
+			<if test="errorInfo != null and errorInfo !=''">
+				ERROR_INFO = #{errorInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="roleCode != null and roleCode !=''">
+				ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where USER_ID = #{userId,jdbcType=VARCHAR} AND IS_RECENT='1'
+		<if test="terminalType != null and terminalType !=''">
+			AND TERMINAL_TYPE=#{terminalType,jdbcType=VARCHAR}
+		</if>
+	</update>
+
+	<update id="updateAccDataById" parameterType="com.ehuatai.biz.domain.AccPageInfo">
+		update access_page_info
+		<set>
+			<if test="outTime != null">
+				OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isOut != null and isOut !=''">
+				IS_OUT = #{isOut,jdbcType=INTEGER},
+			</if>
+		</set>
+		where BEHAVIORID = #{behaviorid,jdbcType=VARCHAR} AND IS_OUT='0'
+	</update>
+</mapper>

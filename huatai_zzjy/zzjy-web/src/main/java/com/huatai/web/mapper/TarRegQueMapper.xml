@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.TarRegQueMapper">
+	<resultMap id="BaseResultMap" type="com.huatai.web.model.TarRegQue">
+		<id column="TRQ_ID" property="trqId" jdbcType="BIGINT" />
+		<result column="SUB_CODE" property="subCode" jdbcType="VARCHAR" />
+		<result column="TARGET_CODE" property="targetCode" jdbcType="VARCHAR" />
+		<result column="TEMP_ID" property="tempId" jdbcType="BIGINT" />
+		<result column="REG_ID" property="regId" jdbcType="BIGINT" />
+		<result column="QD_ID" property="qdId" jdbcType="BIGINT" />
+		<result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="CREATE_ID" property="createId" jdbcType="VARCHAR" />
+		<result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		TRQ_ID, SUB_CODE, TARGET_CODE, TEMP_ID, REG_ID, QD_ID,
+		OP_TYPE, CREATE_TIME,
+		MODIFY_TIME,
+		CREATE_ID, MODIFIER_ID
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.huatai.web.model.TarRegQueExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ht_tar_reg_que_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+			<include refid="Base_Column_List" />
+		from
+			ht_tar_reg_que_tb
+		where 
+			TRQ_ID = #{trqId,jdbcType=BIGINT}
+		and 
+			OP_TYPE != 'D'
+	</select>
+<!-- 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		ht_tar_reg_que_tb
+		where TRQ_ID = #{trqId,jdbcType=BIGINT}
+	</delete> -->
+	
+	<update id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		UPDATE 
+			ht_tar_reg_que_tb 
+		SET 
+			OP_TYPE = 'D'
+		WHERE 
+			TRQ_ID = #{trqId,jdbcType=BIGINT}
+	</update>
+	
+	<!-- <delete id="deleteByExample" parameterType="com.huatai.web.model.TarRegQueExample">
+		delete from ht_tar_reg_que_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete> -->
+	
+	<update id="deleteByExample">
+		UPDATE 
+			ht_tar_reg_que_tb 
+		SET 
+			OP_TYPE = 'D'
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</update>
+	
+	<insert id="insert" parameterType="com.huatai.web.model.TarRegQue">
+		insert into ht_tar_reg_que_tb
+		(TRQ_ID, SUB_CODE, TARGET_CODE,
+		TEMP_ID, REG_ID, QD_ID, OP_TYPE,
+		CREATE_TIME, MODIFY_TIME, CREATE_ID,
+		MODIFIER_ID)
+		values
+		(#{trqId,jdbcType=BIGINT}, #{subCode,jdbcType=VARCHAR},
+		#{targetCode,jdbcType=VARCHAR},
+		#{tempId,jdbcType=BIGINT},
+		#{regId,jdbcType=BIGINT}, #{qdId,jdbcType=BIGINT},
+		#{opType,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{modifyTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=VARCHAR},
+		#{modifierId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huatai.web.model.TarRegQue">
+		insert into ht_tar_reg_que_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="trqId != null">
+				TRQ_ID,
+			</if>
+			<if test="subCode != null">
+				SUB_CODE,
+			</if>
+			<if test="targetCode != null">
+				TARGET_CODE,
+			</if>
+			<if test="tempId != null">
+				TEMP_ID,
+			</if>
+			<if test="regId != null">
+				REG_ID,
+			</if>
+			<if test="qdId != null">
+				QD_ID,
+			</if>
+			<if test="opType != null">
+				OP_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME,
+			</if>
+			<if test="createId != null">
+				CREATE_ID,
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="trqId != null">
+				#{trqId,jdbcType=BIGINT},
+			</if>
+			<if test="subCode != null">
+				#{subCode,jdbcType=VARCHAR},
+			</if>
+			<if test="targetCode != null">
+				#{targetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="tempId != null">
+				#{tempId,jdbcType=BIGINT},
+			</if>
+			<if test="regId != null">
+				#{regId,jdbcType=BIGINT},
+			</if>
+			<if test="qdId != null">
+				#{qdId,jdbcType=BIGINT},
+			</if>
+			<if test="opType != null">
+				#{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				#{modifierId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.huatai.web.model.TarRegQueExample"
+		resultType="java.lang.Integer">
+		select count(*) from ht_tar_reg_que_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update ht_tar_reg_que_tb
+		<set>
+			<if test="record.trqId != null">
+				TRQ_ID = #{record.trqId,jdbcType=BIGINT},
+			</if>
+			<if test="record.subCode != null">
+				SUB_CODE = #{record.subCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.targetCode != null">
+				TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.tempId != null">
+				TEMP_ID = #{record.tempId,jdbcType=BIGINT},
+			</if>
+			<if test="record.regId != null">
+				REG_ID = #{record.regId,jdbcType=BIGINT},
+			</if>
+			<if test="record.qdId != null">
+				QD_ID = #{record.qdId,jdbcType=BIGINT},
+			</if>
+			<if test="record.opType != null">
+				OP_TYPE = #{record.opType,jdbcType=CHAR},
+			</if>
+			<if test="record.createTime != null">
+				CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.modifyTime != null">
+				MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.createId != null">
+				CREATE_ID = #{record.createId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.modifierId != null">
+				MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update ht_tar_reg_que_tb
+		set TRQ_ID = #{record.trqId,jdbcType=BIGINT},
+		SUB_CODE = #{record.subCode,jdbcType=VARCHAR},
+		TARGET_CODE =
+		#{record.targetCode,jdbcType=VARCHAR},
+		TEMP_ID =
+		#{record.tempId,jdbcType=BIGINT},
+		REG_ID =
+		#{record.regId,jdbcType=BIGINT},
+		QD_ID =
+		#{record.qdId,jdbcType=BIGINT},
+		OP_TYPE =
+		#{record.opType,jdbcType=CHAR},
+		CREATE_TIME =
+		#{record.createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME =
+		#{record.modifyTime,jdbcType=TIMESTAMP},
+		CREATE_ID =
+		#{record.createId,jdbcType=VARCHAR},
+		MODIFIER_ID =
+		#{record.modifierId,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.TarRegQue">
+		update ht_tar_reg_que_tb
+		<set>
+			<if test="subCode != null">
+				SUB_CODE = #{subCode,jdbcType=VARCHAR},
+			</if>
+			<if test="targetCode != null">
+				TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="tempId != null">
+				TEMP_ID = #{tempId,jdbcType=BIGINT},
+			</if>
+			<if test="regId != null">
+				REG_ID = #{regId,jdbcType=BIGINT},
+			</if>
+			<if test="qdId != null">
+				QD_ID = #{qdId,jdbcType=BIGINT},
+			</if>
+			<if test="opType != null">
+				OP_TYPE = #{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				CREATE_ID = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where TRQ_ID = #{trqId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huatai.web.model.TarRegQue">
+		update
+		ht_tar_reg_que_tb
+		set SUB_CODE = #{subCode,jdbcType=VARCHAR},
+		TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+		TEMP_ID =
+		#{tempId,jdbcType=BIGINT},
+		REG_ID = #{regId,jdbcType=BIGINT},
+		QD_ID =
+		#{qdId,jdbcType=BIGINT},
+		OP_TYPE = #{opType,jdbcType=CHAR},
+		CREATE_TIME
+		= #{createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME =
+		#{modifyTime,jdbcType=TIMESTAMP},
+		CREATE_ID =
+		#{createId,jdbcType=VARCHAR},
+		MODIFIER_ID =
+		#{modifierId,jdbcType=VARCHAR}
+		where TRQ_ID = #{trqId,jdbcType=BIGINT}
+	</update>
+	<select id="findAll" resultMap="BaseResultMap" parameterType="com.huatai.web.model.TarRegQue">
+		select
+		<include refid="Base_Column_List" />
+		from ht_tar_reg_que_tb
+		<where>
+			<if test="trqId !=null and trqId !=''">
+				AND TRQ_ID=#{trqId}
+			</if>
+			<if test="tempId !=null and tempId !=''">
+				AND TEMP_ID=#{tempId}
+			</if>
+			<if test="regId !=null and regId !=''">
+				AND REG_ID=#{regId}
+			</if>
+			<if test="qdId !=null and qdId !=''">
+				AND QD_ID=#{qdId}
+			</if>
+			<if test="targetCode !=null and targetCode !=''">
+				AND TARGET_CODE = #{targetCode}
+			</if>
+			<if test="opType !=null and opType !=''">
+				AND OP_TYPE=#{opType}
+			</if>
+			<if test="opType ==null or opType ==''">
+				AND OP_TYPE!='D'
+			</if>
+		</where>
+	</select>
+
+	<!-- 按主题、模板、指标查询指标的维度信息 -->
+	<select id="findTarRegQueBySubAndTarAndTempAndQue" resultMap="BaseResultMap">
+		SELECT
+		tar_reg_que.TRQ_ID,
+		tar_reg_que.SUB_CODE,
+		tar_reg_que.TARGET_CODE,
+		tar_reg_que.TEMP_ID,
+		tar_reg_que.REG_ID,
+		tar_reg_que.QD_ID
+		FROM ht_tar_reg_que_tb tar_reg_que
+		LEFT JOIN
+		ht_templet_tb templet
+		ON templet.TEMP_ID=tar_reg_que.TEMP_ID
+		LEFT JOIN
+		ht_tem_reg_tb tem_reg
+		ON tem_reg.REG_ID=tar_reg_que.REG_ID
+		LEFT JOIN
+		ht_query_dim_tb query_dim
+		ON query_dim.QD_ID=tar_reg_que.QD_ID
+		WHERE
+		query_dim.QUERY_DIM_CODE=#{que}
+		AND
+		tar_reg_que.TARGET_CODE=#{tar}
+		AND
+		tar_reg_que.SUB_CODE=#{sub}
+		AND templet.TEMP_CODE=#{temp}
+		AND
+		tar_reg_que.OP_TYPE!='D'
+		AND templet.OP_TYPE!='D'
+		AND
+		tem_reg.OP_TYPE!='D'
+		AND query_dim.OP_TYPE!='D'
+	</select>
+
+	<!-- 按主题、模板查询指标的维度信息 -->
+	<select id="findTarRegQueBySubAndTemp" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		tar_reg_que.QD_ID
+		FROM
+		ht_tar_reg_que_tb tar_reg_que
+		LEFT JOIN
+		ht_templet_tb templet
+		ON
+		templet.TEMP_ID=tar_reg_que.TEMP_ID
+		WHERE
+		tar_reg_que.SUB_CODE=#{sub}
+		AND templet.TEMP_CODE=#{temp}
+		AND
+		templet.OP_TYPE!='D'
+		AND
+		tar_reg_que.OP_TYPE!='D'
+	</select>
+
+	<!-- 按主题、模板、指标查询指标的维度信息 -->
+	<select id="findTarRegQueBySubAndTempAndRegAndTar" resultMap="BaseResultMap">
+		SELECT
+		tar_reg_que.TRQ_ID,
+		tar_reg_que.SUB_CODE,
+		tar_reg_que.TARGET_CODE,
+		tar_reg_que.TEMP_ID,
+		tar_reg_que.REG_ID,
+		tar_reg_que.QD_ID
+		FROM ht_tar_reg_que_tb tar_reg_que
+		LEFT JOIN
+		ht_templet_tb templet
+		ON templet.TEMP_ID=tar_reg_que.TEMP_ID
+		LEFT JOIN
+		ht_tem_reg_tb tem_reg
+		ON tem_reg.REG_ID=tar_reg_que.REG_ID
+		LEFT JOIN
+		ht_query_dim_tb query_dim
+		ON query_dim.QD_ID=tar_reg_que.QD_ID
+		WHERE
+		tar_reg_que.REG_ID=#{regId}
+		AND
+		tar_reg_que.TARGET_CODE=#{tar}
+		AND
+		tar_reg_que.SUB_CODE=#{sub}
+		AND templet.TEMP_CODE=#{temp}
+		AND
+		tar_reg_que.OP_TYPE!='D'
+		AND templet.OP_TYPE!='D'
+		AND
+		tem_reg.OP_TYPE!='D'
+		AND query_dim.OP_TYPE!='D'
+	</select>
+
+</mapper>

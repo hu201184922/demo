@@ -1,0 +1,119 @@
+
+/*metlife*/
+.company_profile{margin-top:-5px;background-color: #fff;width: 100%;}
+.company_profile p{width: 90%;margin-left:15px;margin-top:32px;line-height:22px;}
+.company_profile h1{font-size: 17px;color: #3d6aa8;line-height: 40px;height: 40px;margin-left: 4%}
+.company_abstract{margin-left:15px;}
+.company_abstract h1{line-height: 44px;height: 44px;font-size: 17px;color: #3d6aa8}
+.company_abstract label{line-height: 19px;font-size: 15px;font-weight: bold}
+.company_abstract p{line-height: 24px;font-size: 15px;margin-right:15px;}
+li{list-style-type: none !important}
+.company_abstract li{margin-top: 20px}
+.company_abstract li:first-child{margin-top:0}
+/*X 档案*/
+.x_files_portrait{background-color: #fff;height: 78px;width: 100%;}
+.x_files_portrait img{width:80px;height:80px;border-radius: 50px;float: left;margin:15px 10px 0 35px}
+.x_files_portrait h1{font-size: 18px;padding-top: 27px;font-weight: lighter;}
+.x_files_portrait span{height: 36px;line-height: 36px}
+.x_files_content{margin-top: 55px;height: 460px;}
+.x_files_content li p:first-child{text-align: right;margin-left: 35px;width:60px;float: left;}
+.x_files_content li p:last-child{margin-left: 17px;float: left;}
+.x_files_content p{height: 30px;line-height: 30px;font-size: 15px;margin-top: 10px;}
+.x_files_content li:last-child p:last-child{width: 160px}
+.xueliTxt{border-bottom: solid #ef3525 3px}
+.shanchangxianzhong{border-bottom: solid #05a2fb 3px}
+.zhiyezhenghao{border-bottom: solid #17b0a3 3px}
+/*我的历程*/
+.share-timetree {
+	position: relative;
+	display: block;
+	margin: 15px 10px;
+}
+.share-timetree >li {
+	position: relative;
+	display: block;
+	width: 80%;
+	padding:2px 10px 0 32px;
+}
+.share-timetree >li:before {
+	content: "";
+	position: absolute;
+	left: 50px;
+	top:0;
+	bottom:0;
+	width: 3px;
+	background: #d5d5d5;
+	z-index:1;
+}
+.share-timetree >li:after {
+	content: "";
+	position: absolute;
+	left: 42px;
+	top: 44%;
+	width: 15px;
+	height: 15px;
+	border: solid 2px #ff8b74;
+	border-radius: 50%;
+	margin-top: -5px;
+	z-index: 1;
+	background:#ff8b74;
+}
+.share-timetree .tip4:after {border: solid 2px #8be3cb;background:#8be3cb;}
+.share-timetree .tip3:after {border: solid 2px #b0e269;background:#b0e269;}
+.share-timetree .tip2:after {border: solid 2px #ffd76d;background:#ffd76d;}
+.img1{position: absolute;left: 65px;margin-top: 55px}
+.img2{position: absolute;left: 65px;margin-top: 66px}
+.img3{position: absolute;left: 65px;margin-top: 45px}
+.img4{position: absolute;left: 65px;margin-top: 45px}
+
+.my_course_portrait{background-color: #fff;height: 82px;width: 100%;border-bottom: solid 1px #dbdbdb;}
+.my_course_portrait img{width: 80px;height: 80px;border-radius: 50px;float: left;margin: 15px 10px 0 20px;}
+.my_course_portrait h1{font-size: 18px;padding-top: 27px;font-weight: lighter;}
+.my_course_portrait span{height: 36px;line-height: 36px}
+.course_content{margin-left: 40px;background-color: #fff;width:100%;margin-top:15px; border-radius: 5px;}
+.course_content h1{font-size: 19px;font-weight: lighter;padding-left: 20px;padding-top: 10px;padding-bottom:5px}
+.course_content p{font-size: 15px;line-height: 24px;padding-left: 20px;padding-right: 20px;padding-bottom: 20px;}
+.tip_round{position: absolute;height:95%}
+.tip_round table{height:500px;border-color:#d5d5d5;border-left-style:solid;border-width:3px;margin-left: 75px;margin-top: 18px}
+.first_tip{background-color:#ff8b74;border-radius: 50%;width: 12px;height: 12px;position: absolute;top:65px;left: 70px}
+.second_tip{background-color:#ffd76d;border-radius: 50%;width: 12px;height: 12px;position: absolute;top:178px;left: 70px}
+.third_tip{background-color:#b0e269;border-radius: 50%;width: 12px;height: 12px;position: absolute;top:290px;left: 70px}
+.four_tip{background-color: #8be3cb;border-radius: 50px;width: 12px;height: 12px;position: absolute;top: 378px;left: 70px}
+
+.mt53{margin-top:53px !important}
+.course_content li{background-color: #fff;width: 315px;margin-top:53px;border-radius: 5px;}
+.mb100{margin-bottom: 100px !important}
+/*服务大数据*/
+.big_data_header{height: 145px;width: 100%}
+.security_lines{width: 40%;height: 140px;background-color: #ec5964;float: left;}
+.all_amount{width: 60%;height: 140px;float: left;}
+.security_lines h1{font-size: 19px;font-weight: lighter;margin-top: 40px;color: #fff}
+.security_lines p{font-size: 17px;color: #fff;margin-top: 20px;}
+.all_amount p{height: 50%;background-color: #849bd0;}
+.all_amount h1{height: 50%;background-color: #84d64e;}
+.all_amount p label{font-size: 19px;color: #fff;height: 40px;line-height: 40px;}
+.all_amount p span{font-size: 17px;color: #fff}
+.all_amount h1 label{font-size: 19px;color: #fff;height: 10px !important}
+.count{margin-top:5px;font-size: 17px;color: #fff;font-weight: lighter}
+.big_data_middle{height: 160px;width: 100%;background-color: #fff;margin-top: -5px;}
+.big_data_middle img{margin-top: 47px;}
+.big_data_middle p{font-size: 17px;color: #000;margin-top: 15px}
+/*个人名片*/
+.person_card_header{width: 100%;height: 238px;background-color: #0e59a8;}
+.mui-bar-nav{box-shadow: none !important}
+.people_logo{width:110px;height:110px;border-radius: 50%;float: left;margin-top: 20px;margin-left: 15px;}
+.person_introduce{margin-left: 134px;padding-top: 5px}
+.person_introduce h1{font-size: 19px;color: #fff;font-weight: lighter;line-height: 57px;height: 57px;}
+.person_introduce p{font-size: 17px;color: #fff}
+.person_introduce span{color: #fff;line-height: 25px;height: 25px;}
+.metlife_logo{margin-top:40px;height: 75px;border-top: 1px solid #a4b8cd;}
+.metlife_logo img{line-height: 75px;margin-top: 20px;}
+.metlife_logo a:first-child{50%}
+.width_half{width: 50% !important}
+.line-v{position: absolute;left: 50%;margin-top: 10px !important}
+.person_link p{font-size: 15px;color: #000;height: 36px;line-height: 36px;}
+.person_link{padding-bottom: 18px;background-color: #fff}
+.personal-target{margin-top: 215px}
+.personal-target a{border: solid 1px #0e59a8; border-radius: 15px;font-size: 15px;padding:5px 3px;color:#0e59a8}
+.personal-target a:hover{background-color: #0e59a8;color: #fff;}
+.yinxiang-target{height: 45px;line-height: 45px;font-size: 17px;color: #000;border-top: solid 1px #a4b8cd;border-bottom: solid 1px #a4b8cd;padding-left: 15px;background: #efeff4}

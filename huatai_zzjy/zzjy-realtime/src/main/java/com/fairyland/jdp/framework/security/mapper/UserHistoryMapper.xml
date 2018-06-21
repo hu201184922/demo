@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fairyland.jdp.framework.security.mapper.UserHistoryMapper">
+	<insert id="saveHistory">
+		INSERT INTO JDP_PWDHISTORY VALUES(SEQ_JDP_PWDHISTORY.NEXTVAL,#{userId},#{password},SYSDATE)
+	</insert>
+	
+	<select id="getCount" resultType="int">
+		SELECT COUNT(1) FROM JDP_PWDHISTORY WHERE
+		 USERID=#{userId}
+		 <if test="password!=null">
+		  AND PASSWORD=#{password}
+		 </if>
+	</select>
+	<delete id="deleteLastHistory">
+		DELETE FROM JDP_PWDHISTORY WHERE CID = (SELECT MIN(CID) FROM JDP_PWDHISTORY WHERE USERID=#{userId})
+	</delete>
+	<select id="todayIsSaved" resultType="Boolean">
+		SELECT FLAG FROM (
+		SELECT DECODE(TRUNC(CREATETIME), TRUNC(SYSDATE), 1, 0) AS FLAG
+		  FROM JDP_PWDHISTORY WHERE USERID=#{userId}
+		 ORDER BY CREATETIME DESC
+		) WHERE ROWNUM=1 
+	</select>
+</mapper>

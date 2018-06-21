@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.RiskTargetMapper" >
+  <cache size="1024" flushInterval="60000" eviction="FIFO" readOnly="false" />
+  <resultMap id="BaseResultMap" type="com.huatai.web.model.RiskTarget" >
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="ORG_NAME" property="orgName" jdbcType="VARCHAR" />
+    <result column="DATE_CODE" property="dateCode" jdbcType="VARCHAR" />
+    <result column="STAD_PREM" property="stadPrem" jdbcType="DECIMAL" />
+    <result column="RECE_STAD_PREM" property="receStadPrem" jdbcType="DECIMAL" />
+    <result column="VALUE_PREM" property="valuePrem" jdbcType="DECIMAL" />
+    <result column="RECE_PRE_GOLD_BEE_NUM" property="recePreGoldBeeNum" jdbcType="DECIMAL" />
+    <result column="PRE_GOLD_BEE_NUM" property="preGoldBeeNum" jdbcType="DECIMAL" />
+    <result column="EFF_NUM" property="effNum" jdbcType="DECIMAL" />
+    <result column="RECE_EFF_NUM" property="receEffNum" jdbcType="DECIMAL" />
+    <result column="NET_GROWTH_NUM" property="netGrowthNum" jdbcType="DECIMAL" />
+    <result column="GRADETYPECODE" property="gradetypecode" jdbcType="VARCHAR" />
+    <result column="MORNING_ATTENDANCE" property="morningAttendance" jdbcType="DECIMAL" />
+    <result column="ADD_MANPOW" property="addManpow" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ORG_CODE, ORG_NAME, DATE_CODE, STAD_PREM, RECE_STAD_PREM, VALUE_PREM, RECE_PRE_GOLD_BEE_NUM, 
+    PRE_GOLD_BEE_NUM, EFF_NUM, RECE_EFF_NUM, NET_GROWTH_NUM, GRADETYPECODE, MORNING_ATTENDANCE, 
+    ADD_MANPOW
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.huatai.web.model.RiskTargetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from HT_RISK_TARGET_TB
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.huatai.web.model.RiskTargetExample" >
+    delete from HT_RISK_TARGET_TB
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="java.util.List" useGeneratedKeys="false">
+  insert all
+  	<foreach item="item" index="index" collection="list">
+  	  into HT_RISK_TARGET_TB (ORG_CODE, ORG_NAME, DATE_CODE, 
+      STAD_PREM, RECE_STAD_PREM, VALUE_PREM, 
+      RECE_PRE_GOLD_BEE_NUM, PRE_GOLD_BEE_NUM, EFF_NUM, 
+      RECE_EFF_NUM, NET_GROWTH_NUM, GRADETYPECODE, 
+      MORNING_ATTENDANCE, ADD_MANPOW)
+    values 
+    (#{item.orgCode,jdbcType=VARCHAR}, #{item.orgName,jdbcType=VARCHAR}, #{item.dateCode,jdbcType=VARCHAR}, 
+      #{item.stadPrem,jdbcType=DECIMAL}, #{item.receStadPrem,jdbcType=DECIMAL}, #{item.valuePrem,jdbcType=DECIMAL}, 
+      #{item.recePreGoldBeeNum,jdbcType=DECIMAL}, #{item.preGoldBeeNum,jdbcType=DECIMAL}, #{item.effNum,jdbcType=DECIMAL}, 
+      #{item.receEffNum,jdbcType=DECIMAL}, #{item.netGrowthNum,jdbcType=DECIMAL}, #{item.gradetypecode,jdbcType=VARCHAR}, 
+      #{item.morningAttendance,jdbcType=DECIMAL}, #{item.addManpow,jdbcType=DECIMAL})
+  	</foreach>
+    Select 1 FROM dual
+  </insert>
+  <insert id="insertSelective" parameterType="com.huatai.web.model.RiskTarget" >
+    insert into HT_RISK_TARGET_TB
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orgCode != null" >
+        ORG_CODE,
+      </if>
+      <if test="orgName != null" >
+        ORG_NAME,
+      </if>
+      <if test="dateCode != null" >
+        DATE_CODE,
+      </if>
+      <if test="stadPrem != null" >
+        STAD_PREM,
+      </if>
+      <if test="receStadPrem != null" >
+        RECE_STAD_PREM,
+      </if>
+      <if test="valuePrem != null" >
+        VALUE_PREM,
+      </if>
+      <if test="recePreGoldBeeNum != null" >
+        RECE_PRE_GOLD_BEE_NUM,
+      </if>
+      <if test="preGoldBeeNum != null" >
+        PRE_GOLD_BEE_NUM,
+      </if>
+      <if test="effNum != null" >
+        EFF_NUM,
+      </if>
+      <if test="receEffNum != null" >
+        RECE_EFF_NUM,
+      </if>
+      <if test="netGrowthNum != null" >
+        NET_GROWTH_NUM,
+      </if>
+      <if test="gradetypecode != null" >
+        GRADETYPECODE,
+      </if>
+      <if test="morningAttendance != null" >
+        MORNING_ATTENDANCE,
+      </if>
+      <if test="addManpow != null" >
+        ADD_MANPOW,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCode != null" >
+        #{dateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stadPrem != null" >
+        #{stadPrem,jdbcType=DECIMAL},
+      </if>
+      <if test="receStadPrem != null" >
+        #{receStadPrem,jdbcType=DECIMAL},
+      </if>
+      <if test="valuePrem != null" >
+        #{valuePrem,jdbcType=DECIMAL},
+      </if>
+      <if test="recePreGoldBeeNum != null" >
+        #{recePreGoldBeeNum,jdbcType=DECIMAL},
+      </if>
+      <if test="preGoldBeeNum != null" >
+        #{preGoldBeeNum,jdbcType=DECIMAL},
+      </if>
+      <if test="effNum != null" >
+        #{effNum,jdbcType=DECIMAL},
+      </if>
+      <if test="receEffNum != null" >
+        #{receEffNum,jdbcType=DECIMAL},
+      </if>
+      <if test="netGrowthNum != null" >
+        #{netGrowthNum,jdbcType=DECIMAL},
+      </if>
+      <if test="gradetypecode != null" >
+        #{gradetypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="morningAttendance != null" >
+        #{morningAttendance,jdbcType=DECIMAL},
+      </if>
+      <if test="addManpow != null" >
+        #{addManpow,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.huatai.web.model.RiskTargetExample" resultType="java.lang.Integer" >
+    select count(*) from HT_RISK_TARGET_TB
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update HT_RISK_TARGET_TB
+    <set >
+      <if test="record.orgCode != null" >
+        ORG_CODE = #{record.orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgName != null" >
+        ORG_NAME = #{record.orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateCode != null" >
+        DATE_CODE = #{record.dateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stadPrem != null" >
+        STAD_PREM = #{record.stadPrem,jdbcType=DECIMAL},
+      </if>
+      <if test="record.receStadPrem != null" >
+        RECE_STAD_PREM = #{record.receStadPrem,jdbcType=DECIMAL},
+      </if>
+      <if test="record.valuePrem != null" >
+        VALUE_PREM = #{record.valuePrem,jdbcType=DECIMAL},
+      </if>
+      <if test="record.recePreGoldBeeNum != null" >
+        RECE_PRE_GOLD_BEE_NUM = #{record.recePreGoldBeeNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.preGoldBeeNum != null" >
+        PRE_GOLD_BEE_NUM = #{record.preGoldBeeNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.effNum != null" >
+        EFF_NUM = #{record.effNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.receEffNum != null" >
+        RECE_EFF_NUM = #{record.receEffNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.netGrowthNum != null" >
+        NET_GROWTH_NUM = #{record.netGrowthNum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gradetypecode != null" >
+        GRADETYPECODE = #{record.gradetypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.morningAttendance != null" >
+        MORNING_ATTENDANCE = #{record.morningAttendance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.addManpow != null" >
+        ADD_MANPOW = #{record.addManpow,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update HT_RISK_TARGET_TB
+    set ORG_CODE = #{record.orgCode,jdbcType=VARCHAR},
+      ORG_NAME = #{record.orgName,jdbcType=VARCHAR},
+      DATE_CODE = #{record.dateCode,jdbcType=VARCHAR},
+      STAD_PREM = #{record.stadPrem,jdbcType=DECIMAL},
+      RECE_STAD_PREM = #{record.receStadPrem,jdbcType=DECIMAL},
+      VALUE_PREM = #{record.valuePrem,jdbcType=DECIMAL},
+      RECE_PRE_GOLD_BEE_NUM = #{record.recePreGoldBeeNum,jdbcType=DECIMAL},
+      PRE_GOLD_BEE_NUM = #{record.preGoldBeeNum,jdbcType=DECIMAL},
+      EFF_NUM = #{record.effNum,jdbcType=DECIMAL},
+      RECE_EFF_NUM = #{record.receEffNum,jdbcType=DECIMAL},
+      NET_GROWTH_NUM = #{record.netGrowthNum,jdbcType=DECIMAL},
+      GRADETYPECODE = #{record.gradetypecode,jdbcType=VARCHAR},
+      MORNING_ATTENDANCE = #{record.morningAttendance,jdbcType=DECIMAL},
+      ADD_MANPOW = #{record.addManpow,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="findRisk" resultMap="BaseResultMap">
+  	select
+    <include refid="Base_Column_List" />
+    from HT_RISK_TARGET_TB
+  </select>
+  <update id="updateByOrgCodeAndDateCode" parameterType="com.huatai.web.model.RiskTarget" >
+    update HT_RISK_TARGET_TB
+    set 
+      ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      STAD_PREM = #{stadPrem,jdbcType=DECIMAL},
+      RECE_STAD_PREM = #{receStadPrem,jdbcType=DECIMAL},
+      VALUE_PREM = #{valuePrem,jdbcType=DECIMAL},
+      RECE_PRE_GOLD_BEE_NUM = #{recePreGoldBeeNum,jdbcType=DECIMAL},
+      PRE_GOLD_BEE_NUM = #{preGoldBeeNum,jdbcType=DECIMAL},
+      EFF_NUM = #{effNum,jdbcType=DECIMAL},
+      RECE_EFF_NUM = #{receEffNum,jdbcType=DECIMAL},
+      NET_GROWTH_NUM = #{netGrowthNum,jdbcType=DECIMAL},
+      GRADETYPECODE = #{gradetypecode,jdbcType=VARCHAR},
+      MORNING_ATTENDANCE = #{morningAttendance,jdbcType=DECIMAL},
+      ADD_MANPOW = #{addManpow,jdbcType=DECIMAL}
+    where ORG_CODE = #{orgCode,jdbcType=VARCHAR} AND DATE_CODE = #{dateCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

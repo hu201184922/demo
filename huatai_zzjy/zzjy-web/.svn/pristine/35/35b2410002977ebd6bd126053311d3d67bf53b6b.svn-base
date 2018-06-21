@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.ManageComMapper" >
+  <resultMap id="BaseResultMap" type="com.huatai.web.model.ManageCom" >
+    <id column="MANAGECOMCODE" property="manageComCode" jdbcType="VARCHAR" />
+    <result column="MANAGECOMNAME" property="manageComName" jdbcType="VARCHAR" />
+    <result column="MANAGECOMLEVEL" property="manageComLevel" jdbcType="VARCHAR" />
+    <result column="CHANNELFLAG" property="channelFlag" jdbcType="VARCHAR" />
+    <result column="HEADCOMCODE" property="headComCode" jdbcType="VARCHAR" />
+    <result column="HEADCOMNAME" property="headComName" jdbcType="VARCHAR" />
+    <result column="PROVCOMCODE" property="provComCode" jdbcType="VARCHAR" />
+    <result column="PROVCOMNAME" property="provComName" jdbcType="VARCHAR" />
+    <result column="COUNTCOMCODE" property="countComCode" jdbcType="VARCHAR" />
+    <result column="COUNTCOMNAME" property="countComName" jdbcType="VARCHAR" />
+    <result column="TEAMCOMCODE" property="teamComCode" jdbcType="VARCHAR" />
+    <result column="TEAMCOMNAME" property="teamComName" jdbcType="VARCHAR" />
+    <result column="EFFECTSTARTDATE" property="effectStartDate" jdbcType="DATE" />
+    <result column="EFFECTENDDATE" property="effectEndDate" jdbcType="DATE" />
+    <result column="SOURCESYSTEMFLAG" property="sourceSystemFlag" jdbcType="VARCHAR" />
+    <result column="TEAMCOMSHORTNAME" property="teamComShortName" jdbcType="VARCHAR" />
+    <result column="ACTUTEAMCOMSHORTNAME" property="actuteamComShortName" jdbcType="VARCHAR" />
+    <result column="BASELAWFLAG" property="baselawFlag" jdbcType="VARCHAR" />
+    <result column="FINMANAGECOMCODE" property="finmanageComCode" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="findManageComByOrgCode" resultType="com.huatai.web.model.ManageCom">
+	  <if test="leng == 1">
+		  SELECT DISTINCT
+				PROVCOMCODE,
+				TEAMCOMSHORTNAME
+			FROM
+				D_MANAGECOM
+			WHERE
+				HEADCOMCODE = #{orgCode}
+			ORDER BY PROVCOMCODE
+	  </if>
+	  <if test="leng == 3">
+		SELECT DISTINCT
+			COUNTCOMCODE,
+			ACTUTEAMCOMSHORTNAME
+		FROM
+			D_MANAGECOM
+		WHERE
+			PROVCOMCODE = #{orgCode}
+		ORDER BY COUNTCOMCODE
+	  </if>
+</select>
+<select id="findOrganizationComByOrgCode" parameterType="String" resultType="com.huatai.web.bean.OrganizationBean">
+	<if test="leng == 5">
+		<!--  SELECT DISTINCT
+			COST_CENTERSTDCODE as code,
+			COST_CENTERDEVNAME as name,
+			COUNTCOMNAME as pname
+		FROM
+			d_organization T
+		WHERE
+			T.COUNTCOMCODE = #{orgCode}
+			AND T.CHANNELFLAG IN ('1','5') and t.status='1'
+		ORDER BY
+			COST_CENTERSTDCODE  -->
+			
+			SELECT DISTINCT
+			TEAMCOMCODE as code,
+			TEAMCOMNAME as name,
+			COUNTCOMNAME as pname
+		FROM
+			d_organization T
+		WHERE
+			T.COUNTCOMCODE = #{orgCode}
+			AND T.CHANNELFLAG IN ('1','5') and t.status='1'
+		ORDER BY
+			TEAMCOMCODE
+	</if>
+	<if test="leng != 5">
+		SELECT DISTINCT
+			HEADGROUPCODE as code,
+			HEADGROUPNAME as name,
+			COST_CENTERDEVNAME as pname
+		FROM
+			d_organization
+		WHERE
+			COST_CENTERSTDCODE = #{orgCode}
+		ORDER BY 
+			HEADGROUPCODE
+	</if>
+  </select>
+</mapper>

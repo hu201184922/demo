@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.InterFieldMapper">
+	<resultMap id="BaseResultMap" type="com.huatai.web.model.InterField">
+		<id column="FIELD_ID" property="fieldId" jdbcType="INTEGER" />
+		<result column="INTER_ID" property="interId" jdbcType="INTEGER" />
+		<result column="FIELD_CODE" property="fieldCode" jdbcType="VARCHAR" />
+		<result column="FIELD_NAME" property="fieldName" jdbcType="VARCHAR" />
+		<result column="FIELD_TYPE" property="fieldType" jdbcType="CHAR" />
+		<result column="IS_DIM" property="isDim" jdbcType="CHAR" />
+		<result column="DIM_CODE" property="dimCode" jdbcType="VARCHAR" />
+		<result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+		<result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		FIELD_ID, INTER_ID, FIELD_CODE, FIELD_NAME, FIELD_TYPE,
+		IS_DIM, DIM_CODE,
+		OP_TYPE,
+		CREATE_TIME, MODIFY_TIME, CREATOR_ID,
+		MODIFIER_ID
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.huatai.web.model.InterFieldExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ht_inter_field_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from ht_inter_field_tb
+		where FIELD_ID = #{fieldId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		ht_inter_field_tb
+		where FIELD_ID = #{fieldId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.huatai.web.model.InterFieldExample">
+		delete from ht_inter_field_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.huatai.web.model.InterField">
+		insert into ht_inter_field_tb
+		(FIELD_ID, INTER_ID, FIELD_CODE,
+		FIELD_NAME, FIELD_TYPE, IS_DIM,
+		DIM_CODE, OP_TYPE, CREATE_TIME,
+		MODIFY_TIME, CREATOR_ID, MODIFIER_ID
+		)
+		values (#{fieldId,jdbcType=INTEGER}, #{interId,jdbcType=INTEGER},
+		#{fieldCode,jdbcType=VARCHAR},
+		#{fieldName,jdbcType=VARCHAR},
+		#{fieldType,jdbcType=CHAR}, #{isDim,jdbcType=CHAR},
+		#{dimCode,jdbcType=VARCHAR}, #{opType,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{modifyTime,jdbcType=TIMESTAMP},
+		#{creatorId,jdbcType=VARCHAR}, #{modifierId,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.huatai.web.model.InterField">
+		insert into ht_inter_field_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="fieldId != null">
+				FIELD_ID,
+			</if>
+			<if test="interId != null">
+				INTER_ID,
+			</if>
+			<if test="fieldCode != null">
+				FIELD_CODE,
+			</if>
+			<if test="fieldName != null">
+				FIELD_NAME,
+			</if>
+			<if test="fieldType != null">
+				FIELD_TYPE,
+			</if>
+			<if test="isDim != null">
+				IS_DIM,
+			</if>
+			<if test="dimCode != null">
+				DIM_CODE,
+			</if>
+			<if test="opType != null">
+				OP_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME,
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID,
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="fieldId != null">
+				#{fieldId,jdbcType=INTEGER},
+			</if>
+			<if test="interId != null">
+				#{interId,jdbcType=INTEGER},
+			</if>
+			<if test="fieldCode != null">
+				#{fieldCode,jdbcType=VARCHAR},
+			</if>
+			<if test="fieldName != null">
+				#{fieldName,jdbcType=VARCHAR},
+			</if>
+			<if test="fieldType != null">
+				#{fieldType,jdbcType=CHAR},
+			</if>
+			<if test="isDim != null">
+				#{isDim,jdbcType=CHAR},
+			</if>
+			<if test="dimCode != null">
+				#{dimCode,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				#{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				#{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				#{modifierId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.huatai.web.model.InterFieldExample"
+		resultType="java.lang.Integer">
+		select count(*) from ht_inter_field_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update ht_inter_field_tb
+		<set>
+			<if test="record.fieldId != null">
+				FIELD_ID = #{record.fieldId,jdbcType=INTEGER},
+			</if>
+			<if test="record.interId != null">
+				INTER_ID = #{record.interId,jdbcType=INTEGER},
+			</if>
+			<if test="record.fieldCode != null">
+				FIELD_CODE = #{record.fieldCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.fieldName != null">
+				FIELD_NAME = #{record.fieldName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.fieldType != null">
+				FIELD_TYPE = #{record.fieldType,jdbcType=CHAR},
+			</if>
+			<if test="record.isDim != null">
+				IS_DIM = #{record.isDim,jdbcType=CHAR},
+			</if>
+			<if test="record.dimCode != null">
+				DIM_CODE = #{record.dimCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.opType != null">
+				OP_TYPE = #{record.opType,jdbcType=CHAR},
+			</if>
+			<if test="record.createTime != null">
+				CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.modifyTime != null">
+				MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.creatorId != null">
+				CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.modifierId != null">
+				MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update ht_inter_field_tb
+		set FIELD_ID =
+		#{record.fieldId,jdbcType=INTEGER},
+		INTER_ID =
+		#{record.interId,jdbcType=INTEGER},
+		FIELD_CODE =
+		#{record.fieldCode,jdbcType=VARCHAR},
+		FIELD_NAME =
+		#{record.fieldName,jdbcType=VARCHAR},
+		FIELD_TYPE =
+		#{record.fieldType,jdbcType=CHAR},
+		IS_DIM =
+		#{record.isDim,jdbcType=CHAR},
+		DIM_CODE =
+		#{record.dimCode,jdbcType=VARCHAR},
+		OP_TYPE =
+		#{record.opType,jdbcType=CHAR},
+		CREATE_TIME =
+		#{record.createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME =
+		#{record.modifyTime,jdbcType=TIMESTAMP},
+		CREATOR_ID =
+		#{record.creatorId,jdbcType=VARCHAR},
+		MODIFIER_ID =
+		#{record.modifierId,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.InterField">
+		update ht_inter_field_tb
+		<set>
+			<if test="interId != null">
+				INTER_ID = #{interId,jdbcType=INTEGER},
+			</if>
+			<if test="fieldCode != null">
+				FIELD_CODE = #{fieldCode,jdbcType=VARCHAR},
+			</if>
+			<if test="fieldName != null">
+				FIELD_NAME = #{fieldName,jdbcType=VARCHAR},
+			</if>
+			<if test="fieldType != null">
+				FIELD_TYPE = #{fieldType,jdbcType=CHAR},
+			</if>
+			<if test="isDim != null">
+				IS_DIM = #{isDim,jdbcType=CHAR},
+			</if>
+			<if test="dimCode != null">
+				DIM_CODE = #{dimCode,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				OP_TYPE = #{opType,jdbcType=CHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where FIELD_ID = #{fieldId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huatai.web.model.InterField">
+		update
+		ht_inter_field_tb
+		set INTER_ID = #{interId,jdbcType=INTEGER},
+		FIELD_CODE = #{fieldCode,jdbcType=VARCHAR},
+		FIELD_NAME =
+		#{fieldName,jdbcType=VARCHAR},
+		FIELD_TYPE = #{fieldType,jdbcType=CHAR},
+		IS_DIM = #{isDim,jdbcType=CHAR},
+		DIM_CODE =
+		#{dimCode,jdbcType=VARCHAR},
+		OP_TYPE = #{opType,jdbcType=CHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME =
+		#{modifyTime,jdbcType=TIMESTAMP},
+		CREATOR_ID =
+		#{creatorId,jdbcType=VARCHAR},
+		MODIFIER_ID =
+		#{modifierId,jdbcType=VARCHAR}
+		where FIELD_ID =
+		#{fieldId,jdbcType=INTEGER}
+	</update>
+
+	<select id="findInterFieldByPage" resultMap="BaseResultMap"
+		parameterType="com.huatai.web.model.InterFieldExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ht_inter_field_tb
+		<where>
+			OP_TYPE!='D'
+			<if test="interId != null">
+				AND INTER_ID = #{interId,jdbcType=INTEGER}
+			</if>
+			<if test="fieldCode != null">
+				AND FIELD_CODE = #{fieldCode,jdbcType=VARCHAR}
+			</if>
+			<if test="fieldName != null">
+				AND FIELD_NAME = #{fieldName,jdbcType=VARCHAR}
+			</if>
+			<if test="fieldType != null">
+				AND FIELD_TYPE = #{fieldType,jdbcType=CHAR}
+			</if>
+			<if test="isDim != null">
+				AND IS_DIM = #{isDim,jdbcType=CHAR}
+			</if>
+			<if test="dimCode != null">
+				AND DIM_CODE = #{dimCode,jdbcType=VARCHAR}
+			</if>
+			<if test="opType != null">
+				AND OP_TYPE = #{opType,jdbcType=CHAR}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyTime != null">
+				AND MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="creatorId != null">
+				AND CREATOR_ID = #{creatorId,jdbcType=VARCHAR}
+			</if>
+			<if test="modifierId != null">
+				AND MODIFIER_ID = #{modifierId,jdbcType=VARCHAR}
+			</if>
+		</where>
+		ORDER BY CREATE_TIME DESC
+	</select>
+
+	<select id="findInterFieldByInterId" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from ht_inter_field_tb
+		where INTER_ID = #{interId,jdbcType=INTEGER}
+	</select>
+
+	<!-- 按主题查询接口字段 -->
+	<select id="findInterFieldBySub" resultMap="BaseResultMap">
+		SELECT
+		DISTINCT
+		inter_field.FIELD_CODE,
+		inter_field.FIELD_NAME,
+		inter_field.FIELD_TYPE
+		FROM
+		ht_inter_field_tb inter_field
+		LEFT JOIN
+		ht_inter_tb inter
+		ON
+		inter.INTER_ID=inter_field.INTER_ID
+		LEFT JOIN
+		ht_target_inter_tb
+		target_inter
+		ON target_inter.INTER_ID=inter.INTER_ID
+		WHERE
+		target_inter.TARGET_CODE=#{subject}
+		AND inter_field.IS_DIM='1'
+		AND
+		inter_field.DIM_CODE=#{dimCode}
+		AND inter_field.OP_TYPE!='D'
+		AND
+		inter.OP_TYPE!='D'
+		AND target_inter.OP_TYPE!='D'
+	</select>
+
+	<update id="updateByInterId" parameterType="com.huatai.web.model.InterField">
+		update ht_inter_field_tb
+		<set>
+			<if test="interId != null">
+				INTER_ID = #{interId,jdbcType=INTEGER},
+			</if>
+			<if test="fieldCode != null">
+				FIELD_CODE = #{fieldCode,jdbcType=VARCHAR},
+			</if>
+			<if test="fieldName != null">
+				FIELD_NAME = #{fieldName,jdbcType=VARCHAR},
+			</if>
+			<if test="fieldType != null">
+				FIELD_TYPE = #{fieldType,jdbcType=CHAR},
+			</if>
+			<if test="isDim != null">
+				IS_DIM = #{isDim,jdbcType=CHAR},
+			</if>
+			<if test="dimCode != null">
+				DIM_CODE = #{dimCode,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				OP_TYPE = #{opType,jdbcType=CHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where INTER_ID = #{interId,jdbcType=INTEGER}
+	</update>
+
+</mapper>

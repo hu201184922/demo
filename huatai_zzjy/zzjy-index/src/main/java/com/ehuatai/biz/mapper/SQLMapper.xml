@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ehuatai.biz.mapper.SQLMapper">
+	<select id="findBySQL" parameterType="String" resultType="java.util.HashMap">
+
+		${sql}
+	</select>
+
+
+	<select id="getBranchByCompany" resultType="java.util.HashMap">
+		SELECT COUNTCOMCODE AS CODE, ACTUTEAMCOMSHORTNAME AS
+		NAME FROM
+		D_MANAGECOM
+		WHERE
+		PROVCOMCODE = #{code}
+		<if test="code=='101'">
+			AND 1 = 1
+		</if>
+		<if test="code!='101'">
+			AND COUNTCOMCODE !=
+			#{code}
+		</if>
+		ORDER BY
+		CODE
+	</select>
+</mapper>

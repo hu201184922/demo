@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false">
+<!-- 必填属性：
+        name:设置缓存的名称，用于标志缓存,惟一
+        maxElementsInMemory:在内存中最大的对象数量
+        maxElementsOnDisk：在DiskStore中的最大对象数量，如为0，则没有限制
+        eternal：设置元素是否是永久的，如果为永久，则timeout忽略
+        overflowToDisk：是否当memory中的数量达到限制后，保存到Disk -->
+        
+<!-- 可选的属性：
+		timeToIdleSeconds：设置Element在失效前的允许闲置时间;多长时间不访问该缓存，那么ehcache 就会清除该缓存;
+					默认值是0，也就是可闲置时间无穷大。
+		timeToLiveSeconds：设置Element在失效前允许存活时间;缓存的存活时间，从开始创建的时间算起;
+					默认是0，也就是存活时间无穷大。 
+		diskPersistent：是否disk store在虚拟机启动时持久化。默认为false
+        diskExpiryThreadIntervalSeconds:运行disk终结线程的时间，默认为120秒
+-->
+	<defaultCache maxElementsInMemory="1000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="false" />
+
+	<cache name="MenuCache" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="MenuCache_zh_CN" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="MenuCache_en_US" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="DictCache" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="DictCache_zh_CN" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="DictCache_en_US" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="PreferenceCache" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="PreferenceCache_zh_CN" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="PreferenceCache_en_US" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="LogCfgCache" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="LogCfgCache_zh_CN" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="LogCfgCache_en_US" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+		
+	<cache name="QrtzDefinitionCache" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+	<cache name="QrtzDefinitionCache_zh_CN" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="QrtzDefinitionCache_en_US" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+
+	<cache name="SecurityCache" maxElementsOnDisk="20000"
+		maxElementsInMemory="2000" eternal="false" overflowToDisk="true" timeToLiveSeconds="1200"
+		diskPersistent="false" />
+		
+
+	<diskStore></diskStore>
+</ehcache>

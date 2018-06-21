@@ -1,0 +1,8 @@
+language=English
+login.username=Username
+login.password=Password
+login.captcha=ValidateCode
+login.notsee=Can't see
+login.rememberme=Remember me
+login.title=Management platform login
+login.login=Sign in

@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ehuatai.realtime.mapper.dma.PersonInsuredPremiumMapper">
+  <resultMap id="BaseResultMap" type="com.ehuatai.realtime.domain.dma.PersonInsuredPremium">
+    <result column="managecomcode" jdbcType="VARCHAR" property="managecomcode" />
+    <result column="agentgroupcode" jdbcType="VARCHAR" property="agentgroupcode" />
+    <result column="agentgroupid" jdbcType="VARCHAR" property="agentgroupid" />
+    <result column="agentcomcode" jdbcType="VARCHAR" property="agentcomcode" />
+    <result column="agentcomid" jdbcType="VARCHAR" property="agentcomid" />
+    <result column="policy_code" jdbcType="VARCHAR" property="policyCode" />
+    <result column="item_id" jdbcType="VARCHAR" property="itemId" />
+    <result column="saleschannelcode" jdbcType="VARCHAR" property="saleschannelcode" />
+    <result column="riskcode" jdbcType="VARCHAR" property="riskcode" />
+    <result column="agentid" jdbcType="VARCHAR" property="agentid" />
+    <result column="agent_id" jdbcType="VARCHAR" property="agentId" />
+    <result column="gradecode" jdbcType="VARCHAR" property="gradecode" />
+    <result column="riskplancode" jdbcType="VARCHAR" property="riskplancode" />
+    <result column="payintervalcode" jdbcType="VARCHAR" property="payintervalcode" />
+    <result column="paytypecode" jdbcType="VARCHAR" property="paytypecode" />
+    <result column="paywaycode" jdbcType="VARCHAR" property="paywaycode" />
+    <result column="selfpolicy1code" jdbcType="VARCHAR" property="selfpolicy1code" />
+    <result column="selfpolicy2code" jdbcType="VARCHAR" property="selfpolicy2code" />
+    <result column="measureid" jdbcType="VARCHAR" property="measureid" />
+    <result column="measurename" jdbcType="VARCHAR" property="measurename" />
+    <result column="measurecode" jdbcType="VARCHAR" property="measurecode" />
+    <result column="measurevalue" jdbcType="VARCHAR" property="measurevalue" />
+    <result column="datecode" jdbcType="VARCHAR" property="datecode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    managecomcode, agentgroupcode, agentgroupid, agentcomcode, agentcomid, policy_code, 
+    item_id, saleschannelcode, riskcode, agentid, agent_id, gradecode, riskplancode, 
+    payintervalcode, paytypecode, paywaycode, selfpolicy1code, selfpolicy2code, measureid, 
+    measurename, measurecode, measurevalue, datecode
+  </sql>
+  <select id="selectByExample" parameterType="com.ehuatai.realtime.domain.dma.PersonInsuredPremiumExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dma.dm_person_insured_premium
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.ehuatai.realtime.domain.dma.PersonInsuredPremiumExample">
+    delete from dma.dm_person_insured_premium
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ehuatai.realtime.domain.dma.PersonInsuredPremium">
+    insert into dma.dm_person_insured_premium (managecomcode, agentgroupcode, agentgroupid, 
+      agentcomcode, agentcomid, policy_code, 
+      item_id, saleschannelcode, riskcode, 
+      agentid, agent_id, gradecode, 
+      riskplancode, payintervalcode, paytypecode, 
+      paywaycode, selfpolicy1code, selfpolicy2code, 
+      measureid, measurename, measurecode, 
+      measurevalue, datecode)
+    values (#{managecomcode,jdbcType=VARCHAR}, #{agentgroupcode,jdbcType=VARCHAR}, #{agentgroupid,jdbcType=VARCHAR}, 
+      #{agentcomcode,jdbcType=VARCHAR}, #{agentcomid,jdbcType=VARCHAR}, #{policyCode,jdbcType=VARCHAR}, 
+      #{itemId,jdbcType=VARCHAR}, #{saleschannelcode,jdbcType=VARCHAR}, #{riskcode,jdbcType=VARCHAR}, 
+      #{agentid,jdbcType=VARCHAR}, #{agentId,jdbcType=VARCHAR}, #{gradecode,jdbcType=VARCHAR}, 
+      #{riskplancode,jdbcType=VARCHAR}, #{payintervalcode,jdbcType=VARCHAR}, #{paytypecode,jdbcType=VARCHAR}, 
+      #{paywaycode,jdbcType=VARCHAR}, #{selfpolicy1code,jdbcType=VARCHAR}, #{selfpolicy2code,jdbcType=VARCHAR}, 
+      #{measureid,jdbcType=VARCHAR}, #{measurename,jdbcType=VARCHAR}, #{measurecode,jdbcType=VARCHAR}, 
+      #{measurevalue,jdbcType=VARCHAR}, #{datecode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ehuatai.realtime.domain.dma.PersonInsuredPremium">
+    insert into dma.dm_person_insured_premium
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="managecomcode != null">
+        managecomcode,
+      </if>
+      <if test="agentgroupcode != null">
+        agentgroupcode,
+      </if>
+      <if test="agentgroupid != null">
+        agentgroupid,
+      </if>
+      <if test="agentcomcode != null">
+        agentcomcode,
+      </if>
+      <if test="agentcomid != null">
+        agentcomid,
+      </if>
+      <if test="policyCode != null">
+        policy_code,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="saleschannelcode != null">
+        saleschannelcode,
+      </if>
+      <if test="riskcode != null">
+        riskcode,
+      </if>
+      <if test="agentid != null">
+        agentid,
+      </if>
+      <if test="agentId != null">
+        agent_id,
+      </if>
+      <if test="gradecode != null">
+        gradecode,
+      </if>
+      <if test="riskplancode != null">
+        riskplancode,
+      </if>
+      <if test="payintervalcode != null">
+        payintervalcode,
+      </if>
+      <if test="paytypecode != null">
+        paytypecode,
+      </if>
+      <if test="paywaycode != null">
+        paywaycode,
+      </if>
+      <if test="selfpolicy1code != null">
+        selfpolicy1code,
+      </if>
+      <if test="selfpolicy2code != null">
+        selfpolicy2code,
+      </if>
+      <if test="measureid != null">
+        measureid,
+      </if>
+      <if test="measurename != null">
+        measurename,
+      </if>
+      <if test="measurecode != null">
+        measurecode,
+      </if>
+      <if test="measurevalue != null">
+        measurevalue,
+      </if>
+      <if test="datecode != null">
+        datecode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="managecomcode != null">
+        #{managecomcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agentgroupcode != null">
+        #{agentgroupcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agentgroupid != null">
+        #{agentgroupid,jdbcType=VARCHAR},
+      </if>
+      <if test="agentcomcode != null">
+        #{agentcomcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agentcomid != null">
+        #{agentcomid,jdbcType=VARCHAR},
+      </if>
+      <if test="policyCode != null">
+        #{policyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="saleschannelcode != null">
+        #{saleschannelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="riskcode != null">
+        #{riskcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agentid != null">
+        #{agentid,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null">
+        #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="gradecode != null">
+        #{gradecode,jdbcType=VARCHAR},
+      </if>
+      <if test="riskplancode != null">
+        #{riskplancode,jdbcType=VARCHAR},
+      </if>
+      <if test="payintervalcode != null">
+        #{payintervalcode,jdbcType=VARCHAR},
+      </if>
+      <if test="paytypecode != null">
+        #{paytypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="paywaycode != null">
+        #{paywaycode,jdbcType=VARCHAR},
+      </if>
+      <if test="selfpolicy1code != null">
+        #{selfpolicy1code,jdbcType=VARCHAR},
+      </if>
+      <if test="selfpolicy2code != null">
+        #{selfpolicy2code,jdbcType=VARCHAR},
+      </if>
+      <if test="measureid != null">
+        #{measureid,jdbcType=VARCHAR},
+      </if>
+      <if test="measurename != null">
+        #{measurename,jdbcType=VARCHAR},
+      </if>
+      <if test="measurecode != null">
+        #{measurecode,jdbcType=VARCHAR},
+      </if>
+      <if test="measurevalue != null">
+        #{measurevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="datecode != null">
+        #{datecode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ehuatai.realtime.domain.dma.PersonInsuredPremiumExample" resultType="java.lang.Integer">
+    select count(*) from dma.dm_person_insured_premium
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update dma.dm_person_insured_premium
+    <set>
+      <if test="record.managecomcode != null">
+        managecomcode = #{record.managecomcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentgroupcode != null">
+        agentgroupcode = #{record.agentgroupcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentgroupid != null">
+        agentgroupid = #{record.agentgroupid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentcomcode != null">
+        agentcomcode = #{record.agentcomcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentcomid != null">
+        agentcomid = #{record.agentcomid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.policyCode != null">
+        policy_code = #{record.policyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemId != null">
+        item_id = #{record.itemId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saleschannelcode != null">
+        saleschannelcode = #{record.saleschannelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.riskcode != null">
+        riskcode = #{record.riskcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentid != null">
+        agentid = #{record.agentid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentId != null">
+        agent_id = #{record.agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gradecode != null">
+        gradecode = #{record.gradecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.riskplancode != null">
+        riskplancode = #{record.riskplancode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payintervalcode != null">
+        payintervalcode = #{record.payintervalcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paytypecode != null">
+        paytypecode = #{record.paytypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paywaycode != null">
+        paywaycode = #{record.paywaycode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selfpolicy1code != null">
+        selfpolicy1code = #{record.selfpolicy1code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selfpolicy2code != null">
+        selfpolicy2code = #{record.selfpolicy2code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.measureid != null">
+        measureid = #{record.measureid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.measurename != null">
+        measurename = #{record.measurename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.measurecode != null">
+        measurecode = #{record.measurecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.measurevalue != null">
+        measurevalue = #{record.measurevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datecode != null">
+        datecode = #{record.datecode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update dma.dm_person_insured_premium
+    set managecomcode = #{record.managecomcode,jdbcType=VARCHAR},
+      agentgroupcode = #{record.agentgroupcode,jdbcType=VARCHAR},
+      agentgroupid = #{record.agentgroupid,jdbcType=VARCHAR},
+      agentcomcode = #{record.agentcomcode,jdbcType=VARCHAR},
+      agentcomid = #{record.agentcomid,jdbcType=VARCHAR},
+      policy_code = #{record.policyCode,jdbcType=VARCHAR},
+      item_id = #{record.itemId,jdbcType=VARCHAR},
+      saleschannelcode = #{record.saleschannelcode,jdbcType=VARCHAR},
+      riskcode = #{record.riskcode,jdbcType=VARCHAR},
+      agentid = #{record.agentid,jdbcType=VARCHAR},
+      agent_id = #{record.agentId,jdbcType=VARCHAR},
+      gradecode = #{record.gradecode,jdbcType=VARCHAR},
+      riskplancode = #{record.riskplancode,jdbcType=VARCHAR},
+      payintervalcode = #{record.payintervalcode,jdbcType=VARCHAR},
+      paytypecode = #{record.paytypecode,jdbcType=VARCHAR},
+      paywaycode = #{record.paywaycode,jdbcType=VARCHAR},
+      selfpolicy1code = #{record.selfpolicy1code,jdbcType=VARCHAR},
+      selfpolicy2code = #{record.selfpolicy2code,jdbcType=VARCHAR},
+      measureid = #{record.measureid,jdbcType=VARCHAR},
+      measurename = #{record.measurename,jdbcType=VARCHAR},
+      measurecode = #{record.measurecode,jdbcType=VARCHAR},
+      measurevalue = #{record.measurevalue,jdbcType=VARCHAR},
+      datecode = #{record.datecode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

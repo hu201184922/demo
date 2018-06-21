@@ -1,0 +1,471 @@
+@charset "utf-8";
+/* CSS Document */
+ @-webkit-keyframes p2Hiden {
+ 0% {
+top:125px;
+}
+ 100% {
+top:10px;
+}
+}
+ @-webkit-keyframes p2Top {
+ 0% {
+top:390px;
+}
+ 100% {
+top:265px;
+}
+}
+@-webkit-keyframes p2None {
+ 0% {
+	 height:125px;
+	 width:100%;
+}
+ 100% {
+	 height:0px;
+	 width:0;
+	 right:-100%;
+}
+}
+ @-webkit-keyframes p1Color {
+ 0% {
+left:0%;
+opacity: 0
+}
+ 100% {
+left:5%;
+opacity:1
+}
+}
+ @-webkit-keyframes p2Color {
+ 0% {
+left:0%;
+opacity: 0
+}
+ 100% {
+left:25%;
+opacity:1
+}
+}
+@-webkit-keyframes san {
+ 0% {
+opacity:1;
+transform: scale(5);
+-webkit-transform: scale(5)
+}
+ 5% {
+opacity:0.5;
+transform: scale(3);
+-webkit-transform: scale(3)
+}
+ 10% {
+opacity:0.6;
+transform: scale(0.9);
+-webkit-transform: scale(0.9)
+}
+ 20% {
+opacity:0.2;
+transform: scale(1);
+-webkit-transform: scale(1)
+}
+ 30% {
+opacity:0.7;
+transform: scale(1);
+-webkit-transform: scale(1)
+}
+ 60% {
+opacity:0.4;
+transform: scale(1);
+-webkit-transform: scale(1)
+}
+ 100% {
+opacity:1;
+transform: scale(1);
+-webkit-transform: scale(1)
+}
+}
+@-webkit-keyframes next {
+ 0% {
+-wekit-transform: scale(1)
+}
+ 50% {
+-wekit-transform: scale(1.01)
+}
+ 100% {
+-wekit-transform: scale(1)
+}
+}
+@-webkit-keyframes turn {
+ 0% {
+opacity:0;
+transform: rotateY(0deg) scale(5);
+-webkit-transform: rotateY(0deg) scale(5)
+}
+ 80% {
+opacity:0.6;
+transform: rotateY(360deg) scale(1);
+-webkit-transform: rotateY(360deg) scale(1)
+}
+ 100% {
+opacity:1;
+transform:  rotateY(360deg) scale(1);
+-webkit-transform: rotateY(360deg) scale(1)
+}
+}
+@-webkit-keyframes opa {
+ 0% {
+opacity:0
+}
+ 100% {
+opacity:1
+}
+}
+@-webkit-keyframes opaHide {
+ 0% {
+opacity:1
+}
+ 100% {
+opacity:0
+}
+}
+@-webkit-keyframes pop {
+ 0% {
+opacity:0;
+transform:scale(.1);
+-webkit-transform:scale(.1)
+}
+ 50% {
+opacity:.7;
+transform:scale(1.1);
+-webkit-transform:scale(1.1)
+}
+ 70% {
+opacity:1;
+transform:scale(.9);
+-webkit-transform:scale(.9)
+}
+ 100% {
+opacity:1;
+transform:scale(1);
+-webkit-transform:scale(1)
+}
+}
+ @-webkit-keyframes ageLine {
+ 0% {
+width:100%;
+}
+ 100% {
+width:0;
+
+}
+}
+ @-webkit-keyframes circleUse {
+ 0% {
+height:100%
+}
+ 100% {
+height:0
+}
+}
+ @-webkit-keyframes circleUseTxt {
+ 0% {
+right:-100%;
+opacity: 0
+}
+ 100% {
+right:35%;
+opacity: 1
+}
+}
+
+ @-webkit-keyframes expenseUse {
+ 0% {
+right:-100%;
+opacity: 0
+}
+ 100% {
+right:4%;
+opacity:1
+}
+}
+ @-webkit-keyframes expenseLine {
+ 0% {
+width:100%
+}
+ 10% {
+width:70%
+}
+ 90% {
+width:10%
+}
+ 100% {
+width:0
+}
+}
+ @-webkit-keyframes expenseGet {
+ 0% {
+left:-100%;
+opacity: 0
+}
+ 100% {
+left:5%;
+opacity:1
+}
+}
+ @-webkit-keyframes botTit {
+ 0% {
+opacity:0;
+transform: rotate(0deg);
+-webkit-transform: rotate(0deg);
+top:-200%
+}
+ 80% {
+opacity:0.8;
+transform: rotate(720deg);
+-webkit-transform: rotate(720deg);
+top:10%
+}
+ 100% {
+opacity:1;
+transform:  rotate(720deg);
+-webkit-transform: rotate(720deg);
+top:0
+}
+}
+ @-webkit-keyframes titHide {
+ 0% {
+top:0%
+}
+ 10% {
+top:-10%
+}
+ 100% {
+top:150%;
+opacity:0;
+}
+}
+ @-webkit-keyframes hide_1 {
+ 0% {
+left:4%
+}
+ 10% {
+left:7%
+}
+ 100% {
+left:-175%
+}
+}
+ @-webkit-keyframes hide_2 {
+ 0% {
+left:29%
+}
+ 10% {
+left:32%
+}
+ 100% {
+left:-150%
+}
+}
+ @-webkit-keyframes hide_3 {
+ 0% {
+left:53%
+}
+ 10% {
+left:56%
+}
+ 100% {
+left:-125%
+}
+}
+ @-webkit-keyframes hide_4 {
+ 0% {
+left:77%
+}
+ 10% {
+left:80%
+}
+ 100% {
+left:-100%
+}
+}
+ @-webkit-keyframes map {
+0%{ height:100%;}
+100%{ height:0;}
+	 /*
+ 0% {
+opacity:0;
+transform: rotate(-30deg) scale(1.2);
+-webkit-transform: rotate(-30deg) scale(1.2)
+}
+ 100% {
+opacity:1;
+transform:  rotate(0deg) scale(1);
+-webkit-transform:  rotate(0deg) scale(1)
+}
+*/
+}
+ @-webkit-keyframes mapLine {
+ 0% {
+opacity:0;
+transform: rotate(-60deg) scale(2);
+-webkit-transform: rotate(-60deg) scale(2)
+}
+ 100% {
+opacity:1;
+transform:  rotate(0deg) scale(1);
+-webkit-transform:  rotate(0deg) scale(1)
+}
+}
+ @-webkit-keyframes lineUse {
+ 0% {
+height:0%;
+opacity:0
+}
+ 100% {
+width:100%;
+opacity: 1
+}
+}
+ @-webkit-keyframes lineAcc {
+ 0% {
+opacity:0;
+top:-50%;
+-wekit-transform: rotate(0deg)
+}
+ 90% {
+opacity: 1;
+top:25%;
+-wekit-transform: rotate(720deg)
+}
+ 100% {
+opacity: 1;
+top:10%;
+-wekit-transform: rotate(720deg)
+}
+}
+ @-webkit-keyframes lineUseMap {
+ 0% {
+opacity:0
+}
+ 5% {
+opacity:0.3
+}
+ 10% {
+opacity:0.1
+}
+ 15% {
+opacity:0.5
+}
+ 20% {
+opacity:0.2
+}
+ 50% {
+opacity:0.7
+}
+ 55% {
+opacity:0.3
+}
+ 60% {
+opacity:0.8
+}
+ 65% {
+opacity:0.2
+}
+ 100% {
+opacity: 1
+}
+}
+ @-webkit-keyframes lineStop {
+ 0% {
+opacity:0;
+-wekit-transform: scale(3)
+}
+ 10% {
+opacity:0.3;
+-wekit-transform: scale(1)
+}
+ 20% {
+opacity:0.1;
+-wekit-transform: scale(1)
+}
+ 35% {
+opacity:0.5;
+-wekit-transform: scale(1)
+}
+ 70% {
+opacity: 1;
+-wekit-transform: scale(1)
+}
+ 75% {
+opacity: 0.2;
+-wekit-transform: scale(1)
+}
+ 80% {
+opacity:0.8;
+-wekit-transform: scale(1)
+}
+ 90% {
+opacity: 0.3;
+-wekit-transform: scale(1)
+}
+ 100% {
+opacity: 1;
+-wekit-transform: scale(1)
+}
+}
+ @-webkit-keyframes p3BgMv {
+ 0% {
+opacity:0;
+width:0
+}
+ 100% {
+opacity: 1;
+width:100%
+}
+}
+ @-webkit-keyframes p3BgPic {
+ 0% {
+opacity:0;
+top:-100%
+}
+ 100% {
+opacity: 1;
+top:0%
+}
+}
+
+@-webkit-keyframes p2Text {
+ 0% {
+width: 0;
+opacity: 0;
+}
+ 100% {
+
+width: 100%;
+opacity: 1;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 374px) {
+html { font-size: 62.5% }
+}
+
+@media screen and (min-width: 375px) {
+html { font-size: 75% }
+}
+.go .ageLine > i, .go .expenseUse, .go .expenseLine  > i, .go .expenseGet, .go .expenseRest, .go .color_get, .go .color_use, .go .bottom_tit, .over .bottom_tit,  .go .bottom_card, .go .cardTxt_1, .go .cardTxt_2, .go .cardTxt_3, .go .cardTxt_4, .over .card_1, .over .card_2, .over .card_3, .over .card_4, .go .article_map i, .go .article_mapLine, .go .article_use  > i, .go .lineAcc2, .go .lineUse2, .go .lineSick2,  .go .lineUseMap2, .go .lineStop2, .go .bottom_txt2_1, .go .bottom_txt2_2, .go .p3Bg, .go .p3BgPic, .go .article_useTxt , .topcontainer .line_chart,.topcontainer .bottom,.topcontainer .circle_chart{ -webkit-animation-fill-mode: forwards }
+html { font-size: 62.5% }
+
+@media screen and (min-width:374px) {
+html { font-size: 68.75% }
+}

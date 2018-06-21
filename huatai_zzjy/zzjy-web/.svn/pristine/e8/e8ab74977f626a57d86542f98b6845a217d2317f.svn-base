@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.WarnConSetMapper" >
+  <resultMap id="BaseResultMap" type="com.huatai.web.model.WarnConSet" >
+    <id column="WARN_CODE" property="warnCode" jdbcType="VARCHAR" />
+    <result column="WARN_DESC" property="warnDesc" jdbcType="VARCHAR" />
+    <result column="STA_DATE_TYPE" property="staDateType" jdbcType="CHAR" />
+    <result column="CON_QUE_TYPE" property="conQueType" jdbcType="CHAR" />
+    <result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+    <result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    WARN_CODE, WARN_DESC, STA_DATE_TYPE, CON_QUE_TYPE, OP_TYPE, CREATE_TIME, MODIFY_TIME, 
+    CREATOR_ID, MODIFIER_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.huatai.web.model.WarnConSetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ht_warn_con_set_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ht_warn_con_set_tb
+    where WARN_CODE = #{warnCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ht_warn_con_set_tb
+    where WARN_CODE = #{warnCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.huatai.web.model.WarnConSetExample" >
+    delete from ht_warn_con_set_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.huatai.web.model.WarnConSet" >
+    insert into ht_warn_con_set_tb (WARN_CODE, WARN_DESC, STA_DATE_TYPE, 
+      CON_QUE_TYPE, OP_TYPE, CREATE_TIME, 
+      MODIFY_TIME, CREATOR_ID, MODIFIER_ID
+      )
+    values (#{warnCode,jdbcType=VARCHAR}, #{warnDesc,jdbcType=VARCHAR}, #{staDateType,jdbcType=CHAR}, 
+      #{conQueType,jdbcType=CHAR}, #{opType,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=VARCHAR}, #{modifierId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huatai.web.model.WarnConSet" >
+    insert into ht_warn_con_set_tb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="warnCode != null" >
+        WARN_CODE,
+      </if>
+      <if test="warnDesc != null" >
+        WARN_DESC,
+      </if>
+      <if test="staDateType != null" >
+        STA_DATE_TYPE,
+      </if>
+      <if test="conQueType != null" >
+        CON_QUE_TYPE,
+      </if>
+      <if test="opType != null" >
+        OP_TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID,
+      </if>
+      <if test="modifierId != null" >
+        MODIFIER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="warnCode != null" >
+        #{warnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="warnDesc != null" >
+        #{warnDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="staDateType != null" >
+        #{staDateType,jdbcType=CHAR},
+      </if>
+      <if test="conQueType != null" >
+        #{conQueType,jdbcType=CHAR},
+      </if>
+      <if test="opType != null" >
+        #{opType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.huatai.web.model.WarnConSetExample" resultType="java.lang.Integer" >
+    select count(*) from ht_warn_con_set_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ht_warn_con_set_tb
+    <set >
+      <if test="record.warnCode != null" >
+        WARN_CODE = #{record.warnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warnDesc != null" >
+        WARN_DESC = #{record.warnDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staDateType != null" >
+        STA_DATE_TYPE = #{record.staDateType,jdbcType=CHAR},
+      </if>
+      <if test="record.conQueType != null" >
+        CON_QUE_TYPE = #{record.conQueType,jdbcType=CHAR},
+      </if>
+      <if test="record.opType != null" >
+        OP_TYPE = #{record.opType,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creatorId != null" >
+        CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifierId != null" >
+        MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ht_warn_con_set_tb
+    set WARN_CODE = #{record.warnCode,jdbcType=VARCHAR},
+      WARN_DESC = #{record.warnDesc,jdbcType=VARCHAR},
+      STA_DATE_TYPE = #{record.staDateType,jdbcType=CHAR},
+      CON_QUE_TYPE = #{record.conQueType,jdbcType=CHAR},
+      OP_TYPE = #{record.opType,jdbcType=CHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+      MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.WarnConSet" >
+    update ht_warn_con_set_tb
+    <set >
+      <if test="warnDesc != null" >
+        WARN_DESC = #{warnDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="staDateType != null" >
+        STA_DATE_TYPE = #{staDateType,jdbcType=CHAR},
+      </if>
+      <if test="conQueType != null" >
+        CON_QUE_TYPE = #{conQueType,jdbcType=CHAR},
+      </if>
+      <if test="opType != null" >
+        OP_TYPE = #{opType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null" >
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WARN_CODE = #{warnCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huatai.web.model.WarnConSet" >
+    update ht_warn_con_set_tb
+    set WARN_DESC = #{warnDesc,jdbcType=VARCHAR},
+      STA_DATE_TYPE = #{staDateType,jdbcType=CHAR},
+      CON_QUE_TYPE = #{conQueType,jdbcType=CHAR},
+      OP_TYPE = #{opType,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR}
+    where WARN_CODE = #{warnCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

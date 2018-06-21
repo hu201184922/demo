@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.AccPageInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.huatai.web.model.AccPageInfo" >
+    <id column="ACCESSID" property="accessid" jdbcType="VARCHAR" />
+    <result column="ACCESSNAME" property="accessname" jdbcType="VARCHAR" />
+    <result column="ACCESSURL" property="accessurl" jdbcType="VARCHAR" />
+    <result column="BEHAVIORID" property="behaviorid" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="DATE_CODE" property="dateCode" jdbcType="VARCHAR" />
+    <result column="FM_NAME" property="fmName" jdbcType="VARCHAR" />
+    <result column="ACCESS_TIME" property="accessTime" jdbcType="TIMESTAMP" />
+    <result column="OUT_TIME" property="outTime" jdbcType="TIMESTAMP" />
+    <result column="IS_OUT" property="isOut" jdbcType="INTEGER" />
+    <result column="RES_TIME" property="resTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ExtResultMap" type="com.huatai.web.bean.UserBehBean" >
+    <id column="ACCESSID" property="accessId" jdbcType="VARCHAR" />
+    <result column="ACCESSNAME" property="accessName" jdbcType="VARCHAR" />
+    <result column="ACCESSURL" property="accessUrl" jdbcType="VARCHAR" />
+    <result column="BEHAVIORID" property="behaviorid" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="FM_NAME" property="fmName" jdbcType="VARCHAR" />
+    <result column="ACCESS_TIME" property="accessTime" jdbcType="TIMESTAMP" />
+    <result column="OUT_TIME" property="outTime" jdbcType="TIMESTAMP" />
+    <result column="RES_TIME" property="resTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ACCESSID, ACCESSNAME, ACCESSURL, BEHAVIORID, USER_ID, DATE_CODE, FM_NAME, ACCESS_TIME, 
+    OUT_TIME, IS_OUT, RES_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.huatai.web.model.AccPageInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from access_page_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from access_page_info
+    where ACCESSID = #{accessid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from access_page_info
+    where ACCESSID = #{accessid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.huatai.web.model.AccPageInfoExample" >
+    delete from access_page_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.huatai.web.model.AccPageInfo" >
+    insert into access_page_info (ACCESSID, ACCESSNAME, ACCESSURL, 
+      BEHAVIORID, USER_ID, DATE_CODE, 
+      FM_NAME, ACCESS_TIME, OUT_TIME, 
+      IS_OUT, RES_TIME)
+    values (#{accessid,jdbcType=VARCHAR}, #{accessname,jdbcType=VARCHAR}, #{accessurl,jdbcType=VARCHAR}, 
+      #{behaviorid,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{dateCode,jdbcType=VARCHAR}, 
+      #{fmName,jdbcType=VARCHAR}, #{accessTime,jdbcType=TIMESTAMP}, #{outTime,jdbcType=TIMESTAMP}, 
+      #{isOut,jdbcType=INTEGER}, #{resTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huatai.web.model.AccPageInfo" >
+    insert into access_page_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accessid != null" >
+        ACCESSID,
+      </if>
+      <if test="accessname != null" >
+        ACCESSNAME,
+      </if>
+      <if test="accessurl != null" >
+        ACCESSURL,
+      </if>
+      <if test="behaviorid != null" >
+        BEHAVIORID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="dateCode != null" >
+        DATE_CODE,
+      </if>
+      <if test="fmName != null" >
+        FM_NAME,
+      </if>
+      <if test="accessTime != null" >
+        ACCESS_TIME,
+      </if>
+      <if test="outTime != null" >
+        OUT_TIME,
+      </if>
+      <if test="isOut != null" >
+        IS_OUT,
+      </if>
+      <if test="resTime != null" >
+        RES_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accessid != null" >
+        #{accessid,jdbcType=VARCHAR},
+      </if>
+      <if test="accessname != null" >
+        #{accessname,jdbcType=VARCHAR},
+      </if>
+      <if test="accessurl != null" >
+        #{accessurl,jdbcType=VARCHAR},
+      </if>
+      <if test="behaviorid != null" >
+        #{behaviorid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCode != null" >
+        #{dateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fmName != null" >
+        #{fmName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessTime != null" >
+        #{accessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outTime != null" >
+        #{outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOut != null" >
+        #{isOut,jdbcType=INTEGER},
+      </if>
+      <if test="resTime != null" >
+        #{resTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.huatai.web.model.AccPageInfoExample" resultType="java.lang.Integer" >
+    select count(*) from access_page_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update access_page_info
+    <set >
+      <if test="record.accessid != null" >
+        ACCESSID = #{record.accessid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accessname != null" >
+        ACCESSNAME = #{record.accessname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accessurl != null" >
+        ACCESSURL = #{record.accessurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.behaviorid != null" >
+        BEHAVIORID = #{record.behaviorid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateCode != null" >
+        DATE_CODE = #{record.dateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fmName != null" >
+        FM_NAME = #{record.fmName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accessTime != null" >
+        ACCESS_TIME = #{record.accessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.outTime != null" >
+        OUT_TIME = #{record.outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isOut != null" >
+        IS_OUT = #{record.isOut,jdbcType=INTEGER},
+      </if>
+      <if test="record.resTime != null" >
+        RES_TIME = #{record.resTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update access_page_info
+    set ACCESSID = #{record.accessid,jdbcType=VARCHAR},
+      ACCESSNAME = #{record.accessname,jdbcType=VARCHAR},
+      ACCESSURL = #{record.accessurl,jdbcType=VARCHAR},
+      BEHAVIORID = #{record.behaviorid,jdbcType=VARCHAR},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
+      DATE_CODE = #{record.dateCode,jdbcType=VARCHAR},
+      FM_NAME = #{record.fmName,jdbcType=VARCHAR},
+      ACCESS_TIME = #{record.accessTime,jdbcType=TIMESTAMP},
+      OUT_TIME = #{record.outTime,jdbcType=TIMESTAMP},
+      IS_OUT = #{record.isOut,jdbcType=INTEGER},
+      RES_TIME = #{record.resTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.AccPageInfo" >
+    update access_page_info
+    <set >
+      <if test="accessname != null" >
+        ACCESSNAME = #{accessname,jdbcType=VARCHAR},
+      </if>
+      <if test="accessurl != null" >
+        ACCESSURL = #{accessurl,jdbcType=VARCHAR},
+      </if>
+      <if test="behaviorid != null" >
+        BEHAVIORID = #{behaviorid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCode != null" >
+        DATE_CODE = #{dateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fmName != null" >
+        FM_NAME = #{fmName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessTime != null" >
+        ACCESS_TIME = #{accessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outTime != null" >
+        OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOut != null" >
+        IS_OUT = #{isOut,jdbcType=INTEGER},
+      </if>
+      <if test="resTime != null" >
+        RES_TIME = #{resTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ACCESSID = #{accessid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huatai.web.model.AccPageInfo" >
+    update access_page_info
+    set ACCESSNAME = #{accessname,jdbcType=VARCHAR},
+      ACCESSURL = #{accessurl,jdbcType=VARCHAR},
+      BEHAVIORID = #{behaviorid,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      DATE_CODE = #{dateCode,jdbcType=VARCHAR},
+      FM_NAME = #{fmName,jdbcType=VARCHAR},
+      ACCESS_TIME = #{accessTime,jdbcType=TIMESTAMP},
+      OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+      IS_OUT = #{isOut,jdbcType=INTEGER},
+      RES_TIME = #{resTime,jdbcType=VARCHAR}
+    where ACCESSID = #{accessid,jdbcType=VARCHAR}
+  </update>
+  <select id="findAll" resultMap="BaseResultMap">
+  		SELECT
+		a.ACCESSID,
+		a.ACCESSNAME,
+		a.ACCESSURL,
+		a.BEHAVIORID,
+		a.USER_ID,
+		a.DATE_CODE,
+		a.FM_NAME,
+		a.ACCESS_TIME,
+		a.OUT_TIME,
+		a.IS_OUT,
+		a.RES_TIME
+	FROM
+		access_page_info a,
+		user_behavior_info u
+		<where>
+			a.behaviorid = u.behaviorid AND (a.OUT_TIME !='' or a.OUT_TIME !=null)
+			<if test="userId != null and userId != ''">
+				and u.USER_ID = #{userId}
+			</if>
+			<if test="module != null and module != ''">
+				and a.FM_NAME = #{module}
+			</if>
+			<if test="isNode != null and isNode != ''">
+				and a.ACCESSNAME = #{isNode}
+			</if>
+			<if test="datetime1 != null and datetime1 != ''">
+				and a.DATE_CODE  &gt;= #{datetime1}
+			</if>
+			<if test="datetime2 != null and datetime2 != ''">
+				and a.DATE_CODE &lt;= #{datetime2}
+			</if>
+		</where>
+  </select>
+  <select id="findFunanList" resultType="com.huatai.web.bean.ModuleBean">
+		SELECT
+			accessName name,
+			fm_name pName,
+			COUNT(accessName) visitNum,
+			COUNT(accessName) vnRatio,
+			count(DISTINCT user_id) visitPeo,
+			count(DISTINCT user_id) vpRatio,
+			ROUND(sum((out_time - access_time)/100),2) stayTime,
+			ROUND(sum((out_time - access_time)/100),2) stRatio,
+			sum(CASE WHEN is_out = 1 THEN 1 END) outRatio,
+			sum(CASE WHEN is_out = 0 THEN 1 END) convertRatio
+		FROM
+			access_page_info
+		<where>
+			<if test="dateDim!=null and dateDim!=''">
+				DATEDIFF(DATE_CODE,#{dateDim}) &gt; 0
+			</if>
+		</where>
+		GROUP BY
+			accessName
+  </select>
+  <select id="findfmNameAll" resultType="String">
+		SELECT DISTINCT
+			FM_NAME
+		FROM
+			access_page_info
+  </select>
+  <select id="findNodeByFmName" resultType="String">
+  		SELECT DISTINCT
+			ACCESSNAME
+		FROM
+			access_page_info 
+		<where>
+			<if test="data != null and data != ''">
+				FM_NAME = #{data}
+			</if>
+		</where>
+  </select>
+  <select id="findTotals" resultType="com.huatai.web.bean.FunAnListTotalBean">
+  		SELECT
+			count(1) total1,
+			count(DISTINCT USER_ID) total2,
+			ROUND(sum((out_time - access_time) / 100),2 ) total3,
+			sum(CASE WHEN is_out = 1 THEN 1 END) total4,
+			sum(CASE WHEN is_out = 0 THEN 1 END) total5
+		FROM
+			access_page_info
+		<where>
+			<if test="dateDim!=null and dateDim!=''">
+				DATE_CODE >= #{dateDim}
+			</if>
+		</where>
+  </select>
+  <update id="updateAccPageInfoByBehaviorid" parameterType="com.huatai.web.model.AccPageInfo" >
+    update access_page_info
+    set
+      IS_OUT = #{isOut,jdbcType=INTEGER}
+    where BEHAVIORID = #{behaviorid,jdbcType=VARCHAR} AND IS_OUT='0'
+  </update>
+  <select id="findAccPager" resultMap="ExtResultMap">
+  		SELECT
+		a.ACCESSID,
+		a.ACCESSNAME,
+		a.ACCESSURL,
+		u.USER_NAME,
+		a.USER_ID,
+		a.FM_NAME,
+		a.ACCESS_TIME,
+		a.OUT_TIME,
+		a.RES_TIME
+	FROM
+		access_page_info a,
+		user_behavior_info u
+		<where>
+			a.behaviorid = u.behaviorid AND (a.OUT_TIME !='' or a.OUT_TIME !=null)
+			<if test="userId != null and userId != ''">
+				and u.USER_ID = #{userId}
+			</if>
+			<if test="module != null and module != ''">
+				and a.FM_NAME = #{module}
+			</if>
+			<if test="isNode != null and isNode != ''">
+				and a.ACCESSNAME = #{isNode}
+			</if>
+			<if test="datetime1 != null and datetime1 != ''">
+				and a.DATE_CODE  &gt;= #{datetime1}
+			</if>
+			<if test="datetime2 != null and datetime2 != ''">
+				and a.DATE_CODE &lt;= #{datetime2}
+			</if>
+			ORDER BY ACCESSID DESC
+		</where>
+  </select>
+</mapper>

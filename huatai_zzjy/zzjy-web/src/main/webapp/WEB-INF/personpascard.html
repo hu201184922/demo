@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>personpascard</title>
+      <script type="text/javascript">
+      var val=null;
+          function modify(){
+        	  /*
+        	  var inlines=document.getElementsByTagName("input");
+        	  console.log(inlines);
+        	  for(var i=0;i<inlines.length;i++){
+        		  inlines[i].style="display:inline-block";
+        	  }
+        	  */
+        	  var texts=document.getElementsByTagName("span");
+        	  for(var i=0;i<texts.length;i++){
+        		  val=texts[i].innerHTML;
+         texts[i].innerHTML="<input type='text' value="+val+" >";  
+         console.log(texts.length);
+         console.log(texts[0].childNodes[0]);}
+         texts[0].childNodes[0].addEventListener("blur",function(e){
+ 	        texts[0].innerHTML=texts[0].childNodes[0].value;
+ 	    });  
+         texts[1].childNodes[0].addEventListener("blur",function(e){
+  	        texts[1].innerHTML=texts[1].childNodes[0].value;
+  	    }); 	  
+         texts[2].childNodes[0].addEventListener("blur",function(e){
+   	        texts[2].innerHTML=texts[2].childNodes[0].value;
+   	    }); 
+         texts[3].childNodes[0].addEventListener("blur",function(e){
+   	        texts[3].innerHTML=texts[3].childNodes[0].value;
+   	    }); 
+         texts[4].childNodes[0].addEventListener("blur",function(e){
+   	        texts[4].innerHTML=texts[4].childNodes[0].value;
+   	    }); 
+         texts[5].childNodes[0].addEventListener("blur",function(e){
+   	        texts[5].innerHTML=texts[5].childNodes[0].value;
+   	    }); 
+   
+          }
+      </script>
+      
+  <body>
+    <form action="">
+     <div>
+     <table>
+          <thead><h1>X档案</h1> 
+          <p &nbsp;><input type="button" value="修改" onclick="modify();"/>
+          </p>
+             <tbody>
+              <tr>
+                  <td>学历:<span id="span"></span></td>
+                  <td>年资:<span id="span"></span></td>
+              </tr>
+              <tr>
+                  <td>展业号:<span id="span"></span></td>
+                  <td>专业认证:<span id="span"></span></td>
+              </tr>
+              <tr>
+                  <td>执业证号:<span id="span"></span></td>
+              </tr>
+              <tr>
+                  <td>擅长险种:<span id="span"></span></td>
+              </tr>
+                <tr>
+                   <td>
+                  <p>我的愿景:
+                  <textarea rows="3" cols="20" ></textarea>
+                  </p>
+                    </td>
+                </tr>        
+          </tbody>
+        </thead>
+     </table>
+     </div>
+     <div>
+        
+     </div>
+    </form>   
+  </body>
+</html>

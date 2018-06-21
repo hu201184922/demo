@@ -1,0 +1,93 @@
+.my_report_portrait{background-color: #fff}
+.my_report_portrait img{border-radius: 50px;margin-top: 20px;}
+.my_report_portrait h1{font-size: 19px;font-weight: lighter;}
+.my_report_portrait p{margin-top: 15px;font-size: 17px;color: #000;padding-bottom: 15px}
+.my_customer{background-color: #fff}
+.insure-customer{width:64%;margin-left:34px;text-align: center;}
+.insure-customer h1{font-size: 15px;font-weight: lighter;}
+.prospective-customer{width:64%;margin-left:34px;text-align: center;}
+.prospective-customer h1{font-size: 15px;font-weight: lighter;}
+.ml15{margin-left: 15px !important}
+.mt15{margin-top: 15px !important}
+.hight82{height: 82px !important}
+.my_cus_count{border-bottom: solid #C7C7CC 1px;line-height: 44px;height: 44px;padding-left: 15px}
+.record_title{background-color: #fff;line-height: 44px;height: 44px;border-bottom: solid #C7C7CC 1px;margin-left: 15px}
+.target{height: 70px;margin-left: 50px;color: #000}
+.target p{line-height: 70px;height: 70px;color: #f17905;margin-left: 5px;font-size: 15px;font-weight: bold}
+.target h1{font-size: 15px;line-height: 35px;height: 35px;}
+.active_titlt{position: absolute;top:522px;left: 15px}
+.activity{padding-bottom: 20px;background: #fff;}
+
+/*share-timetree*/
+.share-timetree {
+	position: relative;
+	display: block;
+	margin: 10px 10px 20px;
+}
+.share-timetree >li {
+	position: relative;
+	display: block;
+	width: 100%;
+	padding:20px 0px 0px 32px;
+}
+.share-timetree >li:before {
+	content: "";
+	position: absolute;
+	left: 20px;
+	top:0;
+	bottom:0;
+	width: 3px;
+	background: #f26c4f;
+	z-index:1;
+}
+.share-timetree >li:after {
+	content: "";
+	position: absolute;
+	left: 16px;
+	top: 60px;
+	width: 8px;
+	height: 8px;
+	border: solid 2px #007aff;
+	border-radius: 50%;
+	margin-top: -5px;
+	z-index: 1;
+	background:#fff;
+}
+
+.record-border{height:85px;border: solid #DFDFDF 1px;border-radius: 5px;}
+.record-img{float: right;}
+#record-title{margin-left: -41px;font-size: 12px;margin-top: 30px !important}
+#record-title1{margin-left: -38px;font-size:12px;margin-top: 30px !important}
+.timetree-txt{height:85px;border: solid #C0C0C0 1px;border-radius: 5px;padding-top: 10px;}
+.dashed li:before {
+	content: "";
+	position: absolute;
+	left: 100%;
+	top:15px;
+	bottom:20px;
+	z-index:1;
+}
+.dashed li:last-child:before {
+	display: none
+}
+
+/*新增样式*/
+.short-line1,.short-line2,.short-line3{font-size:15px; text-align:center;line-height:32px;padding-left:5px;position:absolute; left:10%;top:30px;}
+.short-line1{left:13%;}
+.short-line2{left:30%;}
+.short-line3{left:52%;}
+.long-line{width: 20% !important;position:absolute; right:5px;top:30px;}
+
+.timetree-txt2{height:45px;border: solid #C0C0C0 1px;border-radius: 5px; position:relative;width:90%;margin-top:20px;}
+.short-line4{font-size:15px;position:absolute;top:10px;padding-left:20px}
+.sanjiao{
+	position:absolute;
+	top:5px;
+	left:-7%;
+	z-index:1;
+    width: 0px;
+    height: 0px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent #eaeaea transparent transparent;
+}

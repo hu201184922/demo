@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.TarStatisMapper">
+	<resultMap id="BaseResultMap" type="com.huatai.web.model.TarStatis">
+		<id column="TS_ID" property="tsId" jdbcType="BIGINT" />
+		<result column="SUB_CODE" property="subCode" jdbcType="VARCHAR" />
+		<result column="TARGET_CODE" property="targetCode" jdbcType="VARCHAR" />
+		<result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+		<result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		TS_ID, SUB_CODE, TARGET_CODE, OP_TYPE, CREATE_TIME, MODIFY_TIME, CREATOR_ID,
+		MODIFIER_ID
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.huatai.web.model.TarStatisExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ht_tar_statis_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM 
+			ht_tar_statis_tb
+		WHERE 
+			TS_ID = #{tsId,jdbcType=BIGINT}
+		AND 
+			OP_TYPE != 'D'
+	</select>
+	<!-- <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from ht_tar_statis_tb
+		where TS_ID = #{tsId,jdbcType=BIGINT}
+	</delete> -->
+	
+	<update id="deleteByPrimaryKey">
+		UPDATE 
+			ht_tar_statis_tb 
+		SET 
+			OP_TYPE = 'D'
+		WHERE 
+			TS_ID = #{tsId,jdbcType=BIGINT}
+	</update>
+	
+	<!-- <delete id="deleteByExample" parameterType="com.huatai.web.model.TarStatisExample">
+		delete from ht_tar_statis_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete> -->
+	
+	<update id="deleteByExample">
+		UPDATE 
+			ht_tar_statis_tb 
+		SET 
+			OP_TYPE = 'D'
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</update>
+	
+	<insert id="insert" parameterType="com.huatai.web.model.TarStatis">
+		insert into ht_tar_statis_tb (TS_ID, SUB_CODE, TARGET_CODE,
+		OP_TYPE, CREATE_TIME, MODIFY_TIME,
+		CREATOR_ID, MODIFIER_ID)
+		values (#{tsId,jdbcType=BIGINT}, #{subCode,jdbcType=VARCHAR},
+		#{targetCode,jdbcType=VARCHAR},
+		#{opType,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP},
+		#{creatorId,jdbcType=VARCHAR}, #{modifierId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huatai.web.model.TarStatis">
+		insert into ht_tar_statis_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="tsId != null">
+				TS_ID,
+			</if>
+			<if test="subCode != null">
+				SUB_CODE,
+			</if>
+			<if test="targetCode != null">
+				TARGET_CODE,
+			</if>
+			<if test="opType != null">
+				OP_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME,
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID,
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="tsId != null">
+				#{tsId,jdbcType=BIGINT},
+			</if>
+			<if test="subCode != null">
+				#{subCode,jdbcType=VARCHAR},
+			</if>
+			<if test="targetCode != null">
+				#{targetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				#{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				#{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				#{modifierId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.huatai.web.model.TarStatisExample"
+		resultType="java.lang.Integer">
+		select count(*) from ht_tar_statis_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update ht_tar_statis_tb
+		<set>
+			<if test="record.tsId != null">
+				TS_ID = #{record.tsId,jdbcType=BIGINT},
+			</if>
+			<if test="record.subCode != null">
+				SUB_CODE = #{record.subCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.targetCode != null">
+				TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.opType != null">
+				OP_TYPE = #{record.opType,jdbcType=CHAR},
+			</if>
+			<if test="record.createTime != null">
+				CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.modifyTime != null">
+				MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.creatorId != null">
+				CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.modifierId != null">
+				MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update ht_tar_statis_tb
+		set TS_ID = #{record.tsId,jdbcType=BIGINT},
+		SUB_CODE = #{record.subCode,jdbcType=VARCHAR},
+		TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+		OP_TYPE = #{record.opType,jdbcType=CHAR},
+		CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+		CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+		MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.TarStatis">
+		update ht_tar_statis_tb
+		<set>
+			<if test="subCode != null">
+				SUB_CODE = #{subCode,jdbcType=VARCHAR},
+			</if>
+			<if test="targetCode != null">
+				TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				OP_TYPE = #{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where TS_ID = #{tsId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huatai.web.model.TarStatis">
+		update ht_tar_statis_tb
+		set SUB_CODE = #{subCode,jdbcType=VARCHAR},
+		TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+		OP_TYPE = #{opType,jdbcType=CHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+		CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+		MODIFIER_ID = #{modifierId,jdbcType=VARCHAR}
+		where TS_ID = #{tsId,jdbcType=BIGINT}
+	</update>
+	<select id="findAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_tar_statis_tb
+		<where>
+			OP_TYPE!='D'
+			<if test="tsId!=null">
+				AND TS_ID=#{tsId}
+			</if>
+			<if test="subCode !=null and subCode !=''">
+				AND SUB_CODE = #{subCode}
+			</if>
+			<if test="targetCode !=null and targetCode !=''">
+				AND TARGET_CODE=#{targetCode}
+			</if>
+		</where>
+		ORDER BY CREATE_TIME DESC
+	</select>
+
+<!-- 	<delete id="deleteTarStatis">
+		delete from ht_tar_statis_tb
+		where 
+			SUB_CODE = '${subCode}'
+	</delete> -->
+	
+	<update id="deleteTarStatis">
+		UPDATE 
+			ht_tar_statis_tb 
+		SET 
+			OP_TYPE = 'D'
+		WHERE 
+			SUB_CODE = '${subCode}'
+	</update>
+
+	<insert id="addTarStatis" parameterType="com.huatai.web.model.TarStatis">
+		insert into ht_tar_statis_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="tsId != null">
+				TS_ID,
+			</if>
+			<if test="subCode != null">
+				SUB_CODE,
+			</if>
+			<if test="targetCode != null">
+				TARGET_CODE,
+			</if>
+			<if test="opType != null">
+				OP_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME,
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID,
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="tsId != null">
+				#{tsId,jdbcType=BIGINT},
+			</if>
+			<if test="subCode != null">
+				#{subCode,jdbcType=VARCHAR},
+			</if>
+			<if test="targetCode != null">
+				#{targetCode,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				#{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				#{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				#{modifierId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	<select id="findBySubCode" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_tar_statis_tb
+		<where>
+			OP_TYPE != 'D'
+			<if test="subCode !=null and subCode !=''">
+				AND SUB_CODE = #{subCode}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findByIsSubCode" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_tar_statis_tb
+		<where>
+			OP_TYPE = 'D' AND SUB_CODE = #{subCode}
+		</where>
+	</select>
+	<update id="updateByTargetCodeAndAnSubCode" parameterType="com.huatai.web.model.TarStatis">
+		update ht_tar_statis_tb
+		<set>
+			<if test="opType != null">
+				OP_TYPE = #{opType,jdbcType=CHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where SUB_CODE = #{subCode,jdbcType=VARCHAR} AND TARGET_CODE = #{targetCode,jdbcType=VARCHAR}
+	</update>
+</mapper>

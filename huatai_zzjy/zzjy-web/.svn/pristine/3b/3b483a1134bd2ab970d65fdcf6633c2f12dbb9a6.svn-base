@@ -1,0 +1,65 @@
+{
+	"index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"cheXianTouBao.html",
+			"images/homepagePerfor.jpg",
+			"images/IconHomepage.png",
+			"images/homepageBc.jpg",
+			"images/homepageConsult.jpg",
+			"images/homepageMission.jpg",
+			"images/homeInsured.jpg",
+			"confirmation.html"
+		],
+		"refer": [
+			"cheXianTouBao.html",
+			"confirmation.html"
+		]
+	},
+	"cheXianTouBao.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/style.css",
+			"index.html",
+			"js/common.js",
+			"js/jquery-2.1.3.min.js",
+			"js/mui.picker.js",
+			"js/mui.poppicker.js",
+			"css/app.css",
+			"css/mui.poppicker.css",
+			"css/mui.picker.css"
+		],
+		"refer": [
+			"index.html",
+			"confirmation.html"
+		]
+	},
+	"confirmation.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"4-1-1.html",
+			"index.html",
+			"fonts/mui.ttf",
+			"css/style.css",
+			"js/common.js"
+		],
+		"refer": [
+			"4-1-1.html",
+			"index.html"
+		]
+	},
+	"4-1-1.html": {
+		"resources": [
+			"confirmation.html"
+		],
+		"refer": [
+			"confirmation.html"
+		]
+	}
+}

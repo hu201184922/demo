@@ -1,0 +1,16 @@
+/* CSS Document */
+.calendar-title { text-align: center; }
+.calendar-title a {
+	color: #666;
+	padding: 0px 10px;
+}
+.table > thead > tr > th {
+	background: #eee;
+	color: #333;
+}
+.table > tbody > tr > td{ padding:10px 25px; vertical-align:middle;}
+.table > tbody > tr > td p{ color:#999;}
+.badge{}
+
+.border-red{ border-right:2px  solid #e8372f;}
+.border-yellow{ border-right:2px  solid #F9DD21}

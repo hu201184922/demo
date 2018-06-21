@@ -1,0 +1,128 @@
+/* CSS Document */
+.picture li{ position:relative;}
+li input{width: 280px; line-height: 25px;}
+.picture li.active p{ position:absolute; left:0; right:0; top:0; bottom:0; background:#f9f9f9; width:100%; height:100%;background:url(../images/002.png) no-repeat;}
+.calendar-title > select {
+	width: 160px;
+	margin-right: 20px;
+	display: inline-block
+}
+.calendar-title > span { margin-right: 10px; }
+.calendar-body {
+	height: 350px;
+	width: 100%;
+	border: 1px solid #ddd;
+	margin-top: 10px;
+	overflow: hidden;
+}
+.data {
+	width: 100%;
+	height: 285px;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.tooltip-fixed {
+	height: 255px;
+	width: 225px;
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	background: url(../images/tip.png) no-repeat;
+	z-index: 999;
+	display: block;
+	padding: 110px 30px 10px;
+	text-align: center;
+}
+.tooltip-fixed span { padding-left: 10px; cursor: pointer;}
+.tooltip-fixed > a {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	cursor: pointer;
+	color: #999;
+}
+.tooltip-fixed > a:hover, .tooltip-fixed > a:focus { text-decoration: none; }
+/*个人名片*/
+.current-color{color:#00a0e9 !important}
+.Xfile{margin-left: -20px;padding-bottom: 30px;}
+.Xfile li{list-style-type: none;line-height: 50px;height: 50px;margin-left: 0;}
+.Xfile li:nth-child(1){font-weight: bold;font-size: 16px;}
+.Xfile li:last-child textarea {width: 90%;background-color: #ecf0f1;float: right;margin-left: 10%;margin-top: -50px;}
+.pic-title{line-height: 50px;height: 50px;font-size: 16px;font-weight: bold;padding-left: 20px}
+.picture{height: 230px;width: 100%;}
+.picture li{float:left;width: 175px;height: 213px;list-style-type: none;border: solid lightgray 1px;text-align: center;padding-top: 12px;margin-left: 5%;}
+.picture li:first-child{margin-left: 20px;}
+.picture label{font-size: 11.63px;color: #555555;line-height: 38px;height: 38px;font-weight: lighter;float: right;margin-right: 15px;}
+.jor-title{line-height: 50px;height: 50px;font-size: 16px;padding-left: 20px}
+
+/*share-timetree*/
+.share-timetree{}
+.share-timetree li{list-style-type: none;}
+.share-timetree {
+	position: relative;
+	display: block;
+	margin: 40px 10px;
+}
+.share-timetree >li {
+	position: relative;
+	display: block;
+	width: 80%;
+	padding:20px 0 10px 200px;
+}
+.share-timetree >li:before {
+	content: "";
+	position: absolute;
+	left: 145px;
+	top:0;
+	bottom:0;
+	width: 3px;
+	background: #ecf0f1;
+	z-index:1;
+}
+.share-timetree >li:after {
+	content: "";
+	position: absolute;
+	left: 139px;
+	top: 50%;
+	width: 15px;
+	height: 15px;
+	border: solid 2px #fff;
+	border-radius: 50%;
+	margin-top: -5px;
+	z-index: 1;
+	background:#82b0d8;
+}
+.share-timetree li p {
+	color:#666;
+	padding-top:5px;
+	font-size: 13px;
+}
+.share-timetree li em {
+	color:#999;
+	line-height: 40px;
+	height: 40px;
+	font-size: 13px;
+}
+.chbox{margin-left: 80px;width: 100%;margin-top: -10px;}
+.timeTreeTitle{position: absolute;left: 30px;top: 45px}
+.share-timetree textarea{background-color: #ecf0f1}
+.statistical-rules{width: 80%;margin-left: 10%;}
+.statistical-rules span{margin-left: -75px;line-height: 70px;height: 70px;}
+.statistical-rules .rule{margin-top: -45px;}
+.indicators1 li{list-style-type: none;}
+.indicators1>li{float: left;}
+.indicators2 li:nth-child(1) p{color: #41bb16;font-size: 24px;}
+.indicators2 li label{color: #000;font-size: 15.05px;font-weight: lighter;}
+.indicators2 li:nth-child(2) p{color: #307adf;font-size: 24px;margin-top: 50px;}
+.indicators2 li:nth-child(3) p{color: #eb6438;font-size: 24px;margin-top: 50px;}
+.indicators3{margin-left: 160px;margin-top: 80px;}
+.indicators4{margin-top: 70px;margin-left: 40px;}
+.indicators4>li{height: 45px;}
+.indicators5 li{float: left;margin-left: 15px;}
+.medical{border: solid 1px #ceeaee;width: 20px;height: 20px;border-radius: 5px;background: #ceeaee;margin-top: 0px;}
+.accident{border: solid 1px #a1cb3d;width: 20px;height: 20px;border-radius: 5px;background: #a1cb3d;margin-top: 0px;}
+.life{border: solid 1px #44b564;width: 20px;height: 20px;border-radius: 5px;background: #44b564;margin-top: 0px;}
+.support{border: solid 1px #eb6363;width: 20px;height: 20px;border-radius: 5px;background: #eb6363;margin-top: 0px;}
+.child{border: solid 1px #eb6438;width: 20px;height: 20px;border-radius: 5px;background: #eb6438;margin-top: 0px;}
+.panel{position:relative;}
+.btn-edit{position:absolute; top:10px; right:10px;}

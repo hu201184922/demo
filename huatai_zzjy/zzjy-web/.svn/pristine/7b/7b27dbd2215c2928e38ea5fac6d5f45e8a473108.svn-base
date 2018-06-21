@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.OrgTagMapper" >
+  <resultMap id="BaseResultMap" type="com.huatai.web.model.OrgTag" >
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="YEAR" property="year" jdbcType="VARCHAR" />
+    <result column="VALID_BEGIN_DATE" property="validBeginDate" jdbcType="VARCHAR" />
+    <result column="VALID_END_DATE" property="validEndDate" jdbcType="VARCHAR" />
+    <result column="TAG_CODE" property="tagCode" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ORG_CODE, YEAR, VALID_BEGIN_DATE, VALID_END_DATE, TAG_CODE, STATUS, CREATE_TIME, 
+    MODIFY_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.huatai.web.model.OrgTagExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ht_org_tag_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.huatai.web.model.OrgTagExample" >
+    delete from ht_org_tag_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.huatai.web.model.OrgTag" >
+    insert into ht_org_tag_tb (ORG_CODE, YEAR, VALID_BEGIN_DATE, 
+      VALID_END_DATE, TAG_CODE, STATUS, 
+      CREATE_TIME, MODIFY_TIME)
+    values (#{orgCode,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR}, #{validBeginDate,jdbcType=VARCHAR}, 
+      #{validEndDate,jdbcType=VARCHAR}, #{tagCode,jdbcType=CHAR}, #{status,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huatai.web.model.OrgTag" >
+    insert into ht_org_tag_tb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orgCode != null and orgCode !=''" >
+        ORG_CODE,
+      </if>
+      <if test="year != null and orgCode !=''" >
+        YEAR,
+      </if>
+      <if test="validBeginDate != null and validBeginDate !=''" >
+        VALID_BEGIN_DATE,
+      </if>
+      <if test="validEndDate != null and validEndDate !=''"  >
+        VALID_END_DATE,
+      </if>
+      <if test="tagCode != null and tagCode !=''" >
+        TAG_CODE,
+      </if>
+      <if test="status != null and orgCode !=''" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+       </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="validBeginDate != null" >
+        #{validBeginDate,jdbcType=VARCHAR},
+      </if>
+      <if test="validEndDate != null" >
+        #{validEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="tagCode != null" >
+        #{tagCode,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>  
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.huatai.web.model.OrgTagExample" resultType="java.lang.Integer" >
+    select count(*) from ht_org_tag_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ht_org_tag_tb
+    <set >
+      <if test="record.orgCode != null" >
+        ORG_CODE = #{record.orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.year != null" >
+        YEAR = #{record.year,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validBeginDate != null" >
+        VALID_BEGIN_DATE = #{record.validBeginDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validEndDate != null" >
+        VALID_END_DATE = #{record.validEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tagCode != null" >
+        TAG_CODE = #{record.tagCode,jdbcType=CHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ht_org_tag_tb
+    set ORG_CODE = #{record.orgCode,jdbcType=VARCHAR},
+      YEAR = #{record.year,jdbcType=VARCHAR},
+      VALID_BEGIN_DATE = #{record.validBeginDate,jdbcType=VARCHAR},
+      VALID_END_DATE = #{record.validEndDate,jdbcType=VARCHAR},
+      TAG_CODE = #{record.tagCode,jdbcType=CHAR},
+      STATUS = #{record.status,jdbcType=CHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ht_org_tag_tb
+  </select>
+  <select id="findOrgTag" resultType="java.lang.String" parameterType="java.lang.String">
+    select YEAR
+    from ht_org_tag_tb where ORG_CODE = #{record.orgCode,jdbcType=VARCHAR} AND STATUS='1'
+  </select>
+  
+  <update id="updateByPrimaryKeySelective">
+    update ht_org_tag_tb
+    <set >
+      <if test="record.orgCode != null" >
+        ORG_CODE = #{record.orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.year != null" >
+        YEAR = #{record.year,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validBeginDate != null" >
+        VALID_BEGIN_DATE = #{record.validBeginDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validEndDate != null" >
+        VALID_END_DATE = #{record.validEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tagCode != null" >
+        TAG_CODE = #{record.tagCode,jdbcType=CHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  <update id="updateStauts">
+    update ht_org_tag_tb
+    <set >
+        ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+        YEAR = #{year,jdbcType=VARCHAR},
+        VALID_BEGIN_DATE = #{validBeginDate,jdbcType=VARCHAR},
+        VALID_END_DATE = #{validEndDate,jdbcType=VARCHAR},
+        TAG_CODE = #{tagCode,jdbcType=CHAR},
+        STATUS = #{status,jdbcType=CHAR},
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+    </set>
+    where ORG_CODE = #{orgCode,jdbcType=INTEGER} AND YEAR = #{year,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="update">
+    update ht_org_tag_tb
+    <set >
+        STATUS = #{status,jdbcType=CHAR},
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+    </set>
+    where ORG_CODE = #{orgCode,jdbcType=INTEGER} AND STATUS='1'
+  </update>
+  <insert id="insertOrgTag" parameterType="com.huatai.web.model.OrgTag" >
+    insert all
+	  <foreach item="item" index="index" collection="list">
+	    into ht_org_tag_tb (ORG_CODE, YEAR, VALID_BEGIN_DATE, 
+	      VALID_END_DATE, TAG_CODE, STATUS, 
+	      CREATE_TIME, MODIFY_TIME)
+	    values (#{item.orgCode,jdbcType=VARCHAR}, #{item.year,jdbcType=VARCHAR}, #{item.validBeginDate,jdbcType=VARCHAR}, 
+	      #{item.validEndDate,jdbcType=VARCHAR}, #{item.tagCode,jdbcType=CHAR}, #{item.status,jdbcType=CHAR}, 
+	      #{item.createTime,jdbcType=TIMESTAMP}, #{item.modifyTime,jdbcType=TIMESTAMP})
+      </foreach>
+    Select 1 FROM dual
+  </insert>
+  <update id="updateByOrgCodeAndYear" parameterType="com.huatai.web.model.OrgTag">
+    update ht_org_tag_tb
+    <set >
+        VALID_BEGIN_DATE = #{validBeginDate,jdbcType=VARCHAR},
+        VALID_END_DATE = #{validEndDate,jdbcType=VARCHAR},
+        TAG_CODE = #{tagCode,jdbcType=CHAR},
+        STATUS = #{status,jdbcType=CHAR},
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+    </set>
+     where ORG_CODE = #{orgCode,jdbcType=INTEGER} AND YEAR = #{year,jdbcType=VARCHAR}
+  </update>
+</mapper>

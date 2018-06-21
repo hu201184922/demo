@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fairyland.jdp.framework.security.mapper.OrganizationMapper">
+	<select id="getOrganizationByPid" resultType="com.fairyland.jdp.framework.security.domain.Organization">
+		SELECT T.ORGID,T.ORGNAME,T.LEVELS,T.PORGID,T.ORGCODE FROM JDP_ORGANIZATION T WHERE
+		<if test="pid!=null">
+		 T.PORGID = #{pid,jdbcType=BIGINT}
+		 </if>
+		 <if test="pid==null">
+		 T.PORGID IS NULL
+		 </if>
+	</select>	
+	<select id="getAllOrganization" resultType="com.fairyland.jdp.framework.security.domain.Organization">
+		SELECT T.ORGID,T.ORGNAME,T.LEVELS,T.PORGID,T.ORGCODE FROM JDP_ORGANIZATION T 
+		order by t.orgid
+	</select>			
+</mapper>

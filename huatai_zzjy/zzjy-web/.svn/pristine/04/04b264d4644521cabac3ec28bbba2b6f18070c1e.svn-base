@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.BillTargetMapper" >
+  <resultMap id="BaseResultMap" type="com.huatai.web.model.BillTarget" >
+    <id column="BT_ID" property="btId" jdbcType="INTEGER" />
+    <result column="BILL_ID" property="billId" jdbcType="INTEGER" />
+    <result column="TARGET_CODE" property="targetCode" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="FORMULA_TYPE" property="formulaType" jdbcType="CHAR" />
+    <result column="MIN_VAL" property="minVal" jdbcType="REAL" />
+    <result column="MAX_VAL" property="maxVal" jdbcType="REAL" />
+    <result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+    <result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BT_ID, BILL_ID, TARGET_CODE, SORT, FORMULA_TYPE, MIN_VAL, MAX_VAL, OP_TYPE, CREATE_TIME, 
+    MODIFY_TIME, CREATOR_ID, MODIFIER_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.huatai.web.model.BillTargetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ht_bill_target_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ht_bill_target_tb
+    where BT_ID = #{btId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ht_bill_target_tb
+    where BT_ID = #{btId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.huatai.web.model.BillTargetExample" >
+    delete from ht_bill_target_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.huatai.web.model.BillTarget" >
+    insert into ht_bill_target_tb (BT_ID, BILL_ID, TARGET_CODE, 
+      SORT, FORMULA_TYPE, MIN_VAL, 
+      MAX_VAL, OP_TYPE, CREATE_TIME, 
+      MODIFY_TIME, CREATOR_ID, MODIFIER_ID
+      )
+    values (#{btId,jdbcType=INTEGER}, #{billId,jdbcType=INTEGER}, #{targetCode,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{formulaType,jdbcType=CHAR}, #{minVal,jdbcType=REAL}, 
+      #{maxVal,jdbcType=REAL}, #{opType,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=VARCHAR}, #{modifierId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huatai.web.model.BillTarget" >
+    insert into ht_bill_target_tb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="btId != null" >
+        BT_ID,
+      </if>
+      <if test="billId != null" >
+        BILL_ID,
+      </if>
+      <if test="targetCode != null" >
+        TARGET_CODE,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="formulaType != null" >
+        FORMULA_TYPE,
+      </if>
+      <if test="minVal != null" >
+        MIN_VAL,
+      </if>
+      <if test="maxVal != null" >
+        MAX_VAL,
+      </if>
+      <if test="opType != null" >
+        OP_TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID,
+      </if>
+      <if test="modifierId != null" >
+        MODIFIER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="btId != null" >
+        #{btId,jdbcType=INTEGER},
+      </if>
+      <if test="billId != null" >
+        #{billId,jdbcType=INTEGER},
+      </if>
+      <if test="targetCode != null" >
+        #{targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="formulaType != null" >
+        #{formulaType,jdbcType=CHAR},
+      </if>
+      <if test="minVal != null" >
+        #{minVal,jdbcType=REAL},
+      </if>
+      <if test="maxVal != null" >
+        #{maxVal,jdbcType=REAL},
+      </if>
+      <if test="opType != null" >
+        #{opType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.huatai.web.model.BillTargetExample" resultType="java.lang.Integer" >
+    select count(*) from ht_bill_target_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ht_bill_target_tb
+    <set >
+      <if test="record.btId != null" >
+        BT_ID = #{record.btId,jdbcType=INTEGER},
+      </if>
+      <if test="record.billId != null" >
+        BILL_ID = #{record.billId,jdbcType=INTEGER},
+      </if>
+      <if test="record.targetCode != null" >
+        TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        SORT = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.formulaType != null" >
+        FORMULA_TYPE = #{record.formulaType,jdbcType=CHAR},
+      </if>
+      <if test="record.minVal != null" >
+        MIN_VAL = #{record.minVal,jdbcType=REAL},
+      </if>
+      <if test="record.maxVal != null" >
+        MAX_VAL = #{record.maxVal,jdbcType=REAL},
+      </if>
+      <if test="record.opType != null" >
+        OP_TYPE = #{record.opType,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creatorId != null" >
+        CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifierId != null" >
+        MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ht_bill_target_tb
+    set BT_ID = #{record.btId,jdbcType=INTEGER},
+      BILL_ID = #{record.billId,jdbcType=INTEGER},
+      TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+      SORT = #{record.sort,jdbcType=INTEGER},
+      FORMULA_TYPE = #{record.formulaType,jdbcType=CHAR},
+      MIN_VAL = #{record.minVal,jdbcType=REAL},
+      MAX_VAL = #{record.maxVal,jdbcType=REAL},
+      OP_TYPE = #{record.opType,jdbcType=CHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+      MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.BillTarget" >
+    update ht_bill_target_tb
+    <set >
+      <if test="billId != null" >
+        BILL_ID = #{billId,jdbcType=INTEGER},
+      </if>
+      <if test="targetCode != null" >
+        TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="formulaType != null" >
+        FORMULA_TYPE = #{formulaType,jdbcType=CHAR},
+      </if>
+      <if test="minVal != null" >
+        MIN_VAL = #{minVal,jdbcType=REAL},
+      </if>
+      <if test="maxVal != null" >
+        MAX_VAL = #{maxVal,jdbcType=REAL},
+      </if>
+      <if test="opType != null" >
+        OP_TYPE = #{opType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null" >
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BT_ID = #{btId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huatai.web.model.BillTarget" >
+    update ht_bill_target_tb
+    set BILL_ID = #{billId,jdbcType=INTEGER},
+      TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER},
+      FORMULA_TYPE = #{formulaType,jdbcType=CHAR},
+      MIN_VAL = #{minVal,jdbcType=REAL},
+      MAX_VAL = #{maxVal,jdbcType=REAL},
+      OP_TYPE = #{opType,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR}
+    where BT_ID = #{btId,jdbcType=INTEGER}
+  </update>
+</mapper>

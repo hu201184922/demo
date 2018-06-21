@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.FixedListMapper">
+	<resultMap id="BaseResultMap" type="com.huatai.web.model.FixedList">
+		<result column="FL_CODE" property="flCode" jdbcType="VARCHAR" />
+		<result column="FL_NAME" property="flName" jdbcType="VARCHAR" />
+		<result column="FL_DEPT_CODE" property="flDeptCode" jdbcType="VARCHAR" />
+		<result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+		<result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		FL_CODE, FL_NAME, FL_DEPT_CODE, OP_TYPE, CREATE_TIME,
+		MODIFY_TIME, CREATOR_ID,
+		MODIFIER_ID
+	</sql>
+	<sql id="fBase_Column_List">
+		f.FL_CODE, f.FL_NAME, f.FL_DEPT_CODE, f.OP_TYPE,
+		f.CREATE_TIME, f.MODIFY_TIME,
+		f.CREATOR_ID, f.MODIFIER_ID
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.huatai.web.model.FixedListExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ht_fixed_list_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<delete id="deleteByExample" parameterType="com.huatai.web.model.FixedListExample">
+		delete from ht_fixed_list_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.huatai.web.model.FixedList">
+		insert into ht_fixed_list_tb
+		(FL_CODE, FL_NAME, FL_DEPT_CODE,
+		OP_TYPE, CREATE_TIME, MODIFY_TIME,
+		CREATOR_ID, MODIFIER_ID)
+		values (#{flCode,jdbcType=VARCHAR},
+		#{flName,jdbcType=VARCHAR},
+		#{flDeptCode,jdbcType=VARCHAR},
+		#{opType,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{modifyTime,jdbcType=TIMESTAMP},
+		#{creatorId,jdbcType=VARCHAR},
+		#{modifierId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huatai.web.model.FixedList">
+		insert into ht_fixed_list_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="flCode != null">
+				FL_CODE,
+			</if>
+			<if test="flName != null">
+				FL_NAME,
+			</if>
+			<if test="flDeptCode != null">
+				FL_DEPT_CODE,
+			</if>
+			<if test="opType != null">
+				OP_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME,
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID,
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="flCode != null">
+				#{flCode,jdbcType=VARCHAR},
+			</if>
+			<if test="flName != null">
+				#{flName,jdbcType=VARCHAR},
+			</if>
+			<if test="flDeptCode != null">
+				#{flDeptCode,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				#{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				#{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				#{modifierId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.huatai.web.model.FixedListExample"
+		resultType="java.lang.Integer">
+		select count(*) from ht_fixed_list_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update ht_fixed_list_tb
+		<set>
+			<if test="record.flCode != null">
+				FL_CODE = #{record.flCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.flName != null">
+				FL_NAME = #{record.flName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.flDeptCode != null">
+				FL_DEPT_CODE = #{record.flDeptCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.opType != null">
+				OP_TYPE = #{record.opType,jdbcType=CHAR},
+			</if>
+			<if test="record.createTime != null">
+				CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.modifyTime != null">
+				MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.creatorId != null">
+				CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.modifierId != null">
+				MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update ht_fixed_list_tb
+		set FL_CODE =
+		#{record.flCode,jdbcType=VARCHAR},
+		FL_NAME =
+		#{record.flName,jdbcType=VARCHAR},
+		FL_DEPT_CODE =
+		#{record.flDeptCode,jdbcType=VARCHAR},
+		OP_TYPE =
+		#{record.opType,jdbcType=CHAR},
+		CREATE_TIME =
+		#{record.createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME =
+		#{record.modifyTime,jdbcType=TIMESTAMP},
+		CREATOR_ID =
+		#{record.creatorId,jdbcType=VARCHAR},
+		MODIFIER_ID =
+		#{record.modifierId,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+
+	<select id="findByPager" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_fixed_list_tb
+		<where>
+			OP_TYPE!='D'
+			<if test="flCode != null">
+				AND FL_CODE = #{flCode,jdbcType=VARCHAR}
+			</if>
+			<if test="flName != null">
+				AND FL_NAME = #{flName,jdbcType=VARCHAR}
+			</if>
+			<if test="flDeptCode != null">
+				AND FL_DEPT_CODE = #{flDeptCode,jdbcType=VARCHAR}
+			</if>
+			<if test="opType != null">
+				AND OP_TYPE = #{opType,jdbcType=CHAR}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyTime != null">
+				AND MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="creatorId != null">
+				AND CREATOR_ID = #{creatorId,jdbcType=VARCHAR}
+			</if>
+			<if test="modifierId != null">
+				AND MODIFIER_ID = #{modifierId,jdbcType=VARCHAR}
+			</if>
+		</where>
+		ORDER BY CREATE_TIME DESC
+	</select>
+
+	<select id="findAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_fixed_list_tb
+		<where>
+			OP_TYPE!='D'
+		</where>
+		ORDER BY CREATE_TIME DESC
+	</select>
+
+	<update id="updateByPrimaryKey">
+		update ht_fixed_list_tb
+		<set>
+			<if test="flCode != null">
+				FL_CODE = #{flCode,jdbcType=VARCHAR},
+			</if>
+			<if test="flName != null">
+				FL_NAME = #{flName,jdbcType=VARCHAR},
+			</if>
+			<if test="flDeptCode != null">
+				FL_DEPT_CODE = #{flDeptCode,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				OP_TYPE = #{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where FL_CODE = #{flCode,jdbcType=VARCHAR}
+	</update>
+
+	<select id="findByFlDeptCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		SELECT
+		<include refid="Base_Column_List" />
+		from ht_fixed_list_tb f
+		where OP_TYPE!='D' AND
+		f.FL_DEPT_CODE=${flDeptCode}
+	</select>
+
+	<select id="findDeptCodeByGroup" resultMap="BaseResultMap">
+		SELECT FL_DEPT_CODE
+		FROM ht_fixed_list_tb
+		WHERE
+		OP_TYPE!='D'
+		GROUP BY FL_DEPT_CODE
+	</select>
+
+	<!-- 按角色查询固定清单部门 -->
+	<select id="findFixedListDeptByRole" resultMap="BaseResultMap">
+		select
+		fixed_list.FL_DEPT_CODE
+		FROM
+		ht_fixed_list_tb fixed_list
+		LEFT JOIN
+		ht_role_fixed_list_tb
+		role_fixed_list
+		ON
+		fixed_list.FL_CODE=role_fixed_list.FL_CODE
+		WHERE
+		role_fixed_list.ROLE_CODE=#{role}
+		AND
+		fixed_list.OP_TYPE!='D'
+		AND
+		role_fixed_list.OP_TYPE!='D'
+		GROUP BY fixed_list.FL_DEPT_CODE
+	</select>
+
+	<!-- 按角色查询固定清单部门 -->
+	<select id="findFixedListByRoleAndDept" resultMap="BaseResultMap">
+		select
+		fixed_list.FL_CODE,
+		fixed_list.FL_NAME,
+		fixed_list.FL_DEPT_CODE
+		FROM
+		ht_fixed_list_tb fixed_list
+		LEFT JOIN
+		ht_role_fixed_list_tb
+		role_fixed_list
+		ON
+		fixed_list.FL_CODE=role_fixed_list.FL_CODE
+		WHERE
+		role_fixed_list.ROLE_CODE=#{role}
+		AND fixed_list.FL_DEPT_CODE=#{dept}
+		AND
+		fixed_list.OP_TYPE!='D'
+		AND
+		role_fixed_list.OP_TYPE!='D'
+		ORDER BY
+		fixed_list.FL_CODE
+	</select>
+
+	<!-- 按FlCode查询固定清单 -->
+	<select id="findFixedByFlCode" parameterType="String" resultMap="BaseResultMap">
+		SELECT
+		*
+		FROM
+		ht_fixed_list_tb
+		WHERE
+		FL_CODE = #{flCode}
+		AND OP_TYPE!='D'
+	</select>
+
+</mapper>

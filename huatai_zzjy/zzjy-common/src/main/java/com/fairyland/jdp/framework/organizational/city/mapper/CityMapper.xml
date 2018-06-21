@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fairyland.jdp.framework.organizational.city.mapper.CityMapper">
+
+	<select id="getCitys" parameterType="map" resultType="com.fairyland.jdp.framework.organizational.city.domain.City">
+		SELECT 
+			LENGTH(M.MANAGECOM)/2 AS LV,
+			M.MANAGECOM AS CITYCODE,
+			M.CITYDISCR AS CITYNAME,
+			REGEXP_REPLACE(M.CITYDISCR,'(人寿保险股份公司|人寿保险股份有限公司|分公司|中心支公司)','') AS SHORTNAME
+			FROM COMP_MANAGECOM M
+			WHERE 1=1
+			<if test="lv!=null and lv!=0">
+		  	AND LENGTH(M.MANAGECOM)/2 = #{lv}
+		 	</if>
+		 	<if test="orgCode!=null and orgCode!=''">
+		 	AND  #{orgCode}||',' LIKE  '%'|| M.MANAGECOM||',%' 
+		 	</if>
+		 	ORDER BY 1,2
+	</select>
+	
+	<select id="getCitysByRoleCode" parameterType="map" resultType="com.fairyland.jdp.framework.organizational.city.domain.City">
+		<choose>
+			<when test="roleCode=='CAO'">
+			SELECT 
+		      LENGTH(M.MANAGECOM)/2 AS LV,
+		      M.MANAGECOM AS CITYCODE,
+		      M.CITYDISCR AS CITYNAME,
+		      REGEXP_REPLACE(M.CITYDISCR,'(人寿保险股份公司|人寿保险股份有限公司|分公司|中心支公司)','') AS SHORTNAME,
+		      '1' AS ENABLE
+		      FROM COMP_MANAGECOM M 
+		      WHERE LENGTH(M.MANAGECOM)=2
+			</when>
+			<when test="roleCode=='GM'">
+			<![CDATA[
+			SELECT 
+		      LENGTH(M.MANAGECOM)/2 AS LV,
+		      M.MANAGECOM AS CITYCODE,
+		      M.CITYDISCR AS CITYNAME,
+		      REGEXP_REPLACE(M.CITYDISCR,'(人寿保险股份公司|人寿保险股份有限公司|分公司|中心支公司)','') AS SHORTNAME,
+		      NVL2(AH.CITY,'0','1') AS ENABLE
+		      FROM COMP_MANAGECOM M
+		      LEFT JOIN (
+			      SELECT DISTINCT TRIM(REGEXP_SUBSTR(U.CITY, '[^,]+', 1, LEVEL)) AS CITY
+					FROM JDP_USER U
+					JOIN JDP_MT_USER_ROLE UR ON UR.USER_ID= U.CID
+					JOIN JDP_ROLE R ON UR.ROLE_ID=R.CID and R.CODE_ = 'GM'
+					CONNECT BY LEVEL <= REGEXP_COUNT(U.CITY, ',')+1
+		      ) AH ON AH.CITY = M.MANAGECOM 
+		      WHERE 1=1
+		      AND LENGTH(M.MANAGECOM)=4
+		      ]]>
+			</when>
+			<when test="roleCode=='AH'">
+			SELECT 
+		      LENGTH(M.MANAGECOM)/2 AS LV,
+		      M.MANAGECOM AS CITYCODE,
+		      M.CITYDISCR AS CITYNAME,
+		      REGEXP_REPLACE(M.CITYDISCR,'(人寿保险股份公司|人寿保险股份有限公司|分公司|中心支公司)','') AS SHORTNAME,
+		      NVL2(AH.CITY,'0','1') AS ENABLE
+		      FROM COMP_MANAGECOM M
+		      LEFT JOIN (
+		      SELECT U.CITY AS CITY FROM JDP_USER U 
+		      JOIN JDP_MT_USER_ROLE UR ON UR.USER_ID= U.CID
+		      JOIN JDP_ROLE R ON UR.ROLE_ID=R.CID
+		      WHERE R.CODE_ = 'AH'
+		      ) AH ON AH.CITY = M.MANAGECOM
+		      WHERE 1=1
+		      AND LENGTH(M.MANAGECOM)=4
+			</when>
+			<otherwise>
+			<![CDATA[
+			SELECT 
+		      LENGTH(M.MANAGECOM)/2 AS LV,
+		      M.MANAGECOM AS CITYCODE,
+		      M.CITYDISCR AS CITYNAME,
+		      REGEXP_REPLACE(M.CITYDISCR,'(人寿保险股份公司|人寿保险股份有限公司|分公司|中心支公司)','') AS SHORTNAME,
+		      NVL2(AH.CITY,'0','1') AS ENABLE
+		      FROM COMP_MANAGECOM M
+		      LEFT JOIN (
+			      SELECT DISTINCT TRIM(REGEXP_SUBSTR(U.CITY, '[^,]+', 1, LEVEL)) AS CITY
+					FROM JDP_USER U
+					JOIN JDP_MT_USER_ROLE UR ON UR.USER_ID= U.CID
+					JOIN JDP_ROLE R ON UR.ROLE_ID=R.CID and R.CODE_ = 'GM'
+					CONNECT BY LEVEL <= REGEXP_COUNT(U.CITY, ',')+1
+		      ) AH ON AH.CITY = M.MANAGECOM 
+		      WHERE 1=1
+		      AND LENGTH(M.MANAGECOM)=4
+		      ]]>
+			</otherwise>
+		</choose>
+		ORDER BY 1,2
+	</select>
+    
+	<select id="getCityNameByCode" resultType="String">
+		select u.managecomdiscr from COMP_MANAGECOM u where u.managecom = #{orgCode}
+	</select>
+</mapper>

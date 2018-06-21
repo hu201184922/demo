@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.PlateTwoTarGroMapper">
+	<resultMap id="BaseResultMap" type="com.huatai.web.model.PlateTwoTarGro">
+		<id column="PTTG_ID" property="pttgId" jdbcType="INTEGER" />
+		<result column="PLATE_ID" property="plateId" jdbcType="INTEGER" />
+		<result column="TWO_GROUP_NAME" property="twoGroupName"
+			jdbcType="VARCHAR" />
+		<result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+		<result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		PTTG_ID, PLATE_ID, TWO_GROUP_NAME, OP_TYPE, CREATE_TIME,
+		MODIFY_TIME,
+		CREATOR_ID,
+		MODIFIER_ID
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.huatai.web.model.PlateTwoTarGroExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ht_plate_two_tar_gro_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from ht_plate_two_tar_gro_tb
+		where PTTG_ID = #{pttgId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		ht_plate_two_tar_gro_tb
+		where PTTG_ID = #{pttgId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.huatai.web.model.PlateTwoTarGroExample">
+		delete from ht_plate_two_tar_gro_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.huatai.web.model.PlateTwoTarGro">
+		insert into
+		ht_plate_two_tar_gro_tb (PTTG_ID, PLATE_ID,
+		TWO_GROUP_NAME,
+		OP_TYPE,
+		CREATE_TIME, MODIFY_TIME,
+		CREATOR_ID, MODIFIER_ID)
+		values
+		(#{pttgId,jdbcType=INTEGER}, #{plateId,jdbcType=INTEGER},
+		#{twoGroupName,jdbcType=VARCHAR},
+		#{opType,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP},
+		#{creatorId,jdbcType=VARCHAR}, #{modifierId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huatai.web.model.PlateTwoTarGro"
+		useGeneratedKeys="true" keyProperty="pttgId">
+		insert into ht_plate_two_tar_gro_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pttgId != null">
+				PTTG_ID,
+			</if>
+			<if test="plateId != null">
+				PLATE_ID,
+			</if>
+			<if test="twoGroupName != null">
+				TWO_GROUP_NAME,
+			</if>
+			<if test="opType != null">
+				OP_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME,
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID,
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="pttgId != null">
+				#{pttgId,jdbcType=INTEGER},
+			</if>
+			<if test="plateId != null">
+				#{plateId,jdbcType=INTEGER},
+			</if>
+			<if test="twoGroupName != null">
+				#{twoGroupName,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				#{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				#{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				#{modifierId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.huatai.web.model.PlateTwoTarGroExample"
+		resultType="java.lang.Integer">
+		select count(*) from ht_plate_two_tar_gro_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update ht_plate_two_tar_gro_tb
+		<set>
+			<if test="record.pttgId != null">
+				PTTG_ID = #{record.pttgId,jdbcType=INTEGER},
+			</if>
+			<if test="record.plateId != null">
+				PLATE_ID = #{record.plateId,jdbcType=INTEGER},
+			</if>
+			<if test="record.twoGroupName != null">
+				TWO_GROUP_NAME = #{record.twoGroupName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.opType != null">
+				OP_TYPE = #{record.opType,jdbcType=CHAR},
+			</if>
+			<if test="record.createTime != null">
+				CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.modifyTime != null">
+				MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.creatorId != null">
+				CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.modifierId != null">
+				MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update ht_plate_two_tar_gro_tb
+		set PTTG_ID =
+		#{record.pttgId,jdbcType=INTEGER},
+		PLATE_ID =
+		#{record.plateId,jdbcType=INTEGER},
+		TWO_GROUP_NAME =
+		#{record.twoGroupName,jdbcType=VARCHAR},
+		OP_TYPE =
+		#{record.opType,jdbcType=CHAR},
+		CREATE_TIME =
+		#{record.createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME =
+		#{record.modifyTime,jdbcType=TIMESTAMP},
+		CREATOR_ID =
+		#{record.creatorId,jdbcType=VARCHAR},
+		MODIFIER_ID =
+		#{record.modifierId,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.PlateTwoTarGro">
+		update ht_plate_two_tar_gro_tb
+		<set>
+			<if test="plateId != null">
+				PLATE_ID = #{plateId,jdbcType=INTEGER},
+			</if>
+			<if test="twoGroupName != null">
+				TWO_GROUP_NAME = #{twoGroupName,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				OP_TYPE = #{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where PTTG_ID = #{pttgId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huatai.web.model.PlateTwoTarGro">
+		update
+		ht_plate_two_tar_gro_tb
+		set PLATE_ID = #{plateId,jdbcType=INTEGER},
+		TWO_GROUP_NAME = #{twoGroupName,jdbcType=VARCHAR},
+		OP_TYPE =
+		#{opType,jdbcType=CHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME =
+		#{modifyTime,jdbcType=TIMESTAMP},
+		CREATOR_ID =
+		#{creatorId,jdbcType=VARCHAR},
+		MODIFIER_ID =
+		#{modifierId,jdbcType=VARCHAR}
+		where PTTG_ID =
+		#{pttgId,jdbcType=INTEGER}
+	</update>
+
+	<!-- 查询二级指标分组 -->
+	<select id="findTwoTargetGroupByPage" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_plate_two_tar_gro_tb
+		<where>
+			PLATE_ID=#{blockId}
+			AND OP_TYPE!='D'
+		</where>
+	</select>
+	
+</mapper>

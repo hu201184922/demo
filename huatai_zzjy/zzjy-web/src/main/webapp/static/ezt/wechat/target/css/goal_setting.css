@@ -1,0 +1,37 @@
+.goal-setting{height:45px;line-height:28px;padding:10px 15px 0;font-size:17px;background:#fff;margin-top:20px;}
+.goal-setting .edit{border:1px solid #0e59a8;font-size:15px; border-radius:5px;padding:2px 5px;line-height:20px;margin-top:0px;color:#0e59a8;}
+.goal-setting-table{height:auto;width:100%;clear:both;}
+.goal-setting-table ul{height:auto;width:100%;margin-bottom:20px;float:left;backgroud:#fff;}
+.goal-setting-table ul li{width:50%;line-height:28px;height:48px;padding:10px 5px;border-right:1px solid #ddd;border-bottom:1px solid #ddd;float:left;backgroud:#fff !important;font-size:15px;}
+.br0{border-right:0 !important;}
+.goal-setting-table ul .head{background:#448aca; text-align:center;color:#fff;}
+
+/*goal_setting_month*/
+.goal-setting-table-month{height:auto;width:100%;clear:both;}
+.goal-setting-table-month ul{height:auto;width:100%;float:left;background:#fff;}
+.goal-setting-table-month ul li{line-height:28px;height:48px;padding:10px 5px;border-right:1px solid #ddd;border-bottom:1px solid #ddd;float:left;backgroud:#fff !important;font-size:15px;}
+.br0{border-right:0 !important;}
+.goal-setting-table-month ul .head{background:#448aca; text-align:center;color:#fff;}
+.goal-setting-table-month ul .head-color{background:#f2f7fb; text-align:center;color:#333;}
+.wt40{width:40% !important; text-align:center}
+.wt20{width:20% !important; text-align:center}
+.wt33{width:33.33% !important; text-align:center}
+.wt60{width:60% !important; text-align:center}
+.wt25{width:25% !important; text-align:center}
+.wt75{width:75% !important; text-align:center}
+.wt100{width:100% !important; text-align:center}
+.search-btn{background:#f9f9f9;text-align:center;clear:both;font-size:17px;line-height:42px; display:block;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
+.goal-setting-table-month ul li img,.goal-setting-table ul li img{width:24px;}
+
+
+/* calendar.html 行事历 */
+/* calendarHeader */
+.calendarHeader{position:relative;background-color:#0e59a8;padding:6px 0}
+.calendarHeader .mui-segmented-control{width:60%;margin:0 auto;border-color:#fff}
+.calendarHeader .mui-segmented-control .mui-control-item{line-height:30px;color:#fff;border-color:#fff}
+.calendarHeader .mui-segmented-control .mui-control-item.mui-active{color:#007aff;background-color:#fff}
+.calendarHeader .calendarMonth{position:absolute;left:0;top:0;height:100%;padding:0 15px;line-height:44px;font-size:18px;color:#fff}
+.calendarHeader .btnNewPlan{position:absolute;right:0px;top:7px;border:0;}
+
+.bs a:after {color: #009dd9;}
+.bbs{border-left:4px solid #009dd9;}

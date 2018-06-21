@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.RoleTargetMapper" >
+  <resultMap id="BaseResultMap" type="com.huatai.web.model.RoleTarget" >
+    <id column="RT_ID" property="rtId" jdbcType="INTEGER" />
+    <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+    <result column="TARGET_CODE" property="targetCode" jdbcType="VARCHAR" />
+    <result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+    <result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap  id="RoleTargerResultMap" type="com.huatai.web.model.RoleTarget" autoMapping="true">
+    <id column="RT_ID" property="rtId" jdbcType="INTEGER" />
+    <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+    <result column="TARGET_CODE" property="targetCode" jdbcType="VARCHAR" />
+    <result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+    <result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap  id="xxx" type="com.huatai.web.model.RoleTarget" autoMapping="true">
+    <id column="RT_ID" property="rtId" jdbcType="INTEGER" />
+    <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+    <result column="TARGET_CODE" property="targetCode" jdbcType="VARCHAR" />
+    <result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+    <result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+   
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    RT_ID, ROLE_CODE, TARGET_CODE, OP_TYPE, CREATE_TIME, MODIFY_TIME, CREATOR_ID, MODIFIER_ID
+  </sql>
+  
+  <sql id="RoleOrTarget_Column_List" >
+    	rt.RT_ID, rt.ROLE_CODE,rt.TARGET_CODE, rt.OP_TYPE, rt.CREATE_TIME, rt.MODIFY_TIME, rt.CREATOR_ID, rt.MODIFIER_ID,
+		t.TARGET_NAME,t.TARGET_TYPE,t.PARENT_CODE,t.IS_HOME_CORE_TARGET,t.IS_MANAGE_TARGET,t.TAR_DEF_SPEC,t.DEPT_CODE,
+		t.CHANNEL,t.CAL_FORMULA,t.CAL_RATE
+  </sql>
+  
+  <select id="findRoleTargetByPage" resultMap="RoleTargerResultMap" parameterType="com.huatai.web.model.RoleTargetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="RoleOrTarget_Column_List" />
+  	 from ht_role_target_tb rt 
+		left join ht_role_tb r on r.ROLE_CODE= rt.ROLE_CODE AND r.OP_TYPE!='D' AND rt.OP_TYPE!='D'
+		left join ht_target_tb t on t.TARGET_CODE=rt.TARGET_CODE AND t.OP_TYPE!='D'
+  </select>
+  
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.huatai.web.model.RoleTargetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ht_role_target_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ht_role_target_tb
+    where RT_ID = #{rtId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ht_role_target_tb
+    where ROLE_CODE = #{roleCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.huatai.web.model.RoleTargetExample" >
+    delete from ht_role_target_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.huatai.web.model.RoleTarget" >
+    insert into ht_role_target_tb (RT_ID, ROLE_CODE, TARGET_CODE, 
+      OP_TYPE, CREATE_TIME, MODIFY_TIME, 
+      CREATOR_ID, MODIFIER_ID)
+    values (#{rtId,jdbcType=INTEGER}, #{roleCode,jdbcType=VARCHAR}, #{targetCode,jdbcType=VARCHAR}, 
+      #{opType,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{creatorId,jdbcType=VARCHAR}, #{modifierId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huatai.web.model.RoleTarget" >
+    insert into ht_role_target_tb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rtId != null" >
+        RT_ID,
+      </if>
+      <if test="roleCode != null" >
+        ROLE_CODE,
+      </if>
+      <if test="targetCode != null" >
+        TARGET_CODE,
+      </if>
+      <if test="opType != null" >
+        OP_TYPE,
+      </if>     
+        CREATE_TIME,
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID,
+      </if>
+      <if test="modifierId != null" >
+        MODIFIER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rtId != null" >
+        #{rtId,jdbcType=INTEGER},
+      </if>
+      <if test="roleCode != null" >
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="targetCode != null" >
+        #{targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null" >
+        #{opType,jdbcType=CHAR},
+      </if>
+    	NOW(),
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.huatai.web.model.RoleTargetExample" resultType="java.lang.Integer" >
+    select count(*) from ht_role_target_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ht_role_target_tb
+    <set >
+      <if test="record.rtId != null" >
+        RT_ID = #{record.rtId,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleCode != null" >
+        ROLE_CODE = #{record.roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetCode != null" >
+        TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opType != null" >
+        OP_TYPE = #{record.opType,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creatorId != null" >
+        CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifierId != null" >
+        MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ht_role_target_tb
+    set RT_ID = #{record.rtId,jdbcType=INTEGER},
+      ROLE_CODE = #{record.roleCode,jdbcType=VARCHAR},
+      TARGET_CODE = #{record.targetCode,jdbcType=VARCHAR},
+      OP_TYPE = #{record.opType,jdbcType=CHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+      MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.RoleTarget" >
+    update ht_role_target_tb
+    <set >
+      <if test="roleCode != null" >
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="targetCode != null" >
+        TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null" >
+        OP_TYPE = #{opType,jdbcType=CHAR},
+      </if>
+        MODIFY_TIME = NOW(),
+      <if test="modifierId != null" >
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RT_ID = #{rtId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huatai.web.model.RoleTarget" >
+    update ht_role_target_tb
+    set ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+      OP_TYPE = #{opType,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR}
+    where RT_ID = #{rtId,jdbcType=INTEGER}
+  </update>
+  <!-- 根据RoleCode批量更新    假删 -->
+   <update id="updateRoleTargetByRoleCode" parameterType="com.huatai.web.model.RoleTarget" >
+    update ht_role_target_tb
+    <set >
+      <if test="opType != null" >
+        OP_TYPE = #{opType,jdbcType=CHAR},
+      </if>
+        MODIFY_TIME = NOW(),
+      <if test="modifierId != null" >
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLE_CODE = #{roleCode,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="findRoleTargetByRoleCode" resultMap="BaseResultMap" >
+    select rt.ROLE_CODE,rt.TARGET_CODE
+    from ht_role_target_tb rt,ht_target_tb t
+    <where>
+    	rt.OP_TYPE!='D' AND t.TARGET_CODE=rt.TARGET_CODE AND
+    	rt.ROLE_CODE=#{roleCode}
+    	<if test="depts !=null and depts!=''">
+    		AND t.DEPT_CODE in(${depts})
+    	</if>
+    </where>
+  </select>
+  
+  <select id="findRoleTargetAll" resultMap="BaseResultMap" >
+    select ROLE_CODE,TARGET_CODE
+    from ht_role_target_tb where OP_TYPE!='D'
+  </select>
+  
+  <select id="getPreDeatailByRoleCode" parameterType="java.lang.String" resultType="com.huatai.web.bean.TargetBean">
+  	SELECT T2.TARGET_CODE as code,T2.TARGET_NAME as name,T2.SORT as sort,T2.DEPT_CODE as dept FROM HT_ROLE_TARGET_TB T1 
+	  LEFT JOIN HT_TARGET_TB T2 ON T1.TARGET_CODE = T2.TARGET_CODE 
+	 WHERE T2.OP_TYPE NOT IN ('D') AND T2.PARENT_CODE = '${premium}' 
+	   AND T1.OP_TYPE NOT IN ('D') AND T1.ROLE_CODE = '${role}'
+  </select>
+  <update id="updateByRoleCodeSelective" parameterType="com.huatai.web.model.RoleTarget" >
+    update ht_role_target_tb
+    <set >
+      <if test="rtId != null" >
+        RT_ID = #{rtId,jdbcType=INTEGER},
+      </if>
+      <if test="targetCode != null" >
+        TARGET_CODE = #{targetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="opType != null" >
+        OP_TYPE = #{opType,jdbcType=CHAR},
+      </if>
+        MODIFY_TIME = NOW(),
+      <if test="modifierId != null" >
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLE_CODE = #{roleCode,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findByIsRoleCode" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select ROLE_CODE,TARGET_CODE
+    from ht_role_target_tb where  OP_TYPE='D'
+    <if test="roleCode != null" >
+        AND ROLE_CODE = #{roleCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <update id="updateByRoleTarget" parameterType="com.huatai.web.model.RoleTarget" >
+    update ht_role_target_tb
+    <set >
+      <if test="opType != null" >
+        OP_TYPE = #{opType,jdbcType=CHAR},
+      </if>
+        MODIFY_TIME = NOW(),
+      <if test="modifierId != null" >
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLE_CODE = #{roleCode,jdbcType=VARCHAR} AND TARGET_CODE = #{targetCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

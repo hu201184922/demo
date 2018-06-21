@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.QueryDimDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.huatai.web.model.QueryDimDetail" >
+    <id column="QDD_ID" property="qddId" jdbcType="INTEGER" />
+    <result column="QD_ID" property="qdId" jdbcType="INTEGER" />
+    <result column="KEY_CODE" property="keyCode" jdbcType="VARCHAR" />
+    <result column="VAL" property="val" jdbcType="VARCHAR" />
+    <result column="IS_DEFAULT" property="isDefault" jdbcType="CHAR" />
+    <result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+    <result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    QDD_ID, QD_ID, KEY_CODE, VAL, IS_DEFAULT, OP_TYPE, CREATE_TIME, MODIFY_TIME, CREATOR_ID, 
+    MODIFIER_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.huatai.web.model.QueryDimDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ht_query_dim_detail_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ht_query_dim_detail_tb
+    where QDD_ID = #{qddId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ht_query_dim_detail_tb
+    where QDD_ID = #{qddId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.huatai.web.model.QueryDimDetailExample" >
+    delete from ht_query_dim_detail_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.huatai.web.model.QueryDimDetail" >
+    insert into ht_query_dim_detail_tb (QDD_ID, QD_ID, KEY_CODE, 
+      VAL, IS_DEFAULT, OP_TYPE, CREATE_TIME, 
+      MODIFY_TIME, CREATOR_ID, MODIFIER_ID
+      )
+    values (#{qddId,jdbcType=INTEGER}, #{qdId,jdbcType=INTEGER}, #{keyCode,jdbcType=VARCHAR}, 
+      #{val,jdbcType=VARCHAR}, #{isDefault,jdbcType=CHAR}, #{opType,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=VARCHAR}, #{modifierId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huatai.web.model.QueryDimDetail" >
+    insert into ht_query_dim_detail_tb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="qddId != null" >
+        QDD_ID,
+      </if>
+      <if test="qdId != null" >
+        QD_ID,
+      </if>
+      <if test="keyCode != null" >
+        KEY_CODE,
+      </if>
+      <if test="val != null" >
+        VAL,
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT,
+      </if>
+      <if test="opType != null" >
+        OP_TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID,
+      </if>
+      <if test="modifierId != null" >
+        MODIFIER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="qddId != null" >
+        #{qddId,jdbcType=INTEGER},
+      </if>
+      <if test="qdId != null" >
+        #{qdId,jdbcType=INTEGER},
+      </if>
+      <if test="keyCode != null" >
+        #{keyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="val != null" >
+        #{val,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=CHAR},
+      </if>
+      <if test="opType != null" >
+        #{opType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.huatai.web.model.QueryDimDetailExample" resultType="java.lang.Integer" >
+    select count(*) from ht_query_dim_detail_tb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ht_query_dim_detail_tb
+    <set >
+      <if test="record.qddId != null" >
+        QDD_ID = #{record.qddId,jdbcType=INTEGER},
+      </if>
+      <if test="record.qdId != null" >
+        QD_ID = #{record.qdId,jdbcType=INTEGER},
+      </if>
+      <if test="record.keyCode != null" >
+        KEY_CODE = #{record.keyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.val != null" >
+        VAL = #{record.val,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDefault != null" >
+        IS_DEFAULT = #{record.isDefault,jdbcType=CHAR},
+      </if>
+      <if test="record.opType != null" >
+        OP_TYPE = #{record.opType,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creatorId != null" >
+        CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifierId != null" >
+        MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ht_query_dim_detail_tb
+    set QDD_ID = #{record.qddId,jdbcType=INTEGER},
+      QD_ID = #{record.qdId,jdbcType=INTEGER},
+      KEY_CODE = #{record.keyCode,jdbcType=VARCHAR},
+      VAL = #{record.val,jdbcType=VARCHAR},
+      IS_DEFAULT = #{record.isDefault,jdbcType=CHAR},
+      OP_TYPE = #{record.opType,jdbcType=CHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+      MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.QueryDimDetail" >
+    update ht_query_dim_detail_tb
+    <set >
+      <if test="qdId != null" >
+        QD_ID = #{qdId,jdbcType=INTEGER},
+      </if>
+      <if test="keyCode != null" >
+        KEY_CODE = #{keyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="val != null" >
+        VAL = #{val,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        IS_DEFAULT = #{isDefault,jdbcType=CHAR},
+      </if>
+      <if test="opType != null" >
+        OP_TYPE = #{opType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null" >
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where QDD_ID = #{qddId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huatai.web.model.QueryDimDetail" >
+    update ht_query_dim_detail_tb
+    set QD_ID = #{qdId,jdbcType=INTEGER},
+      KEY_CODE = #{keyCode,jdbcType=VARCHAR},
+      VAL = #{val,jdbcType=VARCHAR},
+      IS_DEFAULT = #{isDefault,jdbcType=CHAR},
+      OP_TYPE = #{opType,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR}
+    where QDD_ID = #{qddId,jdbcType=INTEGER}
+  </update>
+  <select id="findByPager" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from ht_query_dim_detail_tb
+		<where>OP_TYPE!='D'
+			<if test="qddId!=null and qddId!=''">
+				and QDD_ID = #{qddId,jdbcType=INTEGER}
+			</if>
+			<if test="qdId!=null and qdId!=''">
+				and QD_ID = #{qdId,jdbcType=INTEGER}
+			</if>
+			<if test="keyCode!=null and keyCode!=''">
+				and KEY_CODE LIKE CONCAT(CONCAT('%',#{keyCode}),'%')
+			</if>
+			<if test="val!=null and val!=''">
+				and VAL LIKE CONCAT(CONCAT('%',#{val}),'%')
+			</if>
+			<if test="isDefault!=null and isDefault!=''">
+				and IS_DEFAULT = #{isDefault,jdbcType=CHAR}
+			</if>
+			<if test="opType!=null and opType!=''">
+				and OP_TYPE = #{opType,jdbcType=CHAR}
+			</if>
+			<if test="createTime!=null and createTime!=''">
+				and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="modifyTime!=null and modifyTime!=''">
+				and MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="creatorId!=null and creatorId!=''">
+				and CREATOR_ID = #{creatorId,jdbcType=VARCHAR}
+			</if>
+			<if test="modifierId!=null and modifierId!=''">
+				and MODIFIER_ID = #{modifierId,jdbcType=VARCHAR}
+			</if>
+		</where>
+
+	</select>
+	<select id="findQueryDimDetailById" parameterType="String" resultType="com.huatai.web.bean.QueryDimDetailBean">
+		SELECT
+			KEY_CODE as 'name',
+			VAL as 'value'
+		FROM
+			ht_query_dim_detail_tb
+		WHERE
+			OP_TYPE!='D'
+			AND QD_ID = (
+				SELECT
+					QD_ID
+				FROM
+					ht_query_dim_tb
+				WHERE
+					query_dim_code = "CHANNEL_TYPE"
+			)
+	</select>
+</mapper>

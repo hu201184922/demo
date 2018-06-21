@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huatai.web.mapper.GroDimMapper">
+	<resultMap id="BaseResultMap" type="com.huatai.web.model.GroDim">
+		<id column="GD_ID" property="gdId" jdbcType="INTEGER" />
+		<result column="GRO_DIM_TYPE_CODE" property="groDimTypeCode"
+			jdbcType="VARCHAR" />
+		<result column="GRO_DIM_TYPE_NAME" property="groDimTypeName"
+			jdbcType="VARCHAR" />
+		<result column="OP_TYPE" property="opType" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+		<result column="MODIFIER_ID" property="modifierId" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		GD_ID, GRO_DIM_TYPE_CODE, GRO_DIM_TYPE_NAME, OP_TYPE,
+		CREATE_TIME,
+		MODIFY_TIME, CREATOR_ID,
+		MODIFIER_ID
+	</sql>
+	<sql id="Base_Column_List1">
+		gd.GD_ID, gd.GRO_DIM_TYPE_CODE, gd.GRO_DIM_TYPE_NAME,
+		gd.OP_TYPE,
+		gd.CREATE_TIME,
+		gd.MODIFY_TIME, gd.CREATOR_ID,
+		gd.MODIFIER_ID
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.huatai.web.model.GroDimExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ht_gro_dim_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from ht_gro_dim_tb
+		where GD_ID = #{gdId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		ht_gro_dim_tb
+		where GD_ID = #{gdId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.huatai.web.model.GroDimExample">
+		delete from ht_gro_dim_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.huatai.web.model.GroDim">
+		insert into ht_gro_dim_tb
+		(GD_ID, GRO_DIM_TYPE_CODE,
+		GRO_DIM_TYPE_NAME,
+		OP_TYPE, CREATE_TIME,
+		MODIFY_TIME,
+		CREATOR_ID, MODIFIER_ID)
+		values (#{gdId,jdbcType=INTEGER},
+		#{groDimTypeCode,jdbcType=VARCHAR},
+		#{groDimTypeName,jdbcType=VARCHAR},
+		#{opType,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP},
+		#{creatorId,jdbcType=VARCHAR}, #{modifierId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huatai.web.model.GroDim">
+		insert into ht_gro_dim_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="gdId != null">
+				GD_ID,
+			</if>
+			<if test="groDimTypeCode != null">
+				GRO_DIM_TYPE_CODE,
+			</if>
+			<if test="groDimTypeName != null">
+				GRO_DIM_TYPE_NAME,
+			</if>
+			<if test="opType != null">
+				OP_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME,
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID,
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="gdId != null">
+				#{gdId,jdbcType=INTEGER},
+			</if>
+			<if test="groDimTypeCode != null">
+				#{groDimTypeCode,jdbcType=VARCHAR},
+			</if>
+			<if test="groDimTypeName != null">
+				#{groDimTypeName,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				#{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				#{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				#{modifierId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.huatai.web.model.GroDimExample"
+		resultType="java.lang.Integer">
+		select count(*) from ht_gro_dim_tb
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update ht_gro_dim_tb
+		<set>
+			<if test="record.gdId != null">
+				GD_ID = #{record.gdId,jdbcType=INTEGER},
+			</if>
+			<if test="record.groDimTypeCode != null">
+				GRO_DIM_TYPE_CODE =
+				#{record.groDimTypeCode,jdbcType=VARCHAR},
+			</if>
+			<if test="record.groDimTypeName != null">
+				GRO_DIM_TYPE_NAME =
+				#{record.groDimTypeName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.opType != null">
+				OP_TYPE = #{record.opType,jdbcType=CHAR},
+			</if>
+			<if test="record.createTime != null">
+				CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.modifyTime != null">
+				MODIFY_TIME = #{record.modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.creatorId != null">
+				CREATOR_ID = #{record.creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.modifierId != null">
+				MODIFIER_ID = #{record.modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update ht_gro_dim_tb
+		set GD_ID = #{record.gdId,jdbcType=INTEGER},
+		GRO_DIM_TYPE_CODE = #{record.groDimTypeCode,jdbcType=VARCHAR},
+		GRO_DIM_TYPE_NAME = #{record.groDimTypeName,jdbcType=VARCHAR},
+		OP_TYPE
+		= #{record.opType,jdbcType=CHAR},
+		CREATE_TIME =
+		#{record.createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME =
+		#{record.modifyTime,jdbcType=TIMESTAMP},
+		CREATOR_ID =
+		#{record.creatorId,jdbcType=VARCHAR},
+		MODIFIER_ID =
+		#{record.modifierId,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huatai.web.model.GroDim">
+		update ht_gro_dim_tb
+		<set>
+			<if test="groDimTypeCode != null">
+				GRO_DIM_TYPE_CODE = #{groDimTypeCode,jdbcType=VARCHAR},
+			</if>
+			<if test="groDimTypeName != null">
+				GRO_DIM_TYPE_NAME = #{groDimTypeName,jdbcType=VARCHAR},
+			</if>
+			<if test="opType != null">
+				OP_TYPE = #{opType,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creatorId != null">
+				CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="modifierId != null">
+				MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where GD_ID = #{gdId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huatai.web.model.GroDim">
+		update
+		ht_gro_dim_tb
+		set GRO_DIM_TYPE_CODE =
+		#{groDimTypeCode,jdbcType=VARCHAR},
+		GRO_DIM_TYPE_NAME =
+		#{groDimTypeName,jdbcType=VARCHAR},
+		OP_TYPE = #{opType,jdbcType=CHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		MODIFY_TIME =
+		#{modifyTime,jdbcType=TIMESTAMP},
+		CREATOR_ID =
+		#{creatorId,jdbcType=VARCHAR},
+		MODIFIER_ID =
+		#{modifierId,jdbcType=VARCHAR}
+		where GD_ID = #{gdId,jdbcType=INTEGER}
+	</update>
+
+	<select id="findGroDimByPage" resultMap="BaseResultMap"
+		parameterType="com.huatai.web.model.GroDimExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from ht_gro_dim_tb
+		<where>
+			OP_TYPE!='D'
+			<if test="gdId != null and gdId != ''">
+				AND GD_ID=#{gdId}
+			</if>
+			<if test="groDimTypeCode != null and groDimTypeCode != ''">
+				AND GRO_DIM_TYPE_CODE=#{groDimTypeCode}
+			</if>
+			<if test="groDimTypeName != null and groDimTypeName != ''">
+				AND GRO_DIM_TYPE_NAME=#{groDimTypeName}
+			</if>
+			<if test="opType != null">
+				AND OP_TYPE=#{opType}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME=#{createTime}
+			</if>
+			<if test="modifyTime != null">
+				AND MODIFY_TIME=#{modifyTime}
+			</if>
+			<if test="creatorId != null">
+				AND CREATOR_ID=#{creatorId}
+			</if>
+			<if test="modifierId != null">
+				AND MODIFIER_ID=#{modifierId}
+			</if>
+		</where>
+		ORDER BY CREATE_TIME DESC
+	</select>
+
+	<!-- 指标区域查询 -->
+	<select id="findGroDimAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_gro_dim_tb
+		where OP_TYPE != "D"
+	</select>
+
+	<!-- <select id="findGroDimByTargetCode" resultMap="BaseResultMap"> select 
+		distinct <include refid="Base_Column_List1" /> from ht_gro_dim_tb gd join 
+		ht_gro_dim_detail_tb gdd on gd.GD_ID=gdd.GD_ID join ht_tar_gro_dim_tb tgd 
+		on gdd.GDD_ID=tgd.GDD_ID join ht_target_tb t on tgd.TARGET_CODE=t.TARGET_CODE 
+		where t.TARGET_CODE=#{targetCode} AND t.OP_TYPE != "D" </select> -->
+
+	<select id="findGroDimByTargetCode" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ht_gro_dim_tb
+		where OP_TYPE != "D"
+	</select>
+</mapper>

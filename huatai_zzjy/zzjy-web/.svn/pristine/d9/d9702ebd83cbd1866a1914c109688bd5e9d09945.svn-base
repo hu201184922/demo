@@ -1,0 +1,3 @@
+##\u7CFB\u7EDF\u4EFB\u52A1=com.fairyland.jdp.framework.schedule.quartz.QuartzClusterableJob
+TestJob=com.fairyland.jdp.framework.quartz.job.TestJob
+CacheRedisJob=com.huatai.web.job.CacheRedisJob
