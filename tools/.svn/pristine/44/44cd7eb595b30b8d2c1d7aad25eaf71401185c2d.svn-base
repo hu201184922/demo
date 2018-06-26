@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tools.project.mapper.OracleMapper">
+	<resultMap id="BaseResultMap" type="com.tools.project.pojo.Person">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="AGE" property="age" jdbcType="VARCHAR" />
+		<result column="SEX" property="sex" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="findAll" resultMap="BaseResultMap">
+		select
+		*
+		from person
+	</select>
+</mapper>
