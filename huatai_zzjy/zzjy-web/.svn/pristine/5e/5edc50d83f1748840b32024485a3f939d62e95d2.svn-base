@@ -1,9 +1,0 @@
-i18n.language=English
-i18n.locale=en_US
-login.username=Username
-login.password=Password
-login.captcha=ValidateCode
-login.notsee=Can't see
-login.rememberme=Remember me
-admin.login.title=Management platform login
-login.login=Sign in

@@ -1,9 +1,0 @@
-/* policy_information */
-.policy-list{background:#fff;padding:15px 15px 5px;border-bottom:1px solid #ddd;margin-bottom:0.8rem;}
-.policy-list h1{line-height:30px; position:relative;padding-left:35px;font-size:19px;}
-.policy-list h1 i{width:30px;height:30px;border-radius:15px;color:#fff;text-align:center;background:#3a97e5;position:absolute;left:0;}
-.policy-list .txt-content{border-bottom:1px solid #ddd;line-height:30px;padding:5px 0;width:100%;}
-.policy-list .txt-content dl{width:50%;height:2rem;line-height:2rem;float:left;}
-.policy-list .txt-content dl dt{width:55%;padding-right:5%;height:2rem;line-height:30px;float:left;color:#666; text-align:right}
-.policy-list .txt-content dl dd{width:45%;height:30px;line-height:2rem;float:left;}
-.policy-list-date{color:#666;line-height:40px;}
